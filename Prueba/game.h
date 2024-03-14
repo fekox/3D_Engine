@@ -9,7 +9,6 @@ private:
 	const char* windowName;
 	Sprite* Sonic;
 	Sprite* Cartel;
-	Sprite* Fondo;
 
 	Vector3 lastTexturePos;
 

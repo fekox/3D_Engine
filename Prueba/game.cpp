@@ -26,11 +26,7 @@ void Game::init()
 
 	//Init Texture
 	TexturePosition2 = Vector3{ width / 4,height / 2,0 };
-
 	Cartel = new Sprite(path, TextureColor2, GetRenderer(), TexturePosition2, TextureScale, TextureRotation);
-
-	path = "res/map.png";
-	Fondo = new Sprite(path, TextureColor2, GetRenderer(), Vector3{ 0+450,0+507/2, 0 }, Vector3{ 900,507, 0 }, TextureRotation);
 
 	//Idle Animation
 	walkAnimation = new Animation();
@@ -91,16 +87,9 @@ void Game::update()
 		Sonic->setPosition(Vector3{ Sonic->getPosition().x + 1.0f, Sonic->getPosition().y ,0 });
 	}
 
-	//Collider
-	if (CollisionManager::CheckCollisionRecRec(Sonic, Cartel))
-	{
-		Sonic->setPosition(lastTexturePos);
-	}
-
 	Sonic->Update();
 	Cartel->Update();
 
-	Fondo->Draw();
 	Sonic->Draw();
 	Cartel->Draw();
 }
