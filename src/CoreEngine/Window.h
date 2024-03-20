@@ -12,8 +12,8 @@ namespace window
 		private:
 
 		GLFWwindow* window;
-		float width;
-		float height;
+		int width;
+		int height;
 		const char* windowName;
 		GLFWmonitor* monitor;
 		GLFWwindow* share;
@@ -21,7 +21,7 @@ namespace window
 
 		public:
 
-		Window(float width, float height, const char* windowName, GLFWmonitor* monitor, GLFWwindow* share);
+		Window(int width, int height, const char* windowName, GLFWmonitor* monitor, GLFWwindow* share);
 		~Window();
 		/// <summary>
 		/// Initialize the window.

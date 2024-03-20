@@ -5,7 +5,7 @@ using namespace std;
 
 namespace window
 {
-	Window::Window(float width, float height, const char* windowName, GLFWmonitor* monitor, GLFWwindow* share)
+	Window::Window(int width, int height, const char* windowName, GLFWmonitor* monitor, GLFWwindow* share)
 	{
 		this->width = width;
 		this->height = height;
@@ -23,6 +23,12 @@ namespace window
 	void Window::initWindow()
 	{
 		window = glfwCreateWindow(width, height, windowName, monitor, share);
+
+		/*if (!window)
+		{
+			cout << "Failed to create window" << endl;
+			closeWindow();
+		}*/
 
 		glfwMakeContextCurrent(window);
 	}

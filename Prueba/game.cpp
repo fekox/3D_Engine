@@ -17,7 +17,7 @@ void Game::init()
 {
 	//Init Shape
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-	TexturePosition = Vector3{ width / 2,height / 2, 5};
+	TexturePosition = Vector3{ width / 2,height / 2, 0 };
 	TextureScale = Vector3{ 64,64,1 };;
 	TextureRotation = Vector3{ 0,0,0 };;
 
@@ -25,7 +25,7 @@ void Game::init()
 	Sonic = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
 
 	//Init Texture
-	TexturePosition2 = Vector3{ width / 4,height / 2, 5};
+	TexturePosition2 = Vector3{ width / 4,height / 2,0 };
 	Cartel = new Sprite(path, TextureColor2, GetRenderer(), TexturePosition2, TextureScale, TextureRotation);
 
 	//Idle Animation

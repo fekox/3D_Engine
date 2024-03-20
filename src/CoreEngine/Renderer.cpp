@@ -11,8 +11,7 @@ namespace renderer
 	{
 		this->window = window;
 
-		//projection = glm::ortho(0.0f, window->getWidth(), 0.0f, window->getHeight(), 0.1f, 100.0f);
-		projection = glm::perspective(glm::radians(45.0f), window->getWidth()/window->getHeight(), 0.1f, 100.0f);
+		projection = glm::ortho(0.0f, window->getWidth(), 0.0f, window->getHeight(), 0.1f, 100.0f);
 		vec3 cameraPosition = vec3(0, 0, 1);
 		view = lookAt(cameraPosition, { 0,0,0 }, { 0,1,0 });
 
