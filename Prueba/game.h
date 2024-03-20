@@ -8,7 +8,6 @@ class Game : public BaseGame
 private:
 	const char* windowName;
 	Sprite* Sonic;
-	Sprite* Cartel;
 
 	Vector3 lastTexturePos;
 
@@ -17,13 +16,8 @@ private:
 	Vector3 TextureScale;
 	Vector3 TextureRotation;
 
-	Vector4 TextureColor2;
-	Vector3 TexturePosition2;
-
 	Animation* idleAnimation;
 	Animation* walkAnimation;
-
-	Animation* idleAnimationCartel;
 
 public:
 	float width;
