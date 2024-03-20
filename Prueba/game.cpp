@@ -17,15 +17,15 @@ void Game::init()
 {
 	//Init Shape
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-	TexturePosition = Vector3{ width / 2,height / 2, 0 };
-	TextureScale = Vector3{ 64,64,1 };;
-	TextureRotation = Vector3{ 0,0,0 };;
+	TexturePosition = Vector3{ width / 2,height / 2, -50 };
+	TextureScale = Vector3{ 128,128,128};
+	TextureRotation = Vector3{ 0,0,0 };
 
 	const char* path = "res/Sonic_Mania_Sprite_Sheet.png";
 	Sonic = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
 
 	//Init Texture
-	TexturePosition2 = Vector3{ width / 4,height / 2,0 };
+	TexturePosition2 = Vector3{ width / 4,height / 2, -50 };
 
 	Cartel = new Sprite(path, TextureColor2, GetRenderer(), TexturePosition2, TextureScale, TextureRotation);
 

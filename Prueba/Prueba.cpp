@@ -4,10 +4,10 @@ using namespace baseEngine;
 
 int main(void)
 {
-    int width = 640;
-    int height = 480;
+    int width = 1920;
+    int height = 1080;
 
-    const char* windowName = "Pinguano-Engine";
+    const char* windowName = "Engine_3D";
 
     Game* game;
 
