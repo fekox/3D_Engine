@@ -29,9 +29,6 @@ void Game::init()
 
 	Cartel = new Sprite(path, TextureColor2, GetRenderer(), TexturePosition2, TextureScale, TextureRotation);
 
-	path = "res/map.png";
-	Fondo = new Sprite(path, TextureColor2, GetRenderer(), Vector3{ 0+450,0+507/2, 0 }, Vector3{ 900,507, 0 }, TextureRotation);
-
 	//Idle Animation
 	walkAnimation = new Animation();
 	walkAnimation->AddFrame(848, 203, 122/3, 48, 830, 465, 500, 3);
@@ -100,7 +97,6 @@ void Game::update()
 	Sonic->Update();
 	Cartel->Update();
 
-	Fondo->Draw();
 	Sonic->Draw();
 	Cartel->Draw();
 }
