@@ -8,6 +8,7 @@ class Game : public BaseGame
 private:
 	const char* windowName;
 	Sprite* Sonic;
+	Camera* camera;
 
 	Vector3 lastTexturePos;
 

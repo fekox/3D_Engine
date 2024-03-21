@@ -37,6 +37,10 @@ namespace inputSystem
 			b = GLFW_KEY_B,
 			n = GLFW_KEY_N,
 			m = GLFW_KEY_M,
+			upArrow = GLFW_KEY_UP,
+			downArrow = GLFW_KEY_DOWN,
+			leftArrow = GLFW_KEY_LEFT,
+			rightArrow = GLFW_KEY_RIGHT
 		};
 
 		enum Action

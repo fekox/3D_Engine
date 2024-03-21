@@ -11,10 +11,16 @@ namespace renderer
 	{
 		this->window = window;
 
+		cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
+		cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+		cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+		camera = new Camera(cameraPos, cameraUp, cameraFront);
+
 		projection = glm::perspective(glm::radians(45.0f), window->getWidth() / window->getHeight(), 0.1f, 2000.0f);
-		//projection = glm::ortho(0.0f, window->getWidth(), 0.0f, window->getHeight(), 0.1f, 100.0f);
-		vec3 cameraPosition = vec3(0, 0, 1);
-		view = lookAt(cameraPosition, { 0,0,0 }, { 0,1,0 });
+		//vec3 cameraPosition = vec3(0, 0, 1);
+		//view = lookAt(cameraPosition, { 0,0,0 }, { 0,1,0 });
+		view = lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
 		ShaderProgramSource source1 = shader.ParseShader("res/Shader/Primitive.Shader");
 		primitiveShader = shader.createShader(source1.VertexSource, source1.FragmentSource);

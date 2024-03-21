@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include "Entity/Camera.h"
 #include "CoreEngine/Window.h"
 #include "Tools/Vectors.h"
 #include "Tools/ErrorLog.h"
@@ -12,6 +13,7 @@
 
 using namespace window;
 using namespace shader;
+using namespace camera;
 using namespace errorLog;
 using namespace vectors;
 using namespace glm;
@@ -34,6 +36,11 @@ namespace renderer
 		unsigned int textureShader;
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
+
+		Camera* camera;
+		glm::vec3 cameraPos;
+		glm::vec3 cameraFront;
+		glm::vec3 cameraUp;
 
 	public:
 

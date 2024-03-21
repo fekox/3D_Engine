@@ -17,9 +17,9 @@ void Game::init()
 {
 	//Init Shape
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-	TexturePosition = Vector3{0,0, -700 };
-	TextureScale = Vector3{ 128,128,128};
-	TextureRotation = Vector3{ 0,0,0 };
+	TexturePosition = Vector3{0,0,-700 };
+	TextureScale = Vector3{128,128,128};
+	TextureRotation = Vector3{0,0,0};
 
 	const char* path = "res/Sonic_Mania_Sprite_Sheet.png";
 	Sonic = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
@@ -38,7 +38,7 @@ void Game::update()
 {
 	Sonic->SetAnimation(idleAnimation);
 
-	//Inputs
+	//Player Inputs;
 	if (inputSystem->getKey(inputSystem->q, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
@@ -75,6 +75,9 @@ void Game::update()
 		Sonic->SetAnimation(walkAnimation);
 		Sonic->setPosition(Vector3{ Sonic->getPosition().x + 1.0f, Sonic->getPosition().y, Sonic->getPosition().z});
 	}
+
+	//Camera Inputs
+
 
 	Sonic->Update();
 

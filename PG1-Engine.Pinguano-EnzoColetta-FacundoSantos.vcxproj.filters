@@ -69,6 +69,9 @@
     <ClCompile Include="src\Tools\CollisionManager.cpp">
       <Filter>Src\tools</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entity\Camera.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -127,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="src\Tools\CollisionManager.h">
       <Filter>Src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Camera.h">
+      <Filter>Src\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
