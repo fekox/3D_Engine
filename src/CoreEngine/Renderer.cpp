@@ -14,13 +14,16 @@ namespace renderer
 		cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
 		cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 		cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+		yaw = -90.0f;
+		pitch = 0.0f;
 
-		camera = new Camera(cameraPos, cameraUp, cameraFront);
+		camera = new Camera(cameraPos, cameraUp, cameraFront, yaw, pitch);
 
-		projection = glm::perspective(glm::radians(45.0f), window->getWidth() / window->getHeight(), 0.1f, 2000.0f);
+		projection = camera->GetProjection(window);
 		//vec3 cameraPosition = vec3(0, 0, 1);
 		//view = lookAt(cameraPosition, { 0,0,0 }, { 0,1,0 });
-		view = lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+		//view = lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+		view = camera->GetView();
 
 		ShaderProgramSource source1 = shader.ParseShader("res/Shader/Primitive.Shader");
 		primitiveShader = shader.createShader(source1.VertexSource, source1.FragmentSource);
@@ -34,7 +37,8 @@ namespace renderer
 
 	Renderer::~Renderer()
 	{
-
+		delete window;
+		delete camera;
 	}
 
 	void Renderer::StartDraw()

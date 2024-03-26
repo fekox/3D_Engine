@@ -41,6 +41,8 @@ namespace renderer
 		glm::vec3 cameraPos;
 		glm::vec3 cameraFront;
 		glm::vec3 cameraUp;
+		float yaw;
+		float pitch;
 
 	public:
 

@@ -2,28 +2,50 @@
 
 namespace camera
 {
-	Camera::Camera(glm::vec3 cameraPos, glm::vec3 cameraUp, glm::vec3 cameraFront)
+	Camera::Camera(glm::vec3 newCameraPos, glm::vec3 newCameraUp, glm::vec3 newCameraFront, float newYaw, float newPitch)
 	{
-		this->cameraPos = cameraPos;
-		this->cameraUp = cameraUp;
-		this->cameraFront = cameraFront;
+		this->cameraPos = newCameraPos;
+		this->cameraUp = newCameraUp;
+		this->cameraFront = newCameraFront;
+		this->yaw = newYaw;
+		this->pitch = newPitch;
 	}
 
-	void Camera::SetPosition(glm::vec3 newCameraPos)
+	void Camera::CameraMovement(GLFWwindow* window)
 	{
-		newCameraPos.x = cameraPos.x;
-		newCameraPos.y = cameraPos.y;
-		newCameraPos.z = cameraPos.z;
+		float currentTime = Time::GetDeltaTime();
+
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		{
+			cameraPos += movementSpeed * cameraFront * currentTime;
+		}
+		
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		{
+			cameraPos -= movementSpeed * cameraFront * currentTime;
+		}
+		
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		{
+			cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraFront * currentTime;
+		}
+		
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		{
+			cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraFront * currentTime;
+		}
+		
+		cameraPos.y = 0.0f;
 	}
 
-	void Camera::CameraMovement()
+	glm::mat4 Camera::GetProjection(Window* window)
 	{
-
+		return glm::perspective(glm::radians(45.0f), window->getWidth() / window->getHeight(), nearPlane, farPlane);
 	}
 
-	glm::vec3 Camera::GetPosition()
+	glm::mat4 Camera::GetView()
 	{
-		return cameraPos;
+		return lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 	}
 
 	Camera::~Camera()
