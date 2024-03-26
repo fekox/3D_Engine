@@ -34,7 +34,7 @@ namespace camera
 
 		public:
 
-			Camera(glm::vec3 newCameraPos, glm::vec3 newCameraUp, glm::vec3 newCameraFront, float newYaw, float newPitch);
+			Camera(glm::vec3 newCameraPos, glm::vec3 newCameraUp, glm::vec3 newCameraFront, float newYaw, float newPitch, float newMovementSpeed);
 			void CameraMovement(GLFWwindow* window);
 			glm::mat4 GetProjection(Window* window);
 			glm::mat4 GetView();

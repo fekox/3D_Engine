@@ -16,8 +16,9 @@ namespace renderer
 		cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 		yaw = -90.0f;
 		pitch = 0.0f;
+		movementSpeed = 3.0f;
 
-		camera = new Camera(cameraPos, cameraUp, cameraFront, yaw, pitch);
+		camera = new Camera(cameraPos, cameraUp, cameraFront, yaw, pitch, movementSpeed);
 
 		projection = camera->GetProjection(window);
 		//vec3 cameraPosition = vec3(0, 0, 1);
@@ -37,8 +38,7 @@ namespace renderer
 
 	Renderer::~Renderer()
 	{
-		delete window;
-		delete camera;
+
 	}
 
 	void Renderer::StartDraw()

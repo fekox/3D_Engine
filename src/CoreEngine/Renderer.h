@@ -43,6 +43,7 @@ namespace renderer
 		glm::vec3 cameraUp;
 		float yaw;
 		float pitch;
+		float movementSpeed;
 
 	public:
 

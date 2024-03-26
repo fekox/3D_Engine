@@ -76,9 +76,6 @@ void Game::update()
 		Sonic->setPosition(Vector3{ Sonic->getPosition().x + 1.0f, Sonic->getPosition().y, Sonic->getPosition().z});
 	}
 
-	//Camera Inputs
-
-
 	Sonic->Update();
 
 	Sonic->Draw();
