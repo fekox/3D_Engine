@@ -27,7 +27,8 @@ namespace renderer
 
 	void Renderer::UpdateView(Camera* camera)
 	{
-		view = camera->GetView();
+		view = camera->GetViewFirstPerson();
+		//view = camera->GetViewThirdPerson();
 	}
 
 	void Renderer::UpdateProjection(Camera* camera)

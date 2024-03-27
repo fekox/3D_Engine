@@ -4,7 +4,7 @@ namespace camera
 {
 	Camera::Camera()
 	{
-		cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
+		cameraPos = glm::vec3(0.0f, 0.0f, 300.0f);
 		cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 		cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
@@ -75,9 +75,18 @@ namespace camera
 		return glm::perspective(glm::radians(zoom), window->getWidth() / window->getHeight(), nearPlane, farPlane);
 	}
 
-	glm::mat4 Camera::GetView()
+	glm::mat4 Camera::GetViewFirstPerson()
 	{
 		return lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	}
+
+	glm::mat4 Camera::GetViewThirdPerson()
+	{
+		const float radius = -300.0f;
+		float camX = sin(glfwGetTime()) * radius;
+		float camZ = cos(glfwGetTime()) * radius;
+
+		return glm::lookAt(glm::vec3(camX, 0.0, camZ), glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 1.0, 0.0));
 	}
 
 	void Camera::CheckMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
@@ -106,7 +115,7 @@ namespace camera
 
 	void Camera::CheckMouseScroll(float yoffset)
 	{
-		float currentZoom = 45.0f;
+		float currentZoom = 60.0f;
 
 		zoom -= yoffset * zoomSpeed;
 
@@ -115,7 +124,7 @@ namespace camera
 			zoom = 1.0f;
 		}
 
-		if (zoom > 45.0f)
+		if (zoom > 60.0f)
 		{
 			zoom = currentZoom;
 		}

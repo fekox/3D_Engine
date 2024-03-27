@@ -18,6 +18,9 @@ namespace camera
 			glm::vec3 cameraFront;
 			glm::vec3 cameraWorldUp;
 
+			glm::vec3 cameraTarget;
+			glm::vec3 cameraDirection;
+
 			float yaw;
 			float pitch;
 
@@ -33,12 +36,14 @@ namespace camera
 			float lastX;
 			float lastY;
 			bool firstMouse = true;
+			bool lookModelmode;
 
 			Camera();
 			void CameraMovement(GLFWwindow* window);
 			void UpdateCameraVectors();
 			glm::mat4 GetProjection(Window* window);
-			glm::mat4 GetView();
+			glm::mat4 GetViewFirstPerson();
+			glm::mat4 GetViewThirdPerson();
 			void CheckMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
 			void CheckMouseScroll(float yoffset);
 

@@ -18,14 +18,14 @@ void Game::init()
 	//Triangle 1
 	colorTriangleFront = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
 	colorTriangleBack = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
-	position = Vector3{ 100, 0 , -500 };
+	position = Vector3{ 100, 0 , 0 };
 	scale = Vector3{ 80.0f, 80.0f, 80.0f };
 	rotation = Vector3{ 0,0,0 };
 	triangle = new Shape(Shape::typeShapes::Triangle, colorTriangleFront, GetRenderer(), position, scale, rotation);
 
 	//Init Shape
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-	TexturePosition = Vector3{0,0,-700 };
+	TexturePosition = Vector3{0,0, 0 };
 	TextureScale = Vector3{128,128,128};
 	TextureRotation = Vector3{0,0,0};
 
