@@ -18,11 +18,11 @@ namespace camera
 			glm::vec3 cameraFront;
 			glm::vec3 cameraWorldUp;
 
-			float yaw = -90.0f;
-			float pitch = 0.0f;
+			float yaw;
+			float pitch;
 
-			const float nearPlane = 0.1f;
-			const float farPlane = 2000.0f; 
+			float nearPlane;
+			float farPlane; 
 
 			float movementSpeed;
 			float mouseSensX;
@@ -34,8 +34,9 @@ namespace camera
 
 		public:
 
-			Camera(glm::vec3 newCameraPos, glm::vec3 newCameraUp, glm::vec3 newCameraFront, float newYaw, float newPitch, float newMovementSpeed);
+			Camera();
 			void CameraMovement(GLFWwindow* window);
+			void UpdateCameraVectors();
 			glm::mat4 GetProjection(Window* window);
 			glm::mat4 GetView();
 			~Camera();

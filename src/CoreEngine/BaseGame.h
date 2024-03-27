@@ -4,6 +4,7 @@
 
 #include "Entity/Shape.h"
 #include "Entity/Sprite.h"
+#include "Entity/Camera.h"
 
 #include "Tools/dll-Exp-Inp.h"
 #include "Tools/Time.h"
@@ -11,6 +12,7 @@
 #include "InputSystem.h"
 
 using namespace shape;
+using namespace camera;
 using namespace window;
 using namespace renderer;
 using namespace sprite;
@@ -28,6 +30,7 @@ namespace baseEngine
 
 		Renderer* renderer;
 		Window* window;
+		Camera* camera;
 		ErrorLog errorLog;
 
 	public:

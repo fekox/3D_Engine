@@ -7,6 +7,20 @@ class Game : public BaseGame
 {
 private:
 	const char* windowName;
+	//Shape
+	Shape* triangle;
+
+	Vector4 colorTriangleFront;
+	Vector4 colorTriangleBack;
+
+	Vector3 position;
+	Vector3 position2;
+	Vector3 position3;
+
+	Vector3 scale;
+	Vector3 rotation;
+
+	//Sprite
 	Sprite* Sonic;
 	Camera* camera;
 

@@ -3,41 +3,66 @@
 
 namespace camera
 {
-	Camera::Camera(glm::vec3 newCameraPos, glm::vec3 newCameraUp, glm::vec3 newCameraFront, float newYaw, float newPitch, float newMovementSpeed)
+	Camera::Camera()
 	{
-		this->cameraPos = newCameraPos;
-		this->cameraUp = newCameraUp;
-		this->cameraFront = newCameraFront;
-		this->yaw = newYaw;
-		this->pitch = newPitch;
-		this->movementSpeed = newMovementSpeed;
+		cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
+		cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+		cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+		yaw = -90.0f;
+		pitch = 0.0f;
+		movementSpeed = 500.0f;
+
+		nearPlane = 0.1f;
+		farPlane = 2000.0f;
+
+		UpdateCameraVectors();
 	}
 
 	void Camera::CameraMovement(GLFWwindow* window)
 	{
-		float currentTime = Time::GetDeltaTime();
+		float deltaTime = 0.0f;
+		float lastFrame = 0.0f;
+		float currentFrame = Time::GetDeltaTime();
+
+		deltaTime = currentFrame - lastFrame;
+		lastFrame = currentFrame;
 
 		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 		{
-			cameraPos += movementSpeed * cameraFront * currentTime;
+			cameraPos += movementSpeed * cameraFront * deltaTime;
 		}
 		
 		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 		{
-			cameraPos -= movementSpeed * cameraFront * currentTime;
+			cameraPos -= movementSpeed * cameraFront * deltaTime;
 		}
 		
 		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
 		{
-			cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraFront * currentTime;
+			cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
 		}
 		
 		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
 		{
-			cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraFront * currentTime;
+			cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
 		}
 		
 		cameraPos.y = 0.0f;
+		UpdateCameraVectors();
+	}
+
+	void Camera::UpdateCameraVectors()
+	{
+		glm::vec3 direction;
+		yaw = -90.0f;
+
+		direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+		direction.y = sin(glm::radians(pitch));
+		direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+
+		cameraFront = glm::normalize(direction);
+		cameraRight = glm::normalize(glm::cross(cameraFront, cameraWorldUp));
+		cameraUp = glm::normalize(glm::cross(cameraRight, cameraFront));
 	}
 
 	glm::mat4 Camera::GetProjection(Window* window)

@@ -37,17 +37,9 @@ namespace renderer
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
 
-		Camera* camera;
-		glm::vec3 cameraPos;
-		glm::vec3 cameraFront;
-		glm::vec3 cameraUp;
-		float yaw;
-		float pitch;
-		float movementSpeed;
-
 	public:
 
-		Renderer(Window* window);
+		Renderer(Window* window, Camera* camera);
 		~Renderer();
 		/// <summary>
 		/// Clear screen
@@ -67,6 +59,9 @@ namespace renderer
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);
+
+		void UpdateProjection(Camera* camera);
+		void UpdateView(Camera* camera);
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, int aColorSize, int aUVSize);

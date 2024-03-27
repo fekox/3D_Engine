@@ -13,7 +13,9 @@ namespace baseEngine
 
 		errorLog.CheckGlewInit();
 
-		renderer = new Renderer(window);
+		camera = new Camera();
+
+		renderer = new Renderer(window, camera);
 
 		inputSystem = new InputSystem(window->getWindow());
 	}
@@ -22,6 +24,7 @@ namespace baseEngine
 	{
 		delete window;
 		delete renderer;
+		delete camera;
 	}
 
 	void BaseGame::gameLoop()
@@ -29,8 +32,16 @@ namespace baseEngine
 		while (!glfwWindowShouldClose(window->getWindow()))
 		{
 			Time::Update(glfwGetTime());
+			
 			renderer->StartDraw();
+			
+			camera->CameraMovement(window->getWindow());
+			
+			renderer->UpdateProjection(camera);
+			renderer->UpdateView(camera);
+			
 			update();
+			
 			renderer->EndDraw();
 		}
 	}
