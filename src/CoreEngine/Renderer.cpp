@@ -20,6 +20,7 @@ namespace renderer
 		ShaderProgramSource source2 = shader.ParseShader("res/Shader/Texture.Shader");
 		textureShader = shader.createShader(source2.VertexSource, source2.FragmentSource);
 
+		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
@@ -42,7 +43,7 @@ namespace renderer
 	void Renderer::StartDraw()
 	{
 		GLCall(glClearColor(0.1f, 0.3f, 0.3f, 1.0f));
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	void Renderer::EndDraw()

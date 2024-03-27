@@ -22,7 +22,6 @@ namespace camera
 		mouseSensY = 0.1f;
 		firstMouse = true;
 
-
 		UpdateCameraVectors();
 	}
 
