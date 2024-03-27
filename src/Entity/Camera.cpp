@@ -1,5 +1,4 @@
-#include "Camera.h"
-#include "iostream"
+#include "Entity/Camera.h"
 
 namespace camera
 {
@@ -8,12 +7,21 @@ namespace camera
 		cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
 		cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 		cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+		cameraWorldUp = cameraUp;
+
 		yaw = -90.0f;
 		pitch = 0.0f;
-		movementSpeed = 500.0f;
 
 		nearPlane = 0.1f;
 		farPlane = 2000.0f;
+
+		movementSpeed = 500.0f;
+		zoomSpeed = 10.0f;
+		mouseSensX = 0.2f;
+		mouseSensY = 0.1f;
+		firstMouse = true;
+
 
 		UpdateCameraVectors();
 	}
@@ -27,34 +35,32 @@ namespace camera
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 
-		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		{
 			cameraPos += movementSpeed * cameraFront * deltaTime;
 		}
 		
-		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 		{
 			cameraPos -= movementSpeed * cameraFront * deltaTime;
 		}
 		
-		if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 		{
 			cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
 		}
 		
-		if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		{
 			cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
 		}
 		
-		cameraPos.y = 0.0f;
 		UpdateCameraVectors();
 	}
 
 	void Camera::UpdateCameraVectors()
 	{
 		glm::vec3 direction;
-		yaw = -90.0f;
 
 		direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
 		direction.y = sin(glm::radians(pitch));
@@ -67,12 +73,53 @@ namespace camera
 
 	glm::mat4 Camera::GetProjection(Window* window)
 	{
-		return glm::perspective(glm::radians(45.0f), window->getWidth() / window->getHeight(), nearPlane, farPlane);
+		return glm::perspective(glm::radians(zoom), window->getWidth() / window->getHeight(), nearPlane, farPlane);
 	}
 
 	glm::mat4 Camera::GetView()
 	{
 		return lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	}
+
+	void Camera::CheckMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch)
+	{
+		xoffset *= mouseSensX;
+		yoffset *= mouseSensY;
+
+		yaw += xoffset;
+		pitch += yoffset;
+
+		if (constrainPitch)
+		{
+			if (pitch > 89.0f)
+			{
+				pitch = 89.0f;
+			}
+
+			if (pitch < -89.0f)
+			{
+				pitch = -89.0f;
+			}
+		}
+
+		UpdateCameraVectors();
+	}
+
+	void Camera::CheckMouseScroll(float yoffset)
+	{
+		float currentZoom = 45.0f;
+
+		zoom -= yoffset * zoomSpeed;
+
+		if (zoom < 1.0f)
+		{
+			zoom = 1.0f;
+		}
+
+		if (zoom > 45.0f)
+		{
+			zoom = currentZoom;
+		}
 	}
 
 	Camera::~Camera()

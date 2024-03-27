@@ -10,7 +10,7 @@ namespace camera
 {
 	class Camera
 	{
-		private:
+		public:
 
 			glm::vec3 cameraPos;
 			glm::vec3 cameraUp;
@@ -27,18 +27,21 @@ namespace camera
 			float movementSpeed;
 			float mouseSensX;
 			float mouseSensY;
+			float zoom;
+			float zoomSpeed;
 
 			float lastX;
 			float lastY;
 			bool firstMouse = true;
-
-		public:
 
 			Camera();
 			void CameraMovement(GLFWwindow* window);
 			void UpdateCameraVectors();
 			glm::mat4 GetProjection(Window* window);
 			glm::mat4 GetView();
+			void CheckMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
+			void CheckMouseScroll(float yoffset);
+
 			~Camera();
 
 	};

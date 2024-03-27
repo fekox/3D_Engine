@@ -44,4 +44,7 @@ namespace baseEngine
 		virtual void exit() = 0;
 		Renderer* GetRenderer();
 	};
+
+	void Mouse_Callback(GLFWwindow* window, double xpos, double ypos);
+	void Scroll_Callback(GLFWwindow* window, double xpos, double ypos);
 }
