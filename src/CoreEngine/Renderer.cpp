@@ -27,8 +27,7 @@ namespace renderer
 
 	void Renderer::UpdateView(Camera* camera)
 	{
-		view = camera->GetViewFirstPerson();
-		//view = camera->GetViewToSpectateObject();
+		view = camera->UpdateCameraViewMode(camera::CameraMode::FistPerson);
 	}
 
 	void Renderer::UpdateProjection(Camera* camera)

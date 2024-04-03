@@ -22,7 +22,6 @@ private:
 
 	//Sprite
 	Sprite* Sonic;
-	Camera* camera;
 
 	Vector3 lastTexturePos;
 

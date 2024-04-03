@@ -16,6 +16,8 @@ namespace camera
 		nearPlane = 0.1f;
 		farPlane = 2000.0f;
 
+		previousTargetRotation = glm::vec3(0.0f, 0.0f, 0.0f);
+
 		movementSpeed = 500.0f;
 		zoomSpeed = 10.0f;
 		mouseSensX = 0.2f;
@@ -27,34 +29,38 @@ namespace camera
 
 	void Camera::CameraMovement(GLFWwindow* window)
 	{
-		float deltaTime = 0.0f;
-		float lastFrame = 0.0f;
-		float currentFrame = Time::GetDeltaTime();
+		if (!thirdPerson)
+		{
+			float deltaTime = 0.0f;
+			float lastFrame = 0.0f;
+			float currentFrame = Time::GetDeltaTime();
 
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
+			deltaTime = currentFrame - lastFrame;
+			lastFrame = currentFrame;
 
-		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		{
-			cameraPos += movementSpeed * cameraFront * deltaTime;
-		}
+			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+			{
+				cameraPos += movementSpeed * cameraFront * deltaTime;
+			}
+
+			if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+			{
+				cameraPos -= movementSpeed * cameraFront * deltaTime;
+			}
+
+			if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+			{
+				cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
+			}
+
+			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+			{
+				cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
+			}
+
+			UpdateCameraVectors();
 		
-		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		{
-			cameraPos -= movementSpeed * cameraFront * deltaTime;
 		}
-		
-		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		{
-			cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
-		}
-		
-		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		{
-			cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
-		}
-		
-		UpdateCameraVectors();
 	}
 
 	void Camera::UpdateCameraVectors()
@@ -70,6 +76,44 @@ namespace camera
 		cameraUp = glm::normalize(glm::cross(cameraRight, cameraFront));
 	}
 
+	glm::mat4 Camera::UpdateCameraViewMode(CameraMode cameraMode)
+	{
+		switch (cameraMode)
+		{
+			case camera::CameraMode::FistPerson:
+				thirdPerson = false;
+				return GetViewFirstPerson();
+			break;
+
+			case camera::CameraMode::ThirdPerson:
+				thirdPerson = true;
+				return GetViewThirdPerson();
+			break;
+
+			case camera::CameraMode::SpectateObject:
+				thirdPerson = false;
+				return GetViewToSpectateObject();
+			break;
+		}
+	}
+
+	void Camera::ChangeCameraTarget(glm::vec3 target, glm::vec3 rotationEulerAngle)
+	{
+		if (thirdPerson)
+		{
+			float distanceToTarget = 500.0f;
+
+			cameraTarget = target;
+			cameraPos = target + cameraFront * distanceToTarget;
+
+			float newRotationY = previousTargetRotation.y - rotationEulerAngle.y;
+
+			yaw += newRotationY;
+			previousTargetRotation = rotationEulerAngle;
+			UpdateCameraVectors();
+		}
+	}
+
 	glm::mat4 Camera::GetProjection(Window* window)
 	{
 		return glm::perspective(glm::radians(zoom), window->getWidth() / window->getHeight(), nearPlane, farPlane);
@@ -82,7 +126,7 @@ namespace camera
 
 	glm::mat4 Camera::GetViewThirdPerson()
 	{
-		return lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+		return lookAt(cameraPos, cameraTarget, cameraUp);
 	}
 
 	glm::mat4 Camera::GetViewToSpectateObject()
@@ -133,10 +177,5 @@ namespace camera
 		{
 			zoom = currentZoom;
 		}
-	}
-
-	Camera::~Camera()
-	{
-	
 	}
 }

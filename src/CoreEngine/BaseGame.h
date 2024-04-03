@@ -30,11 +30,11 @@ namespace baseEngine
 
 		Renderer* renderer;
 		Window* window;
-		Camera* camera;
 		ErrorLog errorLog;
 
 	public:
 
+		Camera* camera;
 		InputSystem* inputSystem;
 		BaseGame(int width, int height, const char* windowName);
 		~BaseGame();

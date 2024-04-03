@@ -36,6 +36,8 @@ namespace Entity
 		void setRotationY(float newRotationY);
 		void setRotationZ(float newRotationZ);
 
+		Vector3 getRotation();
+
 		void UpdateTMatrix();
 	};
 }

@@ -46,17 +46,21 @@ void Game::update()
 {
 	Sonic->SetAnimation(idleAnimation);
 
+	glm::vec3 newPos = glm::vec3(Sonic->getPosition().x, Sonic->getPosition().y, Sonic->getPosition().z);
+
+	camera->ChangeCameraTarget(glm::vec3(newPos.x, newPos.y, newPos.z), glm::vec3(Sonic->getRotation().x, Sonic->getRotation().y, Sonic->getRotation().z));
+
 	//Player Inputs;
-	if (inputSystem->getKey(inputSystem->q, inputSystem->Pressed))
+	if (inputSystem->getKey(inputSystem->N1, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y, Sonic->getPosition().z - 1.0f });
+		Sonic->setRotationY(-1.0f);
 	}
 
-	if (inputSystem->getKey(inputSystem->e, inputSystem->Pressed))
+	if (inputSystem->getKey(inputSystem->N2, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y, Sonic->getPosition().z + 1.0f});
+		Sonic->setRotationY(1.0f);
 	}
 
 	if (inputSystem->getKey(inputSystem->downArrow, inputSystem->Pressed))

@@ -11,6 +11,16 @@ namespace inputSystem
 	public:
 		enum KeyCode
 		{
+			N0 = GLFW_KEY_0,           
+			N1 = GLFW_KEY_1,                
+			N2 = GLFW_KEY_2,
+			N3 = GLFW_KEY_3,
+			N4 = GLFW_KEY_4,
+			N5 = GLFW_KEY_5,
+			N6 = GLFW_KEY_6,
+			N7 = GLFW_KEY_7,
+			N8 = GLFW_KEY_8,
+			N9 = GLFW_KEY_9,
 			q = GLFW_KEY_Q,
 			w = GLFW_KEY_W,
 			e = GLFW_KEY_E,
