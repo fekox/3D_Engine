@@ -76,25 +76,30 @@ namespace camera
 		cameraUp = glm::normalize(glm::cross(cameraRight, cameraFront));
 	}
 
-	glm::mat4 Camera::UpdateCameraViewMode(CameraMode cameraMode)
+	glm::mat4 Camera::UpdateCameraViewMode()
 	{
-		switch (cameraMode)
+		switch (viewMode)
 		{
-			case camera::CameraMode::FistPerson:
+			case Camera::CameraMode::FistPerson:
 				thirdPerson = false;
 				return GetViewFirstPerson();
 			break;
 
-			case camera::CameraMode::ThirdPerson:
+			case Camera::CameraMode::ThirdPerson:
 				thirdPerson = true;
 				return GetViewThirdPerson();
 			break;
 
-			case camera::CameraMode::SpectateObject:
+			case Camera::CameraMode::SpectateObject:
 				thirdPerson = false;
 				return GetViewToSpectateObject();
 			break;
 		}
+	}
+
+	void Camera::SetCameraMode(CameraMode cameraMode)
+	{
+		this->viewMode = cameraMode;
 	}
 
 	void Camera::ChangeCameraTarget(glm::vec3 target, glm::vec3 rotationEulerAngle)

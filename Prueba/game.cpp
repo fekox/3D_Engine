@@ -44,11 +44,11 @@ void Game::init()
 
 void Game::update()
 {
-	Sonic->SetAnimation(idleAnimation);
-
+	camera->SetCameraMode(Camera::CameraMode::FistPerson);
 	glm::vec3 newPos = glm::vec3(Sonic->getPosition().x, Sonic->getPosition().y, Sonic->getPosition().z);
-
 	camera->ChangeCameraTarget(glm::vec3(newPos.x, newPos.y, newPos.z), glm::vec3(Sonic->getRotation().x, Sonic->getRotation().y, Sonic->getRotation().z));
+
+	Sonic->SetAnimation(idleAnimation);
 
 	//Player Inputs;
 	if (inputSystem->getKey(inputSystem->N1, inputSystem->Pressed))

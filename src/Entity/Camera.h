@@ -9,17 +9,17 @@ using namespace window;
 
 namespace camera
 {
-	enum class CameraMode
-	{
-		FistPerson,
-		ThirdPerson,
-		SpectateObject,
-		Last
-	};
-
 	class EXPORT Camera
 	{
 		public:
+
+			enum class CameraMode
+			{
+				FistPerson,
+				ThirdPerson,
+				SpectateObject,
+				Last
+			};
 
 			glm::vec3 cameraPos;
 			glm::vec3 cameraUp;
@@ -30,6 +30,8 @@ namespace camera
 			glm::vec3 cameraTarget;
 			glm::vec3 previousTargetRotation;
 			glm::vec3 cameraDirection;
+
+			CameraMode viewMode;
 
 			float yaw;
 			float pitch;
@@ -51,7 +53,8 @@ namespace camera
 			Camera();
 			void CameraMovement(GLFWwindow* window);
 			void UpdateCameraVectors();
-			glm::mat4 UpdateCameraViewMode(CameraMode cameraMode);
+			glm::mat4 UpdateCameraViewMode();
+			void SetCameraMode(CameraMode cameraMode);
 			void ChangeCameraTarget(glm::vec3 target, glm::vec3 rotationEulerAngle);
 			glm::mat4 GetProjection(Window* window);
 			glm::mat4 GetViewFirstPerson();
