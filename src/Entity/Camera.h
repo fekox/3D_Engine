@@ -44,6 +44,7 @@ namespace camera
 			glm::mat4 GetProjection(Window* window);
 			glm::mat4 GetViewFirstPerson();
 			glm::mat4 GetViewThirdPerson();
+			glm::mat4 GetViewToSpectateObject();
 			void CheckMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
 			void CheckMouseScroll(float yoffset);
 

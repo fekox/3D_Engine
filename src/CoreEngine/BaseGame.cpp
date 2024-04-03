@@ -61,22 +61,22 @@ namespace baseEngine
 
 	void Mouse_Callback(GLFWwindow* window, double xposIn, double yposIn)
 	{
-		float xpos = static_cast<float>(xposIn);
-		float ypos = static_cast<float>(yposIn);
+		float xPos = static_cast<float>(xposIn);
+		float yPos = static_cast<float>(yposIn);
 
 		if (newCamera->firstMouse)
 		{
-			newCamera->lastX = xpos;
-			newCamera->lastY = ypos;
+			newCamera->lastX = xPos;
+			newCamera->lastY = yPos;
 			newCamera->firstMouse = false;
 		}
 
-		float xoffset = xpos - newCamera->lastX;
-		float yoffset = newCamera->lastY - ypos;
+		float xOffset = xPos - newCamera->lastX;
+		float yOffset = newCamera->lastY - yPos;
 
-		newCamera->lastX = xpos;
-		newCamera->lastY = ypos;
-		newCamera->CheckMouseMovement(xoffset, yoffset);
+		newCamera->lastX = xPos;
+		newCamera->lastY = yPos;
+		newCamera->CheckMouseMovement(xOffset, yOffset);
 	}
 
 	void Scroll_Callback(GLFWwindow* window, double xpos, double ypos)

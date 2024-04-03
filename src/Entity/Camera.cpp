@@ -82,6 +82,11 @@ namespace camera
 
 	glm::mat4 Camera::GetViewThirdPerson()
 	{
+		return lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	}
+
+	glm::mat4 Camera::GetViewToSpectateObject()
+	{
 		const float radius = -300.0f;
 		float camX = sin(glfwGetTime()) * radius;
 		float camZ = cos(glfwGetTime()) * radius;
@@ -115,7 +120,7 @@ namespace camera
 
 	void Camera::CheckMouseScroll(float yoffset)
 	{
-		float currentZoom = 60.0f;
+		float currentZoom = 110.0f;
 
 		zoom -= yoffset * zoomSpeed;
 
@@ -124,7 +129,7 @@ namespace camera
 			zoom = 1.0f;
 		}
 
-		if (zoom > 60.0f)
+		if (zoom > 110.0f)
 		{
 			zoom = currentZoom;
 		}
