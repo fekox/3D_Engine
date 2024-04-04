@@ -94,6 +94,11 @@ namespace camera
 				thirdPerson = false;
 				return GetViewToSpectateObject();
 			break;
+
+			default:
+				thirdPerson = false;
+				return GetViewFirstPerson();
+			break;
 		}
 	}
 
