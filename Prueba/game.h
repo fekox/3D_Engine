@@ -10,8 +10,7 @@ private:
 	
 	//Shape3D
 	Shape3D* cube;
-	Vector4 colorCubeFront;
-	Vector4 colorCubeBack;
+	Vector4 colorCube;
 
 	Vector3 cubePosition;
 	Vector3 cubePosition2;

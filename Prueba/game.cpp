@@ -26,9 +26,7 @@ void Game::init()
 	//Cube
 	//*********************************************************************************
 	colorCube = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-
-	cubePosition = Vector3{ -150, 0 , 0 };;
-
+	cubePosition = Vector3{ -150, 0 , 0 };
 	cubeScale = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation = Vector3{ 0,0,0 };
 
