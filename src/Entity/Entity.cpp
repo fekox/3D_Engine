@@ -47,7 +47,7 @@ namespace Entity
 	void Entity::setScale(Vector3 newScale)
 	{
 		scale = mat4(1.0f);
-		scale = glm::scale(scale, glm::vec3(newScale.x, newScale.y, 1));
+		scale = glm::scale(scale, glm::vec3(newScale.x, newScale.y, newScale.z));
 		UpdateTMatrix();
 	}
 
