@@ -81,6 +81,20 @@ namespace renderer
 		glUseProgram(0);
 	}
 
+	void Renderer::DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model)
+	{
+		glUseProgram(primitiveShader);
+		unsigned int transformLoc = glGetUniformLocation(primitiveShader, "u_MVP");
+
+		glm::mat4 MVP = projection * view * model;
+		glUniformMatrix4fv(transformLoc, primitiveShader, GL_FALSE, glm::value_ptr(MVP));
+
+		glBindVertexArray(VAO);
+		glUniform4f(glGetUniformLocation(primitiveShader, "u_Color"), color.x, color.y, color.z, color.w);
+		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, nullptr);
+		glUseProgram(0);
+	}
+
 	void Renderer::CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO)
 	{
 		glGenVertexArrays(1, &VAO);

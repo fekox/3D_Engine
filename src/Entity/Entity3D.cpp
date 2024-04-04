@@ -7,9 +7,9 @@ namespace entity3D
 		this->color = rgba;
 	}
 
-	void Entity3D::DrawEntity3D()
+	void Entity3D::DrawShape3D()
 	{
-	
+		render->DrawEntity3D(VAO, indexSize, color, model);
 	}
 
 	void Entity3D::SetColor(Vector4 rgba)

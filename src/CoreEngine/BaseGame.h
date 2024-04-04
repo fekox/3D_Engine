@@ -3,6 +3,7 @@
 #include "CoreEngine/Renderer.h"
 
 #include "Entity/Shape.h"
+#include "Entity/Shape3D.h"
 #include "Entity/Sprite.h"
 #include "Entity/Camera.h"
 
@@ -12,6 +13,7 @@
 #include "InputSystem.h"
 
 using namespace shape;
+using namespace shape3D;
 using namespace camera;
 using namespace window;
 using namespace renderer;

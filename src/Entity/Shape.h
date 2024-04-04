@@ -13,13 +13,13 @@ namespace shape
 
 	public:
 
-		enum typeShapes
+		enum Shapes2D
 		{
 			Triangle,
 			Square,
 		};
 
-		Shape(typeShapes typeShapes, Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
+		Shape(Shapes2D typeShapes, Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
 		~Shape();
 		void createTriangle();
 		void createRectangle();

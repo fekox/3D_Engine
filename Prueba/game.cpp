@@ -21,7 +21,18 @@ void Game::init()
 	position = Vector3{ 100, 0 , 0 };
 	scale = Vector3{ 80.0f, 80.0f, 80.0f };
 	rotation = Vector3{ 0,0,0 };
-	triangle = new Shape(Shape::typeShapes::Triangle, colorTriangleFront, GetRenderer(), position, scale, rotation);
+	triangle = new Shape(Shape::Shapes2D::Triangle, colorTriangleFront, GetRenderer(), position, scale, rotation);
+
+	//Cube
+	colorCubeFront = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
+	colorCubeBack = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
+
+	cubePosition = Vector3{ -100, 0 , 0 };;
+
+	cubeScale = Vector3{ 80.0f, 80.0f, 500.0f };
+	cubeRotation = Vector3{ 0,0,0 };
+
+	cube = new Shape3D(Shape3D::Shapes3D::Cube, colorCubeFront, GetRenderer(), cubePosition, cubeScale, cubeRotation);
 
 	//Init Shape
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
@@ -92,12 +103,15 @@ void Game::update()
 	Sonic->Draw();
 
 	triangle->Draw();
+
+	cube->Draw();
 }
 
 void Game::exit()
 {
 	delete Sonic;
 	delete triangle;
+	delete cube;
 
 	delete idleAnimation;
 	delete walkAnimation;

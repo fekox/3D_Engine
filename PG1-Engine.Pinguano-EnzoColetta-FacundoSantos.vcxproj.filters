@@ -72,6 +72,12 @@
     <ClCompile Include="src\Entity\Camera.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entity\Entity3D.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Shape3D.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -132,6 +138,12 @@
       <Filter>Src\tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Entity\Camera.h">
+      <Filter>Src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Entity3D.h">
+      <Filter>Src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Shape3D.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
   </ItemGroup>

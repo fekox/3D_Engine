@@ -7,6 +7,19 @@ class Game : public BaseGame
 {
 private:
 	const char* windowName;
+	
+	//Shape3D
+	Shape3D* cube;
+	Vector4 colorCubeFront;
+	Vector4 colorCubeBack;
+
+	Vector3 cubePosition;
+	Vector3 cubePosition2;
+	Vector3 cubePosition3;
+
+	Vector3 cubeScale;
+	Vector3 cubeRotation;
+
 	//Shape
 	Shape* triangle;
 

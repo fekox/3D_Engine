@@ -57,6 +57,8 @@ namespace renderer
 
 		void DrawTexture(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model, unsigned int& idTexture);
 
+		void DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model);
+
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);
 
