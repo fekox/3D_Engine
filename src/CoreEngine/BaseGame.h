@@ -2,9 +2,11 @@
 #include "CoreEngine/Window.h"
 #include "CoreEngine/Renderer.h"
 
-#include "Entity/Shape.h"
-#include "Entity/Shape3D.h"
+#include "Shape/Shape.h"
+#include "Shape/Shape3D.h"
+
 #include "Entity/Sprite.h"
+
 #include "Camera/Camera.h"
 
 #include "Tools/dll-Exp-Inp.h"

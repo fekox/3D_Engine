@@ -1,4 +1,4 @@
-#include "Entity/Shape3D.h"
+#include "Shape/Shape3D.h"
 
 namespace shape3D
 {
