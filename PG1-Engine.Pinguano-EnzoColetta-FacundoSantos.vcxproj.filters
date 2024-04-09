@@ -140,9 +140,6 @@
     <ClInclude Include="src\Entity\Entity2D.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tools\glm_math.h">
-      <Filter>Src\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="src\Tools\TextureImporter.h">
       <Filter>Src\Tools</Filter>
     </ClInclude>
@@ -184,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="src\Tools\Frame\Frame.h">
       <Filter>Src\Tools\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tools\GLM-Math\glm_math.h">
+      <Filter>Src\Tools\GLM-Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
