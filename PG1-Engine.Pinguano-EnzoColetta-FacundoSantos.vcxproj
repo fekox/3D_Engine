@@ -35,7 +35,7 @@
     <ClCompile Include="src\Tools\Collision Manager\CollisionManager.cpp" />
     <ClCompile Include="src\Tools\Error Log\ErrorLog.cpp" />
     <ClCompile Include="src\Tools\Frame\Frame.cpp" />
-    <ClCompile Include="src\Tools\stb_image.cpp" />
+    <ClCompile Include="src\Tools\STB-Image\stb_image.cpp" />
     <ClCompile Include="src\Tools\TextureImporter.cpp" />
     <ClCompile Include="src\Tools\Time.cpp" />
   </ItemGroup>
@@ -58,7 +58,7 @@
     <ClInclude Include="src\Tools\Error Log\ErrorLog.h" />
     <ClInclude Include="src\Tools\Frame\Frame.h" />
     <ClInclude Include="src\Tools\GLM-Math\glm_math.h" />
-    <ClInclude Include="src\Tools\stb_image.h" />
+    <ClInclude Include="src\Tools\STB-Image\stb_image.h" />
     <ClInclude Include="src\Tools\TextureImporter.h" />
     <ClInclude Include="src\Tools\Time.h" />
     <ClInclude Include="src\Tools\Vectors.h" />

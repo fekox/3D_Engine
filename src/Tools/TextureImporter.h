@@ -1,5 +1,5 @@
 #pragma once
-#include "stb_image.h"
+#include "Tools/STB-Image/stb_image.h"
 #include <string>
 
 using namespace std;
