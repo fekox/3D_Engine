@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 #include <GL/glew.h>
-#include "Tools/ErrorLog.h"
+#include "Tools/Error Log/ErrorLog.h"
 
 using namespace std;
 using namespace errorLog;

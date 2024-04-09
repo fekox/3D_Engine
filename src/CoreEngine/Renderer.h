@@ -2,7 +2,7 @@
 #include "Camera/Camera.h"
 #include "CoreEngine/Window.h"
 #include "Tools/Vectors.h"
-#include "Tools/ErrorLog.h"
+#include "Tools/Error Log/ErrorLog.h"
 #include <GLFW/glfw3.h>
 #include "..\libs\glm\include\glm.hpp"
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
