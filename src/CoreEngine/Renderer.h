@@ -1,5 +1,5 @@
 #include "Shader.h"
-#include "Entity/Camera.h"
+#include "Camera/Camera.h"
 #include "CoreEngine/Window.h"
 #include "Tools/Vectors.h"
 #include "Tools/ErrorLog.h"

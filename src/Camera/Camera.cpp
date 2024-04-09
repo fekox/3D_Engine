@@ -1,4 +1,4 @@
-#include "Entity/Camera.h"
+#include "Camera/Camera.h"
 
 namespace camera
 {

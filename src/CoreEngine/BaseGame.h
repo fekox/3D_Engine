@@ -5,7 +5,7 @@
 #include "Entity/Shape.h"
 #include "Entity/Shape3D.h"
 #include "Entity/Sprite.h"
-#include "Entity/Camera.h"
+#include "Camera/Camera.h"
 
 #include "Tools/dll-Exp-Inp.h"
 #include "Tools/Time.h"
