@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Animation\Animation.cpp" />
     <ClCompile Include="src\CoreEngine\BaseGame.cpp" />
     <ClCompile Include="src\CoreEngine\Renderer.cpp" />
     <ClCompile Include="src\CoreEngine\Window.cpp" />
-    <ClCompile Include="src\Entity\Animation.cpp" />
     <ClCompile Include="src\Entity\Camera.cpp" />
     <ClCompile Include="src\Entity\Entity.cpp" />
     <ClCompile Include="src\Entity\Entity2D.cpp" />
@@ -40,10 +40,10 @@
     <ClCompile Include="src\Tools\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Animation\Animation.h" />
     <ClInclude Include="src\CoreEngine\BaseGame.h" />
     <ClInclude Include="src\CoreEngine\Renderer.h" />
     <ClInclude Include="src\CoreEngine\Window.h" />
-    <ClInclude Include="src\Entity\Animation.h" />
     <ClInclude Include="src\Entity\Camera.h" />
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\Entity\Entity2D.h" />

@@ -1,7 +1,7 @@
 #pragma once
 #include "CoreEngine/Renderer.h"
 #include "Entity/Entity2D.h"
-#include "Entity/Animation.h"
+#include "Animation/Animation.h"
 
 using namespace Entity2D;
 using namespace animation;
