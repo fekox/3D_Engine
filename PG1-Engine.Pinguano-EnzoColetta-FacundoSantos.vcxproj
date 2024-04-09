@@ -27,11 +27,11 @@
     <ClCompile Include="src\Entity\Entity.cpp" />
     <ClCompile Include="src\Entity\Entity2D.cpp" />
     <ClCompile Include="src\Entity\Entity3D.cpp" />
-    <ClCompile Include="src\Entity\Sprite.cpp" />
     <ClCompile Include="src\InputSystem.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\Shape\Shape.cpp" />
     <ClCompile Include="src\Shape\Shape3D.cpp" />
+    <ClCompile Include="src\Sprite\Sprite.cpp" />
     <ClCompile Include="src\Tools\CollisionManager.cpp" />
     <ClCompile Include="src\Tools\ErrorLog.cpp" />
     <ClCompile Include="src\Tools\Frame.cpp" />
@@ -48,11 +48,11 @@
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\Entity\Entity2D.h" />
     <ClInclude Include="src\Entity\Entity3D.h" />
-    <ClInclude Include="src\Entity\Sprite.h" />
     <ClInclude Include="src\InputSystem.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\Shape\Shape.h" />
     <ClInclude Include="src\Shape\Shape3D.h" />
+    <ClInclude Include="src\Sprite\Sprite.h" />
     <ClInclude Include="src\Tools\CollisionManager.h" />
     <ClInclude Include="src\Tools\dll-Exp-Inp.h" />
     <ClInclude Include="src\Tools\ErrorLog.h" />

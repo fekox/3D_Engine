@@ -1,4 +1,4 @@
-#include "Entity/Sprite.h"
+#include "Sprite/Sprite.h"
 
 namespace sprite
 {

@@ -5,7 +5,7 @@
 #include "Shape/Shape.h"
 #include "Shape/Shape3D.h"
 
-#include "Entity/Sprite.h"
+#include "Sprite/Sprite.h"
 
 #include "Camera/Camera.h"
 

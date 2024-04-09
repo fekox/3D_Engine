@@ -16,9 +16,6 @@
     <Filter Include="Src\Entity">
       <UniqueIdentifier>{92102be6-c52f-42ce-87ec-1d1b83d932b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\tools">
-      <UniqueIdentifier>{5e9e4c61-cc0b-4531-9e8f-ec6bab979526}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Animation">
       <UniqueIdentifier>{bc7fbeaf-dbd6-4bc9-82be-0fc5855f7739}</UniqueIdentifier>
     </Filter>
@@ -30,6 +27,9 @@
     </Filter>
     <Filter Include="Src\Sprite">
       <UniqueIdentifier>{a3ba3e7e-c310-4c7c-a6b9-8dd0188fa2d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Tools">
+      <UniqueIdentifier>{5e9e4c61-cc0b-4531-9e8f-ec6bab979526}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,26 +54,23 @@
     <ClCompile Include="src\Entity\Entity2D.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entity\Sprite.cpp">
-      <Filter>Src\Entity</Filter>
-    </ClCompile>
     <ClCompile Include="src\Tools\ErrorLog.cpp">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\Tools\TextureImporter.cpp">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\Tools\stb_image.cpp">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\Tools\Time.cpp">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\Tools\Frame.cpp">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\Tools\CollisionManager.cpp">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\Entity\Entity3D.cpp">
       <Filter>Src\Entity</Filter>
@@ -89,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="src\Shape\Shape3D.cpp">
       <Filter>Src\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sprite\Sprite.cpp">
+      <Filter>Src\Sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,35 +113,32 @@
     <ClInclude Include="src\Entity\Entity2D.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entity\Sprite.h">
-      <Filter>Src\Entity</Filter>
-    </ClInclude>
     <ClInclude Include="src\Tools\dll-Exp-Inp.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\ErrorLog.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\glm_math.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\TextureImporter.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\Vectors.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\stb_image.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\Time.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\Frame.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\CollisionManager.h">
-      <Filter>Src\tools</Filter>
+      <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Entity\Entity3D.h">
       <Filter>Src\Entity</Filter>
@@ -157,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="src\Shape\Shape3D.h">
       <Filter>Src\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sprite\Sprite.h">
+      <Filter>Src\Sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
