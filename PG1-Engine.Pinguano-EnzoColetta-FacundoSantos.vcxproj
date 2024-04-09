@@ -61,7 +61,7 @@
     <ClInclude Include="src\Tools\STB-Image\stb_image.h" />
     <ClInclude Include="src\Tools\Texture Importer\TextureImporter.h" />
     <ClInclude Include="src\Tools\Time\Time.h" />
-    <ClInclude Include="src\Tools\Vectors.h" />
+    <ClInclude Include="src\Tools\Vectors\Vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Prueba\res\Shader\Primitive.Shader" />

@@ -140,9 +140,6 @@
     <ClInclude Include="src\Entity\Entity2D.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tools\Vectors.h">
-      <Filter>Src\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="src\Entity\Entity3D.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
@@ -184,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="src\Tools\Time\Time.h">
       <Filter>Src\Tools\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tools\Vectors\Vectors.h">
+      <Filter>Src\Tools\Vectors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
