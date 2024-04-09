@@ -1,4 +1,4 @@
-#include "Tools/TextureImporter.h"
+#include "Tools/Texture Importer/TextureImporter.h"
 
 namespace textureImporter
 {

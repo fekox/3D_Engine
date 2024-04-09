@@ -7,7 +7,7 @@
 #include "..\libs\glm\include\glm.hpp"
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
 #include "..\libs\glm\include\gtc\type_ptr.hpp"
-#include "Tools/TextureImporter.h"
+#include "Tools/Texture Importer/TextureImporter.h"
 
 #pragma once
 
