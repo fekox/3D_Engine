@@ -81,9 +81,6 @@
     <ClCompile Include="src\Entity\Entity2D.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="src\Tools\ErrorLog.cpp">
-      <Filter>Src\Tools</Filter>
-    </ClCompile>
     <ClCompile Include="src\Tools\TextureImporter.cpp">
       <Filter>Src\Tools</Filter>
     </ClCompile>
@@ -91,9 +88,6 @@
       <Filter>Src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\Tools\Time.cpp">
-      <Filter>Src\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Tools\Frame.cpp">
       <Filter>Src\Tools</Filter>
     </ClCompile>
     <ClCompile Include="src\Entity\Entity3D.cpp">
@@ -116,6 +110,12 @@
     </ClCompile>
     <ClCompile Include="src\Tools\Collision Manager\CollisionManager.cpp">
       <Filter>Src\Tools\Collision Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tools\Error Log\ErrorLog.cpp">
+      <Filter>Src\Tools\Error Log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tools\Frame\Frame.cpp">
+      <Filter>Src\Tools\Frame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +140,6 @@
     <ClInclude Include="src\Entity\Entity2D.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tools\ErrorLog.h">
-      <Filter>Src\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="src\Tools\glm_math.h">
       <Filter>Src\Tools</Filter>
     </ClInclude>
@@ -156,9 +153,6 @@
       <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\Time.h">
-      <Filter>Src\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Tools\Frame.h">
       <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Entity\Entity3D.h">
@@ -184,6 +178,12 @@
     </ClInclude>
     <ClInclude Include="src\Tools\DLL-Exp\dll-Exp-Inp.h">
       <Filter>Src\Tools\DLL-Exp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tools\Error Log\ErrorLog.h">
+      <Filter>Src\Tools\Error Log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tools\Frame\Frame.h">
+      <Filter>Src\Tools\Frame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
