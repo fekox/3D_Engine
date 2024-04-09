@@ -9,7 +9,7 @@
 
 #include "Camera/Camera.h"
 
-#include "Tools/dll-Exp-Inp.h"
+#include "Tools/DLL-Exp/dll-Exp-Inp.h"
 #include "Tools/Time.h"
 #include "Tools/Collision Manager/CollisionManager.h"
 #include "InputSystem.h"

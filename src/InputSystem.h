@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreEngine/Window.h"
-#include "Tools/dll-Exp-Inp.h"
+#include "Tools/DLL-Exp/dll-Exp-Inp.h"
 
 namespace inputSystem
 {

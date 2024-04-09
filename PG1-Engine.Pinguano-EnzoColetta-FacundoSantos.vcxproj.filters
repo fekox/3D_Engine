@@ -140,9 +140,6 @@
     <ClInclude Include="src\Entity\Entity2D.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tools\dll-Exp-Inp.h">
-      <Filter>Src\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="src\Tools\ErrorLog.h">
       <Filter>Src\Tools</Filter>
     </ClInclude>
@@ -184,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="src\Tools\Collision Manager\CollisionManager.h">
       <Filter>Src\Tools\Collision Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tools\DLL-Exp\dll-Exp-Inp.h">
+      <Filter>Src\Tools\DLL-Exp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

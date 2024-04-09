@@ -1,7 +1,7 @@
 #include "CoreEngine/Window.h"
 #include "Tools/Time.h"
 #include <GLFW/glfw3.h>
-#include "Tools/dll-Exp-Inp.h"
+#include "Tools/DLL-Exp/dll-Exp-Inp.h"
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
 #pragma once
 

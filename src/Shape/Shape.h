@@ -1,5 +1,5 @@
 #pragma once
-#include "Tools/dll-Exp-Inp.h"
+#include "Tools/DLL-Exp/dll-Exp-Inp.h"
 #include <GL/glew.h>
 #include "Entity/Entity2D.h"
 

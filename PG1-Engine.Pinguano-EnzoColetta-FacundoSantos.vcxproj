@@ -54,7 +54,7 @@
     <ClInclude Include="src\Shape\Shape3D.h" />
     <ClInclude Include="src\Sprite\Sprite.h" />
     <ClInclude Include="src\Tools\Collision Manager\CollisionManager.h" />
-    <ClInclude Include="src\Tools\dll-Exp-Inp.h" />
+    <ClInclude Include="src\Tools\DLL-Exp\dll-Exp-Inp.h" />
     <ClInclude Include="src\Tools\ErrorLog.h" />
     <ClInclude Include="src\Tools\Frame.h" />
     <ClInclude Include="src\Tools\glm_math.h" />
