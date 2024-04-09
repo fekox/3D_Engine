@@ -81,9 +81,6 @@
     <ClCompile Include="src\Entity\Entity2D.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="src\Tools\Time.cpp">
-      <Filter>Src\Tools</Filter>
-    </ClCompile>
     <ClCompile Include="src\Entity\Entity3D.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
@@ -117,6 +114,9 @@
     <ClCompile Include="src\Tools\Texture Importer\TextureImporter.cpp">
       <Filter>Src\Tools\Texture Importer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Tools\Time\Time.cpp">
+      <Filter>Src\Tools\Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -141,9 +141,6 @@
       <Filter>Src\Entity</Filter>
     </ClInclude>
     <ClInclude Include="src\Tools\Vectors.h">
-      <Filter>Src\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Tools\Time.h">
       <Filter>Src\Tools</Filter>
     </ClInclude>
     <ClInclude Include="src\Entity\Entity3D.h">
@@ -184,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="src\Tools\Texture Importer\TextureImporter.h">
       <Filter>Src\Tools\Texture Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tools\Time\Time.h">
+      <Filter>Src\Tools\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

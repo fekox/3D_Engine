@@ -1,5 +1,4 @@
-#include "Time.h"
-
+#include "Tools/Time/Time.h"
 float Time::deltaTime = 0;
 double Time::lastDeltaTime = glfwGetTime();
 

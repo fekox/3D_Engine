@@ -37,7 +37,7 @@
     <ClCompile Include="src\Tools\Frame\Frame.cpp" />
     <ClCompile Include="src\Tools\STB-Image\stb_image.cpp" />
     <ClCompile Include="src\Tools\Texture Importer\TextureImporter.cpp" />
-    <ClCompile Include="src\Tools\Time.cpp" />
+    <ClCompile Include="src\Tools\Time\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Animation\Animation.h" />
@@ -60,7 +60,7 @@
     <ClInclude Include="src\Tools\GLM-Math\glm_math.h" />
     <ClInclude Include="src\Tools\STB-Image\stb_image.h" />
     <ClInclude Include="src\Tools\Texture Importer\TextureImporter.h" />
-    <ClInclude Include="src\Tools\Time.h" />
+    <ClInclude Include="src\Tools\Time\Time.h" />
     <ClInclude Include="src\Tools\Vectors.h" />
   </ItemGroup>
   <ItemGroup>
