@@ -31,9 +31,11 @@ namespace renderer
 		ErrorLog errorLog;
 		Window* window;
 		Shader shader;
+		Camera* camera;
 		TextureImporter textureImporter;
 		unsigned int primitiveShader;
 		unsigned int textureShader;
+		unsigned int lightShader;
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
 

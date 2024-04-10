@@ -10,6 +10,7 @@ namespace renderer
 	Renderer::Renderer(Window* window, Camera* camera)
 	{
 		this->window = window;
+		this->camera = camera;
 
 		UpdateProjection(camera);
 		UpdateView(camera);
@@ -19,6 +20,9 @@ namespace renderer
 
 		ShaderProgramSource source2 = shader.ParseShader("res/Shader/Texture.Shader");
 		textureShader = shader.createShader(source2.VertexSource, source2.FragmentSource);
+
+		ShaderProgramSource source3 = shader.ParseShader("res/Shader/Light.Shader");
+		lightShader = shader.createShader(source3.VertexSource, source3.FragmentSource);
 
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
@@ -93,6 +97,19 @@ namespace renderer
 		glUniform4f(glGetUniformLocation(primitiveShader, "u_Color"), color.x, color.y, color.z, color.w);
 		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, nullptr);
 		glUseProgram(0);
+
+		//glUseProgram(lightShader);
+		//glUniformMatrix4fv(glGetUniformLocation(lightShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		//glUniformMatrix4fv(glGetUniformLocation(lightShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+		//glUniformMatrix4fv(glGetUniformLocation(lightShader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+
+		//glUniform3f(glGetUniformLocation(lightShader, "lightPos"), 100, 10, 10);
+		//glUniform3f(glGetUniformLocation(lightShader, "viewPos"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
+		//glUniform3f(glGetUniformLocation(lightShader, "lightColor"), 1, 1, 1);
+		//glUniform3f(glGetUniformLocation(lightShader, "objectColor"), color.x, color.y, color.z);
+
+		//glUseProgram(0);
 	}
 
 	void Renderer::CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO)
