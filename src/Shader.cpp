@@ -97,4 +97,50 @@ namespace shader
 
 		return program;
 	}
+
+	void Shader::SetInt(const std::string& name, int value)
+	{
+		glUniform1i(GetUniformLocation(name), value);
+	}
+
+	void Shader::SetFloat(const std::string& name, float value)
+	{
+		glUniform1i(GetUniformLocation(name), value);
+	}
+
+	void Shader::SetVec2(const std::string& name, const glm::vec2& value)
+	{
+		glUniform2f(GetUniformLocation(name), value.x, value.y);
+	}
+
+	void Shader::SetVec3(const std::string& name, const glm::vec3& value)
+	{
+		glUniform3f(GetUniformLocation(name), value.x, value.y, value.z);
+	}
+
+	void Shader::SetVec4(const std::string& name, const glm::vec4& value)
+	{
+		glUniform4f(GetUniformLocation(name), value.x, value.y, value.z, value.w);
+	}
+
+	void Shader::SetMat3(const std::string& name, const glm::mat3& value)
+	{
+		glUniformMatrix3fv(GetUniformLocation(name), 1, GL_FALSE, &value[0][0]);
+	}
+
+	void Shader::SetMat4(const std::string& name, const glm::mat4& value)
+	{
+		glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &value[0][0]);
+	}
+
+	GLint Shader::GetUniformLocation(const std::string& name)
+	{
+		if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end())
+		{
+			return m_UniformLocationCache[name];
+		}
+		GLint location = glGetUniformLocation(IDshader, name.c_str());
+		m_UniformLocationCache[name] = location;
+		return location;
+	}
 }
