@@ -17,6 +17,7 @@ namespace entity3D
 			unsigned int VBO = 0; //Vertex Buffer Object.
 			int vertexSize;
 			int atributeVertexSize = 3;
+			int atributePosSize = 3;
 			int aColorSize = 4;
 			float* vertexPositions = 0;
 

@@ -64,11 +64,17 @@ namespace renderer
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);
 
+		void CreateVBufferNormals(float* positions, int* index, int positionsSize, int atributeNormalSize,
+			int atribVertexSize, int indicesSize, unsigned& VAO, unsigned& VBO, unsigned& EBO);
+
 		void UpdateProjection(Camera* camera);
 		void UpdateView(Camera* camera);
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, int aColorSize, int aUVSize);
+
+
+
 		void BindTexture(const char* textureName, unsigned& textureID);
 		void deleteVertexAndBuffer(unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);
 	};

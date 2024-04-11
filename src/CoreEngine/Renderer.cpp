@@ -87,29 +87,21 @@ namespace renderer
 
 	void Renderer::DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model)
 	{
-		glUseProgram(primitiveShader);
-		unsigned int transformLoc = glGetUniformLocation(primitiveShader, "u_MVP");
+		glUseProgram(lightShader);
+		glUniformMatrix4fv(glGetUniformLocation(lightShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(glGetUniformLocation(lightShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(glGetUniformLocation(lightShader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-		glm::mat4 MVP = projection * view * model;
-		glUniformMatrix4fv(transformLoc, primitiveShader, GL_FALSE, glm::value_ptr(MVP));
+
+		glUniform3f(glGetUniformLocation(lightShader, "lightPos"), 100, 10, 10);
+		glUniform3f(glGetUniformLocation(lightShader, "viewPos"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
+		glUniform3f(glGetUniformLocation(lightShader, "lightColor"), 1, 1, 1);
+		glUniform3f(glGetUniformLocation(lightShader, "objectColor"), color.x, color.y, color.z);
 
 		glBindVertexArray(VAO);
-		glUniform4f(glGetUniformLocation(primitiveShader, "u_Color"), color.x, color.y, color.z, color.w);
-		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, nullptr);
+		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);
+
 		glUseProgram(0);
-
-		//glUseProgram(lightShader);
-		//glUniformMatrix4fv(glGetUniformLocation(lightShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
-		//glUniformMatrix4fv(glGetUniformLocation(lightShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
-		//glUniformMatrix4fv(glGetUniformLocation(lightShader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-
-
-		//glUniform3f(glGetUniformLocation(lightShader, "lightPos"), 100, 10, 10);
-		//glUniform3f(glGetUniformLocation(lightShader, "viewPos"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
-		//glUniform3f(glGetUniformLocation(lightShader, "lightColor"), 1, 1, 1);
-		//glUniform3f(glGetUniformLocation(lightShader, "objectColor"), color.x, color.y, color.z);
-
-		//glUseProgram(0);
 	}
 
 	void Renderer::CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO)
@@ -157,6 +149,32 @@ namespace renderer
 
 		glVertexAttribPointer(2, aUVSize, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(7 * sizeof(float)));
 		glEnableVertexAttribArray(2);
+	}
+
+	void Renderer::CreateVBufferNormals(float* positions, int* index, int positionsSize, int atributeNormalSize,
+		int atribVertexSize, int indicesSize, unsigned& VAO, unsigned& VBO, unsigned& EBO)
+	{
+		glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &VBO);
+		glGenBuffers(1, &EBO);
+		
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * positionsSize, positions, GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * indicesSize, index, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(0, atribVertexSize, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+
+		glVertexAttribPointer(1, atributeNormalSize, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(1);
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		glBindVertexArray(0);
 	}
 
 	void Renderer::BindTexture(const char* textureName, unsigned& textureID)
