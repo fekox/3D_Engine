@@ -58,6 +58,9 @@
     <Filter Include="Src\Tools\Vectors">
       <UniqueIdentifier>{a4e2275d-93c3-46f0-9fb8-1dfbd5185938}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Light">
+      <UniqueIdentifier>{7a7ee928-c1bd-4eae-a483-1c2dae892c25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Shader.cpp">
@@ -116,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="src\Tools\Time\Time.cpp">
       <Filter>Src\Tools\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Light\Light.cpp">
+      <Filter>Src\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +190,9 @@
     </ClInclude>
     <ClInclude Include="src\Tools\Vectors\Vectors.h">
       <Filter>Src\Tools\Vectors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Light\Light.h">
+      <Filter>Src\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

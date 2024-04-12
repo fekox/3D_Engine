@@ -9,6 +9,8 @@
 
 #include "Camera/Camera.h"
 
+#include "Light/Light.h"
+
 #include "Tools/DLL-Exp/dll-Exp-Inp.h"
 #include "Tools/Time/Time.h"
 #include "Tools/Collision Manager/CollisionManager.h"
@@ -17,6 +19,7 @@
 using namespace shape;
 using namespace shape3D;
 using namespace camera;
+using namespace light;
 using namespace window;
 using namespace renderer;
 using namespace sprite;
@@ -39,6 +42,7 @@ namespace baseEngine
 	public:
 
 		Camera* camera;
+		Light* light;
 		InputSystem* inputSystem;
 		BaseGame(int width, int height, const char* windowName);
 		~BaseGame();

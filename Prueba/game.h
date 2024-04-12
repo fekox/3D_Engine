@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreEngine/BaseGame.h"
+#include "..\libs\glm\include\glm.hpp"
 
 using namespace baseEngine;
 

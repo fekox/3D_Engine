@@ -15,6 +15,9 @@ Game::~Game()
 
 void Game::init()
 {
+	//Light
+	light->SetLightPos(glm::vec3(0, 300, 0));
+
 	//Triangle 1
 	colorTriangleFront = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
 	colorTriangleBack = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
@@ -25,7 +28,7 @@ void Game::init()
 
 	//Cube - 1
 	//*********************************************************************************
-	colorCube = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
+	colorCube = Vector4{ 1.0f, 0.0f, 1.0f, 1 };
 	cubePosition = Vector3{ -150, 0 , 0 };
 	cubeScale = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation = Vector3{ 0,0,0 };
@@ -34,7 +37,7 @@ void Game::init()
 
 	//Cube - 2
 	//*********************************************************************************
-	colorCube2 = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
+	colorCube2 = Vector4{ 1.0f, 0.0f, 0.0f, 1 };
 	cubePosition2 = Vector3{ 150, 150 , 0 };
 	cubeScale2 = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation2 = Vector3{ 0,0,0 };
@@ -43,7 +46,7 @@ void Game::init()
 
 	//Cube - 3
 	//*********************************************************************************
-	colorCube3 = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
+	colorCube3 = Vector4{ 0.0f, 1.0f, 0.0f, 1 };
 	cubePosition3 = Vector3{ -150, -150 , 0};
 	cubeScale3 = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation3 = Vector3{ 0,0,0 };

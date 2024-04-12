@@ -18,6 +18,10 @@ namespace baseEngine
 		camera = new Camera();
 		newCamera = camera;
 
+		light = new Light();
+
+		light->SetAmbientLightStrength(1);
+
 		renderer = new Renderer(window, camera);
 
 		inputSystem = new InputSystem(window->getWindow());
@@ -33,6 +37,7 @@ namespace baseEngine
 		delete window;
 		delete renderer;
 		delete camera;
+		delete light;
 	}
 
 	void BaseGame::gameLoop()
