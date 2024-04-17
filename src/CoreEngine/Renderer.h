@@ -8,6 +8,7 @@
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
 #include "..\libs\glm\include\gtc\type_ptr.hpp"
 #include "Tools/Texture Importer/TextureImporter.h"
+#include "Light/Light.h"
 
 #pragma once
 
@@ -18,6 +19,7 @@ using namespace errorLog;
 using namespace vectors;
 using namespace glm;
 using namespace textureImporter;
+using namespace light;
 
 namespace renderer
 {
@@ -32,6 +34,7 @@ namespace renderer
 		Window* window;
 		Shader shader;
 		Camera* camera;
+		Light* light;
 		TextureImporter textureImporter;
 		unsigned int primitiveShader;
 		unsigned int textureShader;
@@ -41,7 +44,7 @@ namespace renderer
 
 	public:
 
-		Renderer(Window* window, Camera* camera);
+		Renderer(Window* window, Camera* camera, Light* light);
 		~Renderer();
 		/// <summary>
 		/// Clear screen

@@ -20,9 +20,7 @@ namespace baseEngine
 
 		light = new Light();
 
-		light->SetAmbientLightStrength(1);
-
-		renderer = new Renderer(window, camera);
+		renderer = new Renderer(window, camera, light);
 
 		inputSystem = new InputSystem(window->getWindow());
 

@@ -10,10 +10,12 @@ namespace light
 
 		float ambientStrength;
 		glm::vec3 lightPos;
+		glm::vec3 lightColor;
 
 		Light();
-		void SetLightPos(glm::vec3 newLightPos);
+		void SetLightPos(float newLightPosX, float newLightPosY, float newLightPosZ);
 		void SetAmbientLightStrength(float newAmbientStrength);
+		void SetLightColor(float newLightColorX, float newLightColorY, float newLightColorZ);
 		~Light();
 	};
 }

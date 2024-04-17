@@ -7,10 +7,11 @@
 
 namespace renderer
 {
-	Renderer::Renderer(Window* window, Camera* camera)
+	Renderer::Renderer(Window* window, Camera* camera, Light* light)
 	{
 		this->window = window;
 		this->camera = camera;
+		this->light = light;
 
 		UpdateProjection(camera);
 		UpdateView(camera);
@@ -93,9 +94,9 @@ namespace renderer
 		glUniformMatrix4fv(glGetUniformLocation(lightShader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
 
-		glUniform3f(glGetUniformLocation(lightShader, "lightPos"), 100, 10, 10);
+		glUniform3f(glGetUniformLocation(lightShader, "lightPos"), light->lightPos.x, light->lightPos.y, light->lightPos.z);
 		glUniform3f(glGetUniformLocation(lightShader, "viewPos"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
-		glUniform3f(glGetUniformLocation(lightShader, "lightColor"), 1, 1, 1);
+		glUniform3f(glGetUniformLocation(lightShader, "lightColor"), light->lightColor.x, light->lightColor.y, light->lightColor.z);
 		glUniform3f(glGetUniformLocation(lightShader, "objectColor"), color.x, color.y, color.z);
 
 		glBindVertexArray(VAO);

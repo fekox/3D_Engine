@@ -15,9 +15,6 @@ Game::~Game()
 
 void Game::init()
 {
-	//Light
-	light->SetLightPos(glm::vec3(0, 300, 0));
-
 	//Triangle 1
 	colorTriangleFront = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
 	colorTriangleBack = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
@@ -62,6 +59,11 @@ void Game::init()
 
 	const char* path = "res/Sonic_Mania_Sprite_Sheet.png";
 	Sonic = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
+
+	//Light
+	//*********************************************************************************
+	light->SetLightPos(0.0f, 10.0f, 10.0f);
+	light->SetLightColor(1.0f, 1.0f, 1.0f);
 
 	//Idle Animation
 	//*********************************************************************************
