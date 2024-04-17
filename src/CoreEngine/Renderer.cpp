@@ -93,11 +93,19 @@ namespace renderer
 		glUniformMatrix4fv(glGetUniformLocation(lightShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(glGetUniformLocation(lightShader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-
-		glUniform3f(glGetUniformLocation(lightShader, "lightPos"), light->lightPos.x, light->lightPos.y, light->lightPos.z);
+		glUniform3f(glGetUniformLocation(lightShader, "light.position"), light->lightPos.x, light->lightPos.y, light->lightPos.z);
 		glUniform3f(glGetUniformLocation(lightShader, "viewPos"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
-		glUniform3f(glGetUniformLocation(lightShader, "lightColor"), light->lightColor.x, light->lightColor.y, light->lightColor.z);
-		glUniform3f(glGetUniformLocation(lightShader, "objectColor"), color.x, color.y, color.z);
+
+
+		glUniform3f(glGetUniformLocation(lightShader, "light.ambient"), light->lightColor.x, light->lightColor.y, light->lightColor.z);
+		glUniform3f(glGetUniformLocation(lightShader, "light.diffuse"), light->lightColor.x, light->lightColor.y, light->lightColor.z);
+		glUniform3f(glGetUniformLocation(lightShader, "light.specular"), 1.0f, 1.0f, 1.0f);
+
+		// material properties
+		glUniform3f(glGetUniformLocation(lightShader, "material.ambient"), 1.0f, 0.5f, 0.31f);
+		glUniform3f(glGetUniformLocation(lightShader, "material.diffuse"), 1.0f, 0.5f, 0.31f);
+		glUniform3f(glGetUniformLocation(lightShader, "material.specular"), 0.5f, 0.5f, 0.5f);
+		glUniform1f(glGetUniformLocation(lightShader, "material.shininess"), 32.0f);
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);
