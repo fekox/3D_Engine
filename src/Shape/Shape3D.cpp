@@ -2,8 +2,10 @@
 
 namespace shape3D
 {
-	Shape3D::Shape3D(Shapes3D typeShapes, Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation) : Entity3D(rgba, render, newPosition, newScale, newRotation)
+	Shape3D::Shape3D(Shapes3D typeShapes, Material* material, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation) : Entity3D(render, newPosition, newScale, newRotation)
 	{
+		this->material = material;
+
 		switch (typeShapes)
 		{
 			case shape3D::Shape3D::Cube:
@@ -127,6 +129,6 @@ namespace shape3D
 
 	void Shape3D::Draw()
 	{
-		DrawShape3D();
+		DrawShape3D(material);
 	}
 }

@@ -25,30 +25,33 @@ void Game::init()
 
 	//Cube - 1
 	//*********************************************************************************
-	colorCube = Vector4{ 1.0f, 0.0f, 1.0f, 1 };
 	cubePosition = Vector3{ -150, 0 , 0 };
 	cubeScale = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation = Vector3{ 0,0,0 };
+	material = new Material();
+	material->SetMaterial(Material::MaterialType::GOLD);
 
-	cube = new Shape3D(Shape3D::Shapes3D::Cube, colorCube, GetRenderer(), cubePosition, cubeScale, cubeRotation);
+	cube = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), cubePosition, cubeScale, cubeRotation);
 
 	//Cube - 2
 	//*********************************************************************************
-	colorCube2 = Vector4{ 1.0f, 0.0f, 0.0f, 1 };
 	cubePosition2 = Vector3{ 150, 150 , 0 };
 	cubeScale2 = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation2 = Vector3{ 0,0,0 };
+	material2 = new Material();
+	material2->SetMaterial(Material::MaterialType::SILVER);
 
-	cube2 = new Shape3D(Shape3D::Shapes3D::Cube, colorCube2, GetRenderer(), cubePosition2, cubeScale2, cubeRotation2);
+	cube2 = new Shape3D(Shape3D::Shapes3D::Cube, material2, GetRenderer(), cubePosition2, cubeScale2, cubeRotation2);
 
 	//Cube - 3
 	//*********************************************************************************
-	colorCube3 = Vector4{ 0.0f, 1.0f, 0.0f, 1 };
 	cubePosition3 = Vector3{ -150, -150 , 0};
 	cubeScale3 = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation3 = Vector3{ 0,0,0 };
+	material3 = new Material();
+	material3->SetMaterial(Material::MaterialType::CYAN_PLASTIC);
 
-	cube3 = new Shape3D(Shape3D::Shapes3D::Cube, colorCube3, GetRenderer(), cubePosition3, cubeScale3, cubeRotation3);
+	cube3 = new Shape3D(Shape3D::Shapes3D::Cube, material3, GetRenderer(), cubePosition3, cubeScale3, cubeRotation3);
 
 	//Init Shape
 	//*********************************************************************************

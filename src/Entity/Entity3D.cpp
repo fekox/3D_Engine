@@ -2,14 +2,14 @@
 
 namespace entity3D
 {
-	Entity3D::Entity3D(Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation) : Entity(render, newPosition, newScale, newRotation)
+	Entity3D::Entity3D(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation) : Entity(render, newPosition, newScale, newRotation)
 	{
-		this->color = rgba;
+
 	}
 
-	void Entity3D::DrawShape3D()
+	void Entity3D::DrawShape3D(Material* material)
 	{
-		render->DrawEntity3D(VAO, indexSize, color, model);
+		render->DrawEntity3D(VAO, indexSize, color, model, material);
 	}
 
 	void Entity3D::SetColor(Vector4 rgba)

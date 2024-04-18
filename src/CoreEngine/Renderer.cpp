@@ -86,7 +86,7 @@ namespace renderer
 		glUseProgram(0);
 	}
 
-	void Renderer::DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model)
+	void Renderer::DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model, Material* material)
 	{
 		glUseProgram(lightShader);
 		glUniformMatrix4fv(glGetUniformLocation(lightShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
@@ -102,10 +102,10 @@ namespace renderer
 		glUniform3f(glGetUniformLocation(lightShader, "light.specular"), 1.0f, 1.0f, 1.0f);
 
 		// material properties
-		glUniform3f(glGetUniformLocation(lightShader, "material.ambient"), 1.0f, 0.5f, 0.31f);
-		glUniform3f(glGetUniformLocation(lightShader, "material.diffuse"), 1.0f, 0.5f, 0.31f);
-		glUniform3f(glGetUniformLocation(lightShader, "material.specular"), 0.5f, 0.5f, 0.5f);
-		glUniform1f(glGetUniformLocation(lightShader, "material.shininess"), 32.0f);
+		glUniform3f(glGetUniformLocation(lightShader, "material.ambient"), material->ambient.x, material->ambient.y, material->ambient.z);
+		glUniform3f(glGetUniformLocation(lightShader, "material.diffuse"), material->diffuse.x, material->diffuse.y, material->diffuse.z);
+		glUniform3f(glGetUniformLocation(lightShader, "material.specular"), material->specular.x, material->specular.y, material->specular.z);
+		glUniform1f(glGetUniformLocation(lightShader, "material.shininess"), material->shininess);
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);

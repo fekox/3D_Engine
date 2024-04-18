@@ -9,6 +9,7 @@
 #include "..\libs\glm\include\gtc\type_ptr.hpp"
 #include "Tools/Texture Importer/TextureImporter.h"
 #include "Light/Light.h"
+#include "Material/Material.h"
 
 #pragma once
 
@@ -20,6 +21,7 @@ using namespace vectors;
 using namespace glm;
 using namespace textureImporter;
 using namespace light;
+using namespace material;
 
 namespace renderer
 {
@@ -62,7 +64,7 @@ namespace renderer
 
 		void DrawTexture(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model, unsigned int& idTexture);
 
-		void DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model);
+		void DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model, Material* material);
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);

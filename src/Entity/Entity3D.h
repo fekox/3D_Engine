@@ -1,9 +1,11 @@
 #include "Tools/Vectors/Vectors.h"
 #include "Entity/Entity.h"
+#include "Material/Material.h"
 #pragma once
 
 using namespace vectors;
 using namespace Entity;
+using namespace material;
 
 namespace entity3D
 {
@@ -32,8 +34,8 @@ namespace entity3D
 
 		public:
 			
-			Entity3D(Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
-			void DrawShape3D();
+			Entity3D(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
+			void DrawShape3D(Material* material);
 			void SetColor(Vector4 rgba);
 			Vector4 GetColor();
 			~Entity3D();

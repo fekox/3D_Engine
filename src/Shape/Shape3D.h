@@ -12,6 +12,7 @@ namespace shape3D
 		private:
 
 		public:
+		Material* material;
 
 		enum Shapes3D
 		{
@@ -19,7 +20,7 @@ namespace shape3D
 			Pyramid
 		};
 
-		Shape3D(Shapes3D typeShapes, Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
+		Shape3D(Shapes3D typeShapes, Material* material, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
 		~Shape3D();
 
 		void CreateCube();

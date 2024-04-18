@@ -11,7 +11,7 @@ private:
 	
 	//Shape3D - 1
 	Shape3D* cube;
-	Vector4 colorCube;
+	Material* material;
 
 	Vector3 cubePosition;
 	Vector3 cubeScale;
@@ -19,7 +19,8 @@ private:
 
 	//Shape3D - 2
 	Shape3D* cube2;
-	Vector4 colorCube2;
+	Material* material2;
+
 
 	Vector3 cubePosition2;
 	Vector3 cubeScale2;
@@ -27,7 +28,7 @@ private:
 
 	//Shape3D - 3
 	Shape3D* cube3;
-	Vector4 colorCube3;
+	Material* material3;
 
 	Vector3 cubePosition3;
 	Vector3 cubeScale3;

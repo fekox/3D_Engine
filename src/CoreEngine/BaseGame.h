@@ -10,6 +10,7 @@
 #include "Camera/Camera.h"
 
 #include "Light/Light.h"
+#include "Material/Material.h"
 
 #include "Tools/DLL-Exp/dll-Exp-Inp.h"
 #include "Tools/Time/Time.h"
@@ -20,6 +21,7 @@ using namespace shape;
 using namespace shape3D;
 using namespace camera;
 using namespace light;
+using namespace material;
 using namespace window;
 using namespace renderer;
 using namespace sprite;
@@ -43,6 +45,8 @@ namespace baseEngine
 
 		Camera* camera;
 		Light* light;
+		Material* material;
+		
 		InputSystem* inputSystem;
 		BaseGame(int width, int height, const char* windowName);
 		~BaseGame();
