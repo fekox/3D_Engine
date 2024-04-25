@@ -8,7 +8,7 @@
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
 #include "..\libs\glm\include\gtc\type_ptr.hpp"
 #include "Tools/Texture Importer/TextureImporter.h"
-#include "Light/Light.h"
+#include "Lights/Light.h"
 #include "Material/Material.h"
 
 #pragma once

@@ -9,7 +9,7 @@
 
 #include "Camera/Camera.h"
 
-#include "Light/Light.h"
+#include "Lights/Light.h"
 #include "Material/Material.h"
 
 #include "Tools/DLL-Exp/dll-Exp-Inp.h"

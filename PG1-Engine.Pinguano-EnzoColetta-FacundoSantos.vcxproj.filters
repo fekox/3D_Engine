@@ -61,7 +61,7 @@
     <Filter Include="Src\Material">
       <UniqueIdentifier>{29b23444-b5cc-4f33-aa3d-82c7bb824d50}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Light">
+    <Filter Include="Src\Lights">
       <UniqueIdentifier>{7a7ee928-c1bd-4eae-a483-1c2dae892c25}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -126,8 +126,8 @@
     <ClCompile Include="src\Material\Material.cpp">
       <Filter>Src\Material</Filter>
     </ClCompile>
-    <ClCompile Include="src\Light\Light.cpp">
-      <Filter>Src\Light</Filter>
+    <ClCompile Include="src\Lights\Light.cpp">
+      <Filter>Src\Lights</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,8 +200,8 @@
     <ClInclude Include="src\Material\Material.h">
       <Filter>Src\Material</Filter>
     </ClInclude>
-    <ClInclude Include="src\Light\Light.h">
-      <Filter>Src\Light</Filter>
+    <ClInclude Include="src\Lights\Light.h">
+      <Filter>Src\Lights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
