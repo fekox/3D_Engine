@@ -11,16 +11,27 @@ private:
 	
 	//Shape3D - 1
 	Shape3D* cube;
-	Material* material;
 
 	Vector3 cubePosition;
 	Vector3 cubeScale;
 	Vector3 cubeRotation;
 
+	//Material - 1
+
+	Material* material;
+
+	int diffuseINT;
+	int specularINT;
+	float shininess;
+
 	//Shape3D - 2
 	Shape3D* cube2;
-	Material* material2;
 
+	vec3 ambient = glm::vec3(1.0f, 0.5f, 0.31f);
+	vec3 diffuseV3 = glm::vec3(1.0f, 0.5f, 0.31f);
+	vec3 specularV3 = glm::vec3(0.5f, 0.5f, 0.5f);
+
+	Material* material2;
 
 	Vector3 cubePosition2;
 	Vector3 cubeScale2;
@@ -34,21 +45,9 @@ private:
 	Vector3 cubeScale3;
 	Vector3 cubeRotation3;
 
-	//Shape
-	Shape* triangle;
-
-	Vector4 colorTriangleFront;
-	Vector4 colorTriangleBack;
-
-	Vector3 position;
-	Vector3 position2;
-	Vector3 position3;
-
-	Vector3 scale;
-	Vector3 rotation;
-
-	//Sprite
-	Sprite* Sonic;
+	//Sprite 
+	Sprite* Container;
+	Sprite* Container_specular;
 
 	Vector3 lastTexturePos;
 
@@ -57,8 +56,7 @@ private:
 	Vector3 TextureScale;
 	Vector3 TextureRotation;
 
-	Animation* idleAnimation;
-	Animation* walkAnimation;
+	//Sprite 2
 
 public:
 	float width;

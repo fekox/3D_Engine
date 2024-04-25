@@ -96,17 +96,27 @@ namespace renderer
 		glUniformMatrix4fv(glGetUniformLocation(lightShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(glGetUniformLocation(lightShader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
 
-		glUniform3f(glGetUniformLocation(lightShader, "light.position"), light->lightPos.x, light->lightPos.y, light->lightPos.z);
+		glUniform3f(glGetUniformLocation(lightShader, "light.position"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
+		glUniform3f(glGetUniformLocation(lightShader, "light.direction"), camera->cameraFront.x, camera->cameraFront.y, camera->cameraFront.z);
+		glUniform1f(glGetUniformLocation(lightShader, "light.cutOff"), glm::cos(glm::radians(12.5f)));
+		glUniform1f(glGetUniformLocation(lightShader, "light.outerCutOff"), glm::cos(glm::radians(17.5f)));
 		glUniform3f(glGetUniformLocation(lightShader, "viewPos"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
 
-		glUniform3f(glGetUniformLocation(lightShader, "light.ambient"), light->lightColor.x, light->lightColor.y, light->lightColor.z);
-		glUniform3f(glGetUniformLocation(lightShader, "light.diffuse"), light->lightColor.x, light->lightColor.y, light->lightColor.z);
+		glUniform3f(glGetUniformLocation(lightShader, "light.ambient"), 0.1f, 0.1f, 0.1f);
+		glUniform3f(glGetUniformLocation(lightShader, "light.diffuse"), 0.8f, 0.8f, 0.8f);
 		glUniform3f(glGetUniformLocation(lightShader, "light.specular"), 1.0f, 1.0f, 1.0f);
+		glUniform1f(glGetUniformLocation(lightShader, "light.constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(lightShader, "light.linear_"), 0.09f);
+		glUniform1f(glGetUniformLocation(lightShader, "light.quadratic"), 0.032f);
 
 		// material properties
+		glUseProgram(lightShader);
+		glUniform1i(glGetUniformLocation(lightShader, "material.diffuse"), material->diffuseINT);
+		glUniform1i(glGetUniformLocation(lightShader, "material.specular"), material->specularINT);
+
 		glUniform3f(glGetUniformLocation(lightShader, "material.ambient"), material->ambient.x, material->ambient.y, material->ambient.z);
-		glUniform3f(glGetUniformLocation(lightShader, "material.diffuse"), material->diffuse.x, material->diffuse.y, material->diffuse.z);
-		glUniform3f(glGetUniformLocation(lightShader, "material.specular"), material->specular.x, material->specular.y, material->specular.z);
+		glUniform3f(glGetUniformLocation(lightShader, "material.diffuse"), material->diffuseV3.x, material->diffuseV3.y, material->diffuseV3.z);
+		glUniform3f(glGetUniformLocation(lightShader, "material.specular"), material->specularV3.x, material->specularV3.y, material->specularV3.z);
 		glUniform1f(glGetUniformLocation(lightShader, "material.shininess"), material->shininess);
 
 		glBindVertexArray(VAO);
