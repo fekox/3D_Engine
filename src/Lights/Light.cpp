@@ -4,7 +4,7 @@ namespace light
 {
 	Light::Light()
 	{
-		SetLightPos(100, 10, 10);
+		SetLightPos(0, 0, 0);
 		SetLightColor(1, 1, 1);
 		SetAmbientLightStrength(1);
 	}

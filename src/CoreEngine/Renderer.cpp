@@ -25,6 +25,9 @@ namespace renderer
 		ShaderProgramSource source3 = shader.ParseShader("res/Shader/Light.Shader");
 		lightShader = shader.createShader(source3.VertexSource, source3.FragmentSource);
 
+		ShaderProgramSource source4 = shader.ParseShader("res/Shader/LightCube.Shader");
+		lightCubeShader = shader.createShader(source4.VertexSource, source4.FragmentSource);
+
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -86,7 +89,7 @@ namespace renderer
 		glUseProgram(0);
 	}
 
-	void Renderer::DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model, Material* material)
+	void Renderer::DrawEntity3D(unsigned int VAO, unsigned int lightCubeVAO, int sizeIndex, Vector4 color, glm::mat4x4 model, Material* material)
 	{
 		glUseProgram(lightShader);
 		glUniformMatrix4fv(glGetUniformLocation(lightShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
@@ -95,7 +98,6 @@ namespace renderer
 
 		glUniform3f(glGetUniformLocation(lightShader, "light.position"), light->lightPos.x, light->lightPos.y, light->lightPos.z);
 		glUniform3f(glGetUniformLocation(lightShader, "viewPos"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
-
 
 		glUniform3f(glGetUniformLocation(lightShader, "light.ambient"), light->lightColor.x, light->lightColor.y, light->lightColor.z);
 		glUniform3f(glGetUniformLocation(lightShader, "light.diffuse"), light->lightColor.x, light->lightColor.y, light->lightColor.z);
@@ -108,6 +110,18 @@ namespace renderer
 		glUniform1f(glGetUniformLocation(lightShader, "material.shininess"), material->shininess);
 
 		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);
+
+		glUseProgram(0);
+
+		glUseProgram(lightCubeShader);
+		model = glm::translate(model, glm::vec3(1.0f));
+		model = glm::scale(model, glm::vec3(0.2f));
+		glUniformMatrix4fv(glGetUniformLocation(lightCubeShader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(glGetUniformLocation(lightCubeShader, "view"), 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(glGetUniformLocation(lightCubeShader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+		glBindVertexArray(lightCubeVAO);
 		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);
 
 		glUseProgram(0);
@@ -161,7 +175,7 @@ namespace renderer
 	}
 
 	void Renderer::CreateVBufferNormals(float* positions, int* index, int positionsSize, int atributeNormalSize,
-		int atribVertexSize, int indicesSize, unsigned& VAO, unsigned& VBO, unsigned& EBO)
+		int atribVertexSize, int indicesSize, unsigned& VAO, unsigned& VBO, unsigned& EBO, unsigned& lightCubeVAO)
 	{
 		glGenVertexArrays(1, &VAO);
 		glGenBuffers(1, &VBO);
@@ -175,15 +189,26 @@ namespace renderer
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * indicesSize, index, GL_STATIC_DRAW);
 
-		glVertexAttribPointer(0, atribVertexSize, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+		glVertexAttribPointer(0, atribVertexSize, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
 		glEnableVertexAttribArray(0);
 
-		glVertexAttribPointer(1, atributeNormalSize, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+		glVertexAttribPointer(1, atributeNormalSize, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
 		glEnableVertexAttribArray(1);
 
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+		glEnableVertexAttribArray(2);
 
-		glBindVertexArray(0);
+		glGenVertexArrays(1, &lightCubeVAO);
+		glBindVertexArray(lightCubeVAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * positionsSize, positions, GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * indicesSize, index, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(0, atribVertexSize, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
 	}
 
 	void Renderer::BindTexture(const char* textureName, unsigned& textureID)
@@ -227,5 +252,10 @@ namespace renderer
 		glDeleteVertexArrays(1, &VAO);
 		glDeleteBuffers(1, &VBO);
 		glDeleteBuffers(1, &EBO);
+	}
+
+	void Renderer::deleteVertexAndBuffer(unsigned int& lightCubeVAO)
+	{
+		glDeleteVertexArrays(1, &lightCubeVAO);
 	}
 }

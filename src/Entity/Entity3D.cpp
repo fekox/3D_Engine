@@ -9,7 +9,7 @@ namespace entity3D
 
 	void Entity3D::DrawShape3D(Material* material)
 	{
-		render->DrawEntity3D(VAO, indexSize, color, model, material);
+		render->DrawEntity3D(VAO, lightCubeVAO, indexSize, color, model, material);
 	}
 
 	void Entity3D::SetColor(Vector4 rgba)

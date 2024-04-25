@@ -15,6 +15,7 @@ namespace entity3D
 
 			Vector4 color;
 			unsigned int VAO = 0; //Vertex Array Object.
+			unsigned int lightCubeVAO = 0;
 
 			unsigned int VBO = 0; //Vertex Buffer Object.
 			int vertexSize;

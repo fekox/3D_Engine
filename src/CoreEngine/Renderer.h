@@ -41,6 +41,7 @@ namespace renderer
 		unsigned int primitiveShader;
 		unsigned int textureShader;
 		unsigned int lightShader;
+		unsigned int lightCubeShader;
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
 
@@ -64,13 +65,13 @@ namespace renderer
 
 		void DrawTexture(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model, unsigned int& idTexture);
 
-		void DrawEntity3D(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model, Material* material);
+		void DrawEntity3D(unsigned int VAO, unsigned int lightCubeVAO, int sizeIndex, Vector4 color, glm::mat4x4 model, Material* material);
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);
 
 		void CreateVBufferNormals(float* positions, int* index, int positionsSize, int atributeNormalSize,
-			int atribVertexSize, int indicesSize, unsigned& VAO, unsigned& VBO, unsigned& EBO);
+			int atribVertexSize, int indicesSize, unsigned& VAO, unsigned& VBO, unsigned& EBO, unsigned& lightCubeVAO);
 
 		void UpdateProjection(Camera* camera);
 		void UpdateView(Camera* camera);
@@ -82,5 +83,7 @@ namespace renderer
 
 		void BindTexture(const char* textureName, unsigned& textureID);
 		void deleteVertexAndBuffer(unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);
+		void deleteVertexAndBuffer(unsigned int& lightCubeVAO);
+
 	};
 }
