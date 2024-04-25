@@ -129,6 +129,15 @@
     <ClCompile Include="src\Lights\Light.cpp">
       <Filter>Src\Lights</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lights\DirectionalLight.cpp">
+      <Filter>Src\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lights\PointLight.cpp">
+      <Filter>Src\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lights\SpotLight.cpp">
+      <Filter>Src\Lights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -203,6 +212,15 @@
     <ClInclude Include="src\Lights\Light.h">
       <Filter>Src\Lights</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lights\DirectionalLight.h">
+      <Filter>Src\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lights\PointLight.h">
+      <Filter>Src\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lights\SpotLight.h">
+      <Filter>Src\Lights</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Prueba\res\Shader\Primitive.Shader">
@@ -212,9 +230,6 @@
       <Filter>Res\Shader</Filter>
     </None>
     <None Include="Prueba\res\Shader\Light.Shader">
-      <Filter>Res\Shader</Filter>
-    </None>
-    <None Include="Prueba\res\Shader\LightCube.Shader">
       <Filter>Res\Shader</Filter>
     </None>
   </ItemGroup>
