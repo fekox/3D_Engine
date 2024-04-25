@@ -1,4 +1,4 @@
-#include "Light.h"
+#include "Lights/Light.h"
 
 namespace light
 {
