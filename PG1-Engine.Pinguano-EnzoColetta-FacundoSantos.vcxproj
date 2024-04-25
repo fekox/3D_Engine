@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Prueba\res\Shader\Light.Shader" />
+    <None Include="Prueba\res\Shader\LightCube.Shader" />
     <None Include="Prueba\res\Shader\Primitive.Shader" />
     <None Include="Prueba\res\Shader\Texture.Shader" />
   </ItemGroup>
