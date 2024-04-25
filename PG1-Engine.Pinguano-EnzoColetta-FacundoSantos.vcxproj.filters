@@ -58,11 +58,11 @@
     <Filter Include="Src\Tools\Vectors">
       <UniqueIdentifier>{a4e2275d-93c3-46f0-9fb8-1dfbd5185938}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Light">
-      <UniqueIdentifier>{7a7ee928-c1bd-4eae-a483-1c2dae892c25}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Material">
       <UniqueIdentifier>{29b23444-b5cc-4f33-aa3d-82c7bb824d50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Lights">
+      <UniqueIdentifier>{7a7ee928-c1bd-4eae-a483-1c2dae892c25}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -123,11 +123,17 @@
     <ClCompile Include="src\Tools\Time\Time.cpp">
       <Filter>Src\Tools\Time</Filter>
     </ClCompile>
-    <ClCompile Include="src\Light\Light.cpp">
-      <Filter>Src\Light</Filter>
-    </ClCompile>
     <ClCompile Include="src\Material\Material.cpp">
       <Filter>Src\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lights\DirectionalLight.cpp">
+      <Filter>Src\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lights\PointLight.cpp">
+      <Filter>Src\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lights\SpotLight.cpp">
+      <Filter>Src\Lights</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -197,11 +203,17 @@
     <ClInclude Include="src\Tools\Vectors\Vectors.h">
       <Filter>Src\Tools\Vectors</Filter>
     </ClInclude>
-    <ClInclude Include="src\Light\Light.h">
-      <Filter>Src\Light</Filter>
-    </ClInclude>
     <ClInclude Include="src\Material\Material.h">
       <Filter>Src\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lights\DirectionalLight.h">
+      <Filter>Src\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lights\PointLight.h">
+      <Filter>Src\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lights\SpotLight.h">
+      <Filter>Src\Lights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +224,9 @@
       <Filter>Res\Shader</Filter>
     </None>
     <None Include="Prueba\res\Shader\Light.Shader">
+      <Filter>Res\Shader</Filter>
+    </None>
+    <None Include="Prueba\res\Shader\LightCube.Shader">
       <Filter>Res\Shader</Filter>
     </None>
   </ItemGroup>
