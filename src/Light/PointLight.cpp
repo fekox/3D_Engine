@@ -1,4 +1,4 @@
-#include "PointLight.h"
+#include "Light/PointLight.h"
 
 namespace pointLight
 {

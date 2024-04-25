@@ -1,4 +1,4 @@
-#include "Lights/DirectionalLight.h"
+#include "Light/DirectionalLight.h"
 
 namespace directionalLight
 {
