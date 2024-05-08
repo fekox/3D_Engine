@@ -15,17 +15,21 @@ Game::~Game()
 
 void Game::init()
 {
+	//Triangle 1
+	colorTriangleFront = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
+	colorTriangleBack = Vector4{ 1.0f, 1.0f, 0.0f, 1 };
+	position = Vector3{ 100, 0 , 0 };
+	scale = Vector3{ 80.0f, 80.0f, 80.0f };
+	rotation = Vector3{ 0,0,0 };
+	triangle = new Shape(Shape::Shapes2D::Triangle, colorTriangleFront, GetRenderer(), position, scale, rotation);
+
 	//Cube - 1
 	//*********************************************************************************
 	cubePosition = Vector3{ -150, 0 , 0 };
 	cubeScale = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation = Vector3{ 0,0,0 };
-
-	//Material
-	diffuseINT = 0;
-	specularINT = 1;
-	shininess = 64.0f;
-	material = new Material(diffuseINT, specularINT, shininess);
+	material = new Material();
+	material->SetMaterial(Material::MaterialType::GOLD);
 
 	cube = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), cubePosition, cubeScale, cubeRotation);
 
@@ -34,8 +38,8 @@ void Game::init()
 	cubePosition2 = Vector3{ 150, 150 , 0 };
 	cubeScale2 = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation2 = Vector3{ 0,0,0 };
-
-	material2 = new Material(ambient, diffuseV3, specularV3, shininess);
+	material2 = new Material();
+	material2->SetMaterial(Material::MaterialType::SILVER);
 
 	cube2 = new Shape3D(Shape3D::Shapes3D::Cube, material2, GetRenderer(), cubePosition2, cubeScale2, cubeRotation2);
 
@@ -44,34 +48,89 @@ void Game::init()
 	cubePosition3 = Vector3{ -150, -150 , 0};
 	cubeScale3 = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation3 = Vector3{ 0,0,0 };
-	material3 = new Material(diffuseINT, specularINT, shininess);
+	material3 = new Material();
+	material3->SetMaterial(Material::MaterialType::CYAN_PLASTIC);
 
 	cube3 = new Shape3D(Shape3D::Shapes3D::Cube, material3, GetRenderer(), cubePosition3, cubeScale3, cubeRotation3);
 
-	//Init Sprite
+	//Init Shape
 	//*********************************************************************************
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-	TexturePosition = Vector3{0,0,0};
+	TexturePosition = Vector3{0,0, 0 };
 	TextureScale = Vector3{128,128,128};
 	TextureRotation = Vector3{0,0,0};
 
-	const char* path = "res/container.png";
-	Container = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
-
-	//const char* path2 = "res/container_specular.png";
-	//Container_specular = new Sprite(path2, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
+	const char* path = "res/Sonic_Mania_Sprite_Sheet.png";
+	Sonic = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
 
 	//Light
 	//*********************************************************************************
 	light->SetLightPos(0.0f, 10.0f, 10.0f);
 	light->SetLightColor(1.0f, 1.0f, 1.0f);
+
+	//Idle Animation
+	//*********************************************************************************
+	walkAnimation = new Animation();
+	walkAnimation->AddFrame(848, 203, 122/3, 48, 830, 465, 500, 3);
+
+	idleAnimation = new Animation();
+	idleAnimation->AddFrame(390, 98, 98 / 3, 43, 830, 465, 2500, 3);
+
+	Sonic->SetAnimation(idleAnimation);
 }
 
 void Game::update()
 {
 	camera->SetCameraMode(Camera::CameraMode::FistPerson);
-	glm::vec3 newPos = glm::vec3(0,0,0);
-	//camera->ChangeCameraTarget(glm::vec3(newPos.x, newPos.y, newPos.z), glm::vec3(Sonic->getRotation().x, Sonic->getRotation().y, Sonic->getRotation().z));
+	glm::vec3 newPos = glm::vec3(Sonic->getPosition().x, Sonic->getPosition().y, Sonic->getPosition().z);
+	camera->ChangeCameraTarget(glm::vec3(newPos.x, newPos.y, newPos.z), glm::vec3(Sonic->getRotation().x, Sonic->getRotation().y, Sonic->getRotation().z));
+
+	Sonic->SetAnimation(idleAnimation);
+
+	//Player Inputs;
+	//*********************************************************************************
+	if (inputSystem->getKey(inputSystem->N1, inputSystem->Pressed))
+	{
+		Sonic->SetAnimation(walkAnimation);
+		Sonic->setRotationY(-1.0f);
+	}
+
+	if (inputSystem->getKey(inputSystem->N2, inputSystem->Pressed))
+	{
+		Sonic->SetAnimation(walkAnimation);
+		Sonic->setRotationY(1.0f);
+	}
+
+	if (inputSystem->getKey(inputSystem->downArrow, inputSystem->Pressed))
+	{
+		Sonic->SetAnimation(walkAnimation);
+		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y - 1.0f,  Sonic->getPosition().z});
+	}
+
+	if (inputSystem->getKey(inputSystem->upArrow, inputSystem->Pressed))
+	{
+		Sonic->SetAnimation(walkAnimation);
+		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y + 1.0f, Sonic->getPosition().z});
+	}
+
+	if (inputSystem->getKey(inputSystem->leftArrow, inputSystem->Pressed))
+	{
+		Sonic->SetAnimation(walkAnimation);
+		Sonic->setPosition(Vector3{ Sonic->getPosition().x - 1.0f, Sonic->getPosition().y, Sonic->getPosition().z});
+	}
+
+	if (inputSystem->getKey(inputSystem->rightArrow, inputSystem->Pressed))
+	{
+		Sonic->SetAnimation(walkAnimation);
+		Sonic->setPosition(Vector3{ Sonic->getPosition().x + 1.0f, Sonic->getPosition().y, Sonic->getPosition().z});
+	}
+	//*********************************************************************************
+
+	Sonic->Update();
+
+	Sonic->Draw();
+
+	triangle->Draw();
 
 	cube->Draw();
 	cube2->Draw();
@@ -80,8 +139,12 @@ void Game::update()
 
 void Game::exit()
 {
-	delete Container;
+	delete Sonic;
+	delete triangle;
 	delete cube;
 	delete cube2;
 	delete cube3;
+
+	delete idleAnimation;
+	delete walkAnimation;
 }

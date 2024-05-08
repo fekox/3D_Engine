@@ -11,12 +11,8 @@ namespace material
 		public:
 
 		vec3 ambient;
-		vec3 diffuseV3;
-		vec3 specularV3;
-
-		int diffuseINT;
-		int specularINT;
-
+		vec3 diffuse;
+		vec3 specular;
 		float shininess;
 
 		enum MaterialType
@@ -40,8 +36,7 @@ namespace material
 			RED_PLASTIC
 		};
 
-		Material(vec3 ambient, vec3 diffuseV3, vec3 specularV3, float shininess);
-		Material(int diffuseINT, int specularINT, float shininess);
+		Material();
 		void SetMaterial(MaterialType newMaterial);
 		~Material();
 
