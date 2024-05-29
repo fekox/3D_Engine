@@ -235,5 +235,8 @@
     <None Include="Prueba\res\Shader\LightCube.Shader">
       <Filter>Res\Shader</Filter>
     </None>
+    <None Include="Prueba\res\Shader\MultipleLights.Shader">
+      <Filter>Res\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

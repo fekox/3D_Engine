@@ -10,6 +10,10 @@
 #include "Tools/Texture Importer/TextureImporter.h"
 #include "Lights/Light.h"
 #include "Material/Material.h"
+#include "Lights/DirectionalLight.h"
+#include <Lights/PointLight.h>
+#include <Lights/SpotLight.h>
+
 
 #pragma once
 
@@ -22,6 +26,9 @@ using namespace glm;
 using namespace textureImporter;
 using namespace light;
 using namespace material;
+using namespace directionalLight;
+using namespace pointLight;
+using namespace spotLight;
 
 namespace renderer
 {
@@ -36,18 +43,22 @@ namespace renderer
 		Window* window;
 		Shader shader;
 		Camera* camera;
-		Light* light;
+		PointLight* pointLight;
 		TextureImporter textureImporter;
 		unsigned int primitiveShader;
 		unsigned int textureShader;
 		unsigned int lightShader;
 		unsigned int lightCubeShader;
+		unsigned int multipleLights;
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
 
+		DirectionalLight directionaLight;
+		SpotLight* spotLight;
+
 	public:
 
-		Renderer(Window* window, Camera* camera, Light* light);
+		Renderer(Window* window, Camera* camera, PointLight* light);
 		~Renderer();
 		/// <summary>
 		/// Clear screen

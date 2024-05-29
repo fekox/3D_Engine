@@ -15,16 +15,12 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform int useTexture;
 
-
 void main()
 {
     FragPos = vec3(model * position);
     Normal = mat3(transpose(inverse(model))) * aNormal;
     gl_Position = projection * view * vec4(FragPos, 1.0);
     isUsingTexture = useTexture;
-
-    TexCoords = vec2(aTexCoord.x, aTexCoord.y);
-
 };
 
 #shader fragment
@@ -66,6 +62,7 @@ struct PointLight {
     vec3 diffuse;
     vec3 specular;
 };
+
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
 struct SpotLight {
@@ -91,6 +88,7 @@ struct Light {
     vec3 diffuse;
     vec3 specular;
 };
+
 struct Material {
     vec3 ambient;
     vec3 diffuse;
@@ -116,7 +114,7 @@ void main()
 
     result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
 
-    FragColor = vec4(result, 1.0) * texture(ourTexture, TexCoords);
+    FragColor = vec4(result, 1.0);
 
 };
 

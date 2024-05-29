@@ -18,7 +18,7 @@ namespace baseEngine
 		camera = new Camera();
 		newCamera = camera;
 
-		light = new Light();
+		light = new PointLight();
 
 		renderer = new Renderer(window, camera, light);
 

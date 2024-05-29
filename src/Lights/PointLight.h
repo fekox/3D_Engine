@@ -24,8 +24,8 @@ namespace pointLight
 
 		float constant;
 		float linear;
-		float quadratic;
 
+		PointLight();
 		PointLight(glm::vec3 position, glm::vec3 newAmbient, glm::vec3 newDiffuse, glm::vec3 newSpecular);
 		PointLight(glm::vec3 position, glm::vec3 newAmbient, glm::vec3 newDiffuse, glm::vec3 newSpecular, float newConstant, float newLinear, float newQuadratic);
 		PointLight(PointLightType pointLightType, glm::vec3 position, glm::vec3 newAmbient, glm::vec3 newDiffuse, glm::vec3 newSpecular);

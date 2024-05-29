@@ -65,8 +65,8 @@ void Game::init()
 
 	//Light
 	//*********************************************************************************
-	light->SetLightPos(0.0f, 10.0f, 10.0f);
-	light->SetLightColor(1.0f, 1.0f, 1.0f);
+	light->SetLightColor(glm::vec3(100.0f, 100.0f, 50.0f));
+	light->SetConstant(1.0f);
 
 	//Idle Animation
 	//*********************************************************************************
@@ -126,9 +126,11 @@ void Game::update()
 	}
 	//*********************************************************************************
 
+	light->SetPosition(newPos);
+
 	Sonic->Update();
 
-	Sonic->Draw();
+	//Sonic->Draw();
 
 	triangle->Draw();
 

@@ -13,8 +13,8 @@ namespace spotLight
 		constant = 1.0f;
 		linear = 0.09;
 		quadratic = 0.032;
-		cutOff = glm::cos(glm::radians(12.5f));
-		outerCutOff = glm::cos(glm::radians(15.0f));
+		cutOff = glm::cos(glm::radians(40.5f));
+		outerCutOff = glm::cos(glm::radians(45.0f));
 	}
 
 	SpotLight::SpotLight(glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular, float constant, float linear, float quadratic, float cutOff, float outerCutOff)
