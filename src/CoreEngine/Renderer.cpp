@@ -155,6 +155,7 @@ namespace renderer
 		unsigned int specularNr = 1;
 		unsigned int normalsNr = 1;
 		unsigned int heightNr = 1;
+		unsigned int colorNr = 1;
 
 		for (unsigned int i = 0; i < textures.size(); i++)
 		{
@@ -170,15 +171,19 @@ namespace renderer
 				number = std::to_string(normalsNr++);
 			else if (name == "texture_height")
 				number = std::to_string(heightNr++);
+			else if (name == "texture_baseColor")
+				number = std::to_string(colorNr++);
 
 			glUniform1f(glGetUniformLocation(models, ("material." + name + number).c_str()), i);
 			glBindTexture(GL_TEXTURE_2D, textures[i].id);
 		}
 
+		glUniform1f(glGetUniformLocation(multipleLights, "material.shininess"), 1.0f);
+
 		// Directional light
 		glUniform3f(glGetUniformLocation(models, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
-		glUniform3f(glGetUniformLocation(models, "dirLight.ambient"), 0.3f, 0.24f, 0.14f);
-		glUniform3f(glGetUniformLocation(models, "dirLight.diffuse"), 0.7f, 0.42f, 0.26f);
+		glUniform3f(glGetUniformLocation(models, "dirLight.ambient"), 0.4f, 0.4f, 0.4f);
+		glUniform3f(glGetUniformLocation(models, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
 		glUniform3f(glGetUniformLocation(models, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
 
 		// Point light 1

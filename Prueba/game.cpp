@@ -23,6 +23,13 @@ void Game::init()
 	rotation = Vector3{ 0,0,0 };
 	triangle = new Shape(Shape::Shapes2D::Triangle, colorTriangleFront, GetRenderer(), position, scale, rotation);
 
+	//Rectangle
+	rectanglePosition = Vector3{ 0.0f, 0.0f, -100.0f};
+	colorRectangle = Vector4{ 0.5f, 0.5f, 0.5f, 1 };
+	rectangleScale = Vector3{ 800.0f, 800.0f, 800.0f };
+	rotation = Vector3{ 0,0,0 };
+	rectangle = new Shape(Shape::Shapes2D::Square, colorRectangle, GetRenderer(), rectanglePosition, rectangleScale, rotation);
+
 	//Cube - 1
 	//*********************************************************************************
 	cubePosition = Vector3{ -150, 0 , 0 };
@@ -143,6 +150,7 @@ void Game::update()
 	//Sonic->Draw();
 
 	triangle->Draw();
+	rectangle->Draw();
 
 	cube->Draw();
 	cube2->Draw();
@@ -153,6 +161,7 @@ void Game::exit()
 {
 	delete Sonic;
 	delete triangle;
+	delete rectangle;
 	delete cube;
 	delete cube2;
 	delete cube3;

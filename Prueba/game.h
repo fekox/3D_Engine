@@ -55,6 +55,17 @@ private:
 	Vector3 scale;
 	Vector3 rotation;
 
+	//Shape2D
+	Shape* rectangle;
+
+	Vector4 colorRectangle;
+	Vector4 colorRectangleeBack;
+
+	Vector3 rectanglePosition;
+
+	Vector3 rectangleScale;
+	Vector3 rectangleRotation;
+
 	//Sprite
 	Sprite* Sonic;
 
