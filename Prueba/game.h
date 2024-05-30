@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreEngine/BaseGame.h"
 #include "..\libs\glm\include\glm.hpp"
+#include "..\src\3DImporter\Model.h"
 
 using namespace baseEngine;
 
@@ -9,6 +10,13 @@ class Game : public BaseGame
 private:
 	const char* windowName;
 	
+	//Model
+	Model* model;
+
+	Vector3 modelPosition;
+	Vector3 modelScale;
+	Vector3 modelRotation;
+
 	//Shape3D - 1
 	Shape3D* cube;
 	Material* material;
@@ -34,7 +42,7 @@ private:
 	Vector3 cubeScale3;
 	Vector3 cubeRotation3;
 
-	//Shape
+	//Shape2D
 	Shape* triangle;
 
 	Vector4 colorTriangleFront;

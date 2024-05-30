@@ -53,6 +53,14 @@ void Game::init()
 
 	cube3 = new Shape3D(Shape3D::Shapes3D::Cube, material3, GetRenderer(), cubePosition3, cubeScale3, cubeRotation3);
 
+	//Model
+	//*********************************************************************************
+	modelPosition = Vector3{ 0, 0 , 0 };
+	modelScale = Vector3{ 10, 10 , 10 };
+	modelRotation = Vector3{ 0, 0 , 0 };;
+
+	model = new Model(GetRenderer(), modelPosition, modelScale, modelRotation, "res/Models/backpack/backpack.obj");
+	 
 	//Init Shape
 	//*********************************************************************************
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
@@ -130,6 +138,8 @@ void Game::update()
 
 	Sonic->Update();
 
+	model->Draw();
+
 	//Sonic->Draw();
 
 	triangle->Draw();
@@ -149,4 +159,5 @@ void Game::exit()
 
 	delete idleAnimation;
 	delete walkAnimation;
+	delete model;
 }

@@ -30,6 +30,9 @@ namespace renderer
 		ShaderProgramSource source4 = shader.ParseShader("res/Shader/MultipleLights.Shader");
 		multipleLights = shader.createShader(source4.VertexSource, source4.FragmentSource);
 
+		ShaderProgramSource source5 = shader.ParseShader("res/Shader/Models.Shader");
+		models = shader.createShader(source5.VertexSource, source5.FragmentSource);
+
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -136,6 +139,74 @@ namespace renderer
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);
 
+		glUseProgram(0);
+	}
+
+	void Renderer::DrawModel(unsigned int VAO, vector<unsigned int> index, vector<Texture> textures, glm::mat4x4 model)
+	{
+		glUseProgram(models);
+		glUniformMatrix4fv(glGetUniformLocation(models, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		glUniformMatrix4fv(glGetUniformLocation(models, "view"), 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(glGetUniformLocation(models, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+		glUniform3f(glGetUniformLocation(models, "viewPos"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
+
+		unsigned int diffuseNr = 1;
+		unsigned int specularNr = 1;
+		unsigned int normalsNr = 1;
+		unsigned int heightNr = 1;
+
+		for (unsigned int i = 0; i < textures.size(); i++)
+		{
+			glActiveTexture(GL_TEXTURE0 + i); // activate proper texture unit before binding
+			// retrieve texture number (the N in diffuse_textureN)
+			string number;
+			string name = textures[i].type;
+			if (name == "texture_diffuse")
+				number = std::to_string(diffuseNr++);
+			else if (name == "texture_specular")
+				number = std::to_string(specularNr++);
+			else if (name == "texture_normals")
+				number = std::to_string(normalsNr++);
+			else if (name == "texture_height")
+				number = std::to_string(heightNr++);
+
+			glUniform1f(glGetUniformLocation(models, ("material." + name + number).c_str()), i);
+			glBindTexture(GL_TEXTURE_2D, textures[i].id);
+		}
+
+		// Directional light
+		glUniform3f(glGetUniformLocation(models, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
+		glUniform3f(glGetUniformLocation(models, "dirLight.ambient"), 0.3f, 0.24f, 0.14f);
+		glUniform3f(glGetUniformLocation(models, "dirLight.diffuse"), 0.7f, 0.42f, 0.26f);
+		glUniform3f(glGetUniformLocation(models, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
+
+		// Point light 1
+		glUniform3f(glGetUniformLocation(models, "pointLights[0].position"), pointLight->lightPos.x, pointLight->lightPos.y, pointLight->lightPos.z);
+		glUniform3f(glGetUniformLocation(models, "pointLights[0].ambient"), pointLight->ambient.x * 0.1, pointLight->ambient.y * 0.1, pointLight->ambient.z * 0.1);
+		glUniform3f(glGetUniformLocation(models, "pointLights[0].diffuse"), pointLight->diffuse.x, pointLight->diffuse.y, pointLight->diffuse.z);
+		glUniform3f(glGetUniformLocation(models, "pointLights[0].specular"), pointLight->specular.x, pointLight->specular.y, pointLight->specular.z);
+		glUniform1f(glGetUniformLocation(models, "pointLights[0].constant"), pointLight->constant);
+		glUniform1f(glGetUniformLocation(models, "pointLights[0].linear"), pointLight->linear);
+		glUniform1f(glGetUniformLocation(models, "pointLights[0].quadratic"), 0.032);
+
+		// SpotLight
+		glUniform3f(glGetUniformLocation(models, "spotLight.position"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
+		glUniform3f(glGetUniformLocation(models, "spotLight.direction"), camera->cameraFront.x, camera->cameraFront.y, camera->cameraFront.z);
+		glUniform3f(glGetUniformLocation(models, "spotLight.ambient"), spotLight->ambient.x, spotLight->ambient.y, spotLight->ambient.z);
+		glUniform3f(glGetUniformLocation(models, "spotLight.diffuse"), spotLight->diffuse.x, spotLight->diffuse.y, spotLight->diffuse.z);
+		glUniform3f(glGetUniformLocation(models, "spotLight.specular"), spotLight->specular.x, spotLight->specular.y, spotLight->specular.z);
+		glUniform1f(glGetUniformLocation(models, "spotLight.constant"), spotLight->constant);
+		glUniform1f(glGetUniformLocation(models, "spotLight.linear"), spotLight->linear);
+		glUniform1f(glGetUniformLocation(models, "spotLight.quadratic"), spotLight->quadratic);
+		glUniform1f(glGetUniformLocation(models, "spotLight.cutOff"), spotLight->cutOff);
+		glUniform1f(glGetUniformLocation(models, "spotLight.outerCutOff"), spotLight->outerCutOff);
+
+		glBindVertexArray(VAO);
+		glDrawElements(GL_TRIANGLES, index.size(), GL_UNSIGNED_INT, 0);
+
+		glBindVertexArray(0);
+		glActiveTexture(GL_TEXTURE0);
 		glUseProgram(0);
 	}
 

@@ -13,7 +13,7 @@
 #include "Lights/DirectionalLight.h"
 #include <Lights/PointLight.h>
 #include <Lights/SpotLight.h>
-
+#include "3DImporter/Mesh.h"
 
 #pragma once
 
@@ -37,7 +37,7 @@ namespace renderer
 	/// </summary>
 	class Renderer
 	{
-	private:
+		private:
 
 		ErrorLog errorLog;
 		Window* window;
@@ -50,13 +50,14 @@ namespace renderer
 		unsigned int lightShader;
 		unsigned int lightCubeShader;
 		unsigned int multipleLights;
+		unsigned int models;
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
 
 		DirectionalLight directionaLight;
 		SpotLight* spotLight;
 
-	public:
+		public:
 
 		Renderer(Window* window, Camera* camera, PointLight* light);
 		~Renderer();
@@ -77,6 +78,8 @@ namespace renderer
 		void DrawTexture(unsigned int VAO, int sizeIndex, Vector4 color, glm::mat4x4 model, unsigned int& idTexture);
 
 		void DrawEntity3D(unsigned int VAO, unsigned int lightCubeVAO, int sizeIndex, Vector4 color, glm::mat4x4 model, Material* material);
+
+		void DrawModel(unsigned int VAO, vector<unsigned int> index, vector<Texture> textures, glm::mat4x4 model);
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);

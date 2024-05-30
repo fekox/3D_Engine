@@ -64,6 +64,9 @@
     <Filter Include="Src\Lights">
       <UniqueIdentifier>{7a7ee928-c1bd-4eae-a483-1c2dae892c25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\3DImporter">
+      <UniqueIdentifier>{2f84a1c4-70e5-4825-baf7-8d864cbc2d22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Shader.cpp">
@@ -137,6 +140,15 @@
     </ClCompile>
     <ClCompile Include="src\Lights\SpotLight.cpp">
       <Filter>Src\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DImporter\Mesh.cpp">
+      <Filter>Src\3DImporter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DImporter\Model.cpp">
+      <Filter>Src\3DImporter</Filter>
+    </ClCompile>
+    <ClCompile Include="src\3DImporter\ModelImporter.cpp">
+      <Filter>Src\3DImporter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +233,15 @@
     <ClInclude Include="src\Lights\SpotLight.h">
       <Filter>Src\Lights</Filter>
     </ClInclude>
+    <ClInclude Include="src\3DImporter\Mesh.h">
+      <Filter>Src\3DImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DImporter\Model.h">
+      <Filter>Src\3DImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3DImporter\ModelImporter.h">
+      <Filter>Src\3DImporter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Prueba\res\Shader\Primitive.Shader">
@@ -236,6 +257,9 @@
       <Filter>Res\Shader</Filter>
     </None>
     <None Include="Prueba\res\Shader\MultipleLights.Shader">
+      <Filter>Res\Shader</Filter>
+    </None>
+    <None Include="Prueba\res\Shader\Models.Shader">
       <Filter>Res\Shader</Filter>
     </None>
   </ItemGroup>
