@@ -17,6 +17,20 @@ private:
 	Vector3 modelScale;
 	Vector3 modelRotation;
 
+	//Model2
+	Model* model2;
+
+	Vector3 modelPosition2;
+	Vector3 modelScale2;
+	Vector3 modelRotation2;
+
+	//Model3
+	Model* model3;
+
+	Vector3 modelPosition3;
+	Vector3 modelScale3;
+	Vector3 modelRotation3;
+
 	//Shape3D - 1
 	Shape3D* cube;
 	Material* material;

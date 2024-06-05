@@ -5,8 +5,11 @@
 string ModelImporter::currentDirectory = "";
 vector<Texture> ModelImporter::textures_loaded;
 
-void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh>& meshes)
+
+//Creo una scena del assimp y le paso el modelo con las flags.
+void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh>& meshes, bool invertTextures)
 {
+	textures_loaded.clear();
 	// read file via ASSIMP
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
@@ -20,28 +23,30 @@ void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh
 	currentDirectory = path.substr(0, path.find_last_of('/'));
 
 	// process ASSIMP's root node recursively
-	ProcessNode(meshes, scene->mRootNode, scene);
+	ProcessNode(meshes, scene->mRootNode, scene, invertTextures);
 
 }
 
-void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene)
+//Utilizo recursividad para pasar por todas las meshes del modelo.
+void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene, bool invertTextures)
 {
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
 	{
 		// the node object only contains indices to index the actual objects in the scene. 
 		// the scene contains all the data, node is just to keep stuff organized (like relations between nodes).
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-		meshes.push_back(ProcessMesh(mesh, scene));
+		meshes.push_back(ProcessMesh(mesh, scene, invertTextures));
 	}
 
 	// after we've processed all of the meshes (if any) we then recursively process each of the children nodes
 	for (unsigned int i = 0; i < node->mNumChildren; i++)
 	{
-		ProcessNode(meshes, node->mChildren[i], scene);
+		ProcessNode(meshes, node->mChildren[i], scene, invertTextures);
 	}
 }
 
-Mesh ModelImporter::ProcessMesh(aiMesh* mesh, const aiScene* scene)
+//Se procesan los verticas, indices y texturas. Se cargan las texturas
+Mesh ModelImporter::ProcessMesh(aiMesh* mesh, const aiScene* scene, bool invertTextures)
 {
 	// data to fill
 	vector<Vertex> vertices;
@@ -108,28 +113,28 @@ Mesh ModelImporter::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 	// specular: texture_specularN
 	// normal: texture_normalN
 
-	vector<Texture> diffuseMaps = LoadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+	vector<Texture> diffuseMaps = LoadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse", invertTextures);
 	textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
-	vector<Texture> specularMaps = LoadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+	vector<Texture> specularMaps = LoadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular", invertTextures);
 	textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
-	vector<Texture> baseColorMaps = LoadMaterialTextures(material, aiTextureType_BASE_COLOR, "texture_baseColor");
+	vector<Texture> baseColorMaps = LoadMaterialTextures(material, aiTextureType_BASE_COLOR, "texture_baseColor", invertTextures);
 	textures.insert(textures.end(), baseColorMaps.begin(), baseColorMaps.end());
 
-	vector<Texture> normalsMaps = LoadMaterialTextures(material, aiTextureType_NORMALS, "texture_normals");
+	vector<Texture> normalsMaps = LoadMaterialTextures(material, aiTextureType_NORMALS, "texture_normals", invertTextures);
 	textures.insert(textures.end(), normalsMaps.begin(), normalsMaps.end());
 
-	std::vector<Texture> heightMaps = LoadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height");
+	std::vector<Texture> heightMaps = LoadMaterialTextures(material, aiTextureType_HEIGHT, "texture_height", invertTextures);
 	textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
 	// return a mesh object created from the extracted mesh data
 	return Mesh(vertices, indices, textures);
 }
 
-vector<Texture> ModelImporter::LoadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName)
+//Chequeo cuantas texturas tiene el material. Importador de texturas 2D
+vector<Texture> ModelImporter::LoadMaterialTextures(aiMaterial* mat, aiTextureType type, string typeName, bool invertTextures)
 {
-
 	// checks all material textures of a given type and loads the textures if they're not loaded yet.
 	// the required info is returned as a Texture struct.
 	vector<Texture> textures;
@@ -151,7 +156,7 @@ vector<Texture> ModelImporter::LoadMaterialTextures(aiMaterial* mat, aiTextureTy
 		if (!skip)
 		{   // if texture hasn't been loaded already, load it
 			Texture texture;
-			texture.id = TextureFromFile(str.C_Str(), currentDirectory, true); //Importador de texturas 2D
+			texture.id = TextureFromFile(str.C_Str(), currentDirectory, invertTextures); //Importador de texturas 2D
 			texture.type = typeName;
 			texture.path = str.C_Str();
 			textures.push_back(texture);
@@ -162,6 +167,7 @@ vector<Texture> ModelImporter::LoadMaterialTextures(aiMaterial* mat, aiTextureTy
 
 }
 
+//Cargo la textura pasandole todos los parametros y el path en donde se encuentra.
 unsigned int ModelImporter::TextureFromFile(const char* path, const string& directory, bool gamma)
 {
 	string filename = string(path);
@@ -170,7 +176,7 @@ unsigned int ModelImporter::TextureFromFile(const char* path, const string& dire
 	unsigned int textureID;
 	glGenTextures(1, &textureID);
 
-	stbi_set_flip_vertically_on_load(true);
+	stbi_set_flip_vertically_on_load(gamma);
 
 	int width, height, nrComponents;
 	unsigned char* data = stbi_load(filename.c_str(), &width, &height, &nrComponents, 0);

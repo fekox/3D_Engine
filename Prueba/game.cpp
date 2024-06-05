@@ -32,7 +32,7 @@ void Game::init()
 
 	//Cube - 1
 	//*********************************************************************************
-	cubePosition = Vector3{ -150, 0 , 0 };
+	cubePosition = Vector3{ -300, 0 , 0 };
 	cubeScale = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation = Vector3{ 0,0,0 };
 	material = new Material();
@@ -60,18 +60,36 @@ void Game::init()
 
 	cube3 = new Shape3D(Shape3D::Shapes3D::Cube, material3, GetRenderer(), cubePosition3, cubeScale3, cubeRotation3);
 
-	//Model
+	//Model1
 	//*********************************************************************************
-	modelPosition = Vector3{ 0, 0 , 0 };
-	modelScale = Vector3{ 10, 10 , 10 };
-	modelRotation = Vector3{ 0, 0 , 0 };;
+	modelPosition = Vector3{ -100, 0 , 0 };
+	modelScale = Vector3{ 10, 10 , 10};
+	modelRotation = Vector3{ 0, 0 , 0 };
 
-	model = new Model(GetRenderer(), modelPosition, modelScale, modelRotation, "res/Models/backpack/backpack.obj");
+	model = new Model(GetRenderer(), modelPosition, modelScale, modelRotation, "res/Models/backpack/backpack.obj", true);
+
+	//Model2
+	//*********************************************************************************
+
+	modelPosition2 = Vector3{ 100, 0 , 0 };
+	modelScale2 = Vector3{ 0.1, 0.1, 0.1};
+	modelRotation2 = Vector3{ 90, 0 , 0 };
+
+	model2 = new Model(GetRenderer(), modelPosition2, modelScale2, modelRotation2, "res/Models/sword/source/Darth Vader's Lightsaber.FBX", false);
+
+	//Model3
+	//*********************************************************************************
 	 
+	modelPosition3 = Vector3{ 0, 0 , 0};
+	modelScale3 = Vector3{ 100, 100, 100 };
+	modelRotation3 = Vector3{ 0, 0, 0};
+
+	model3 = new Model(GetRenderer(), modelPosition3, modelScale3, modelRotation3, "res/Models/pingu/source/Cinematics_IntroCutscene_IntroCutscenePart1.fbx", false);
+
 	//Init Shape
 	//*********************************************************************************
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-	TexturePosition = Vector3{0,0, 0 };
+	TexturePosition = Vector3{0,-100, 0 };
 	TextureScale = Vector3{128,128,128};
 	TextureRotation = Vector3{0,0,0};
 
@@ -119,25 +137,25 @@ void Game::update()
 	if (inputSystem->getKey(inputSystem->downArrow, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y - 1.0f,  Sonic->getPosition().z});
+		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y - 2.0f,  Sonic->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->upArrow, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y + 1.0f, Sonic->getPosition().z});
+		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y + 2.0f, Sonic->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->leftArrow, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x - 1.0f, Sonic->getPosition().y, Sonic->getPosition().z});
+		Sonic->setPosition(Vector3{ Sonic->getPosition().x - 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->rightArrow, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x + 1.0f, Sonic->getPosition().y, Sonic->getPosition().z});
+		Sonic->setPosition(Vector3{ Sonic->getPosition().x + 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
 	}
 	//*********************************************************************************
 
@@ -146,10 +164,12 @@ void Game::update()
 	Sonic->Update();
 
 	model->Draw();
+	model2->Draw();
+	model3->Draw();
 
 	//Sonic->Draw();
 
-	triangle->Draw();
+	//triangle->Draw();
 	rectangle->Draw();
 
 	cube->Draw();
@@ -169,4 +189,6 @@ void Game::exit()
 	delete idleAnimation;
 	delete walkAnimation;
 	delete model;
+	delete model2;
+	delete model3;
 }

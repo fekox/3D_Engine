@@ -19,13 +19,13 @@ static class ModelImporter
 
 	public:
 
-	static void LoadModel(const string& path, string& directory, vector<Mesh>& meshes);
-	static void ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene);
+	static void LoadModel(const string& path, string& directory, vector<Mesh>& meshes, bool invertTextures);
+	static void ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene, bool invertTextures);
 
-	static Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
+	static Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene, bool invertTextures);
+
 	static vector<Texture> LoadMaterialTextures(aiMaterial* mat, aiTextureType type,
-	string typeName);
+	string typeName, bool invertTextures);
 
 	static unsigned int TextureFromFile(const char* path, const string& directory, bool gamma);
-
 };

@@ -1,8 +1,8 @@
 #include "Model.h"
 
-Model::Model(renderer::Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation, const char* path) : Entity3D(render, newPosition, newScale, newRotation)
+Model::Model(renderer::Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation, const char* path, bool invertTextures) : Entity3D(render, newPosition, newScale, newRotation)
 {
-	ModelImporter::LoadModel(path, directory, meshes);
+	ModelImporter::LoadModel(path, directory, meshes, invertTextures);
 }
 
 Model::~Model()

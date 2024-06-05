@@ -34,8 +34,19 @@ namespace renderer
 		models = shader.createShader(source5.VertexSource, source5.FragmentSource);
 
 		glEnable(GL_DEPTH_TEST);
-		glEnable(GL_BLEND);
+
+		glDepthFunc(GL_LESS);
+		glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
+		glEnable(GL_SAMPLE_ALPHA_TO_ONE);
+		glFrontFace(GL_CCW);
+
+		glEnable(GL_BLEND); //Transparency
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+		glEnable(GL_ALPHA_TEST);
+		glAlphaFunc(GL_GREATER, 0.1f);
 	}
 
 	void Renderer::UpdateView(Camera* camera)
@@ -115,6 +126,7 @@ namespace renderer
 		glUniform3f(glGetUniformLocation(multipleLights, "dirLight.diffuse"), 0.7f, 0.42f, 0.26f);
 		glUniform3f(glGetUniformLocation(multipleLights, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
 
+
 		// Point light 1
 		glUniform3f(glGetUniformLocation(multipleLights, "pointLights[0].position"), pointLight->lightPos.x, pointLight->lightPos.y, pointLight->lightPos.z);
 		glUniform3f(glGetUniformLocation(multipleLights, "pointLights[0].ambient"), pointLight->ambient.x * 0.1, pointLight->ambient.y * 0.1, pointLight->ambient.z * 0.1);
@@ -178,13 +190,14 @@ namespace renderer
 			glBindTexture(GL_TEXTURE_2D, textures[i].id);
 		}
 
-		glUniform1f(glGetUniformLocation(multipleLights, "material.shininess"), 1.0f);
+		glUniform1f(glGetUniformLocation(models, "material.shininess"), 1.0f);
 
 		// Directional light
 		glUniform3f(glGetUniformLocation(models, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
 		glUniform3f(glGetUniformLocation(models, "dirLight.ambient"), 0.4f, 0.4f, 0.4f);
 		glUniform3f(glGetUniformLocation(models, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
 		glUniform3f(glGetUniformLocation(models, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
+		glUniform1f(glGetUniformLocation(models, "ambientLightStrength"), 1.0f);
 
 		// Point light 1
 		glUniform3f(glGetUniformLocation(models, "pointLights[0].position"), pointLight->lightPos.x, pointLight->lightPos.y, pointLight->lightPos.z);

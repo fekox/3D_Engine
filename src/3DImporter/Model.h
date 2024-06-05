@@ -15,7 +15,7 @@ private:
 
 public:
 
-	Model(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation, const char* path);
+	Model(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation, const char* path, bool invertTextures);
 	~Model();
 
 	void Draw();
