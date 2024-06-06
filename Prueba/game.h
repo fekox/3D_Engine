@@ -57,19 +57,6 @@ private:
 	Vector3 cubeRotation3;
 
 	//Shape2D
-	Shape* triangle;
-
-	Vector4 colorTriangleFront;
-	Vector4 colorTriangleBack;
-
-	Vector3 position;
-	Vector3 position2;
-	Vector3 position3;
-
-	Vector3 scale;
-	Vector3 rotation;
-
-	//Shape2D
 	Shape* rectangle;
 
 	Vector4 colorRectangle;
