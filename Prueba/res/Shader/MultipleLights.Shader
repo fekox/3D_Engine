@@ -40,7 +40,8 @@ uniform vec3 lightColor;
 uniform vec3 objectColor;
 uniform sampler2D ourTexture;
 
-struct DirLight {
+struct DirLight 
+{
     vec3 direction;
 
     vec3 ambient;
@@ -48,7 +49,6 @@ struct DirLight {
     vec3 specular;
 };
 
-uniform DirLight dirLight;
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 
 struct PointLight {
@@ -65,7 +65,8 @@ struct PointLight {
 
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
 
-struct SpotLight {
+struct SpotLight 
+{
     vec3 position;
     vec3 direction;
     float cutOff;
@@ -96,26 +97,26 @@ struct Material {
     float shininess;
 };
 
-#define NR_POINT_LIGHTS 4
+#define LIGHTS 4
+
 uniform Material material;
-uniform PointLight pointLights[NR_POINT_LIGHTS];
-uniform SpotLight spotLight;
+uniform DirLight dirLight[LIGHTS];
+uniform PointLight pointLights[LIGHTS];
+uniform SpotLight spotLight[LIGHTS];
 
 void main()
 {
-
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
+    vec3 result[LIGHTS];
 
-    vec3 result = CalcDirLight(dirLight, norm, viewDir);
-
-    for (int i = 0; i < 1; i++)
-        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
-
-    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
-
-    FragColor = vec4(result, 1.0);
-
+    for (int i = 0; i < 4; i++)
+    {
+        result[i] = CalcDirLight(dirLight[i], norm, viewDir);
+        result[i] += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
+        result[i] += CalcSpotLight(spotLight[i], norm, FragPos, viewDir);
+        FragColor = vec4(result[i], 1.0);
+    }
 };
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)

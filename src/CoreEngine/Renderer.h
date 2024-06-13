@@ -43,7 +43,6 @@ namespace renderer
 		Window* window;
 		Shader shader;
 		Camera* camera;
-		PointLight* pointLight;
 		TextureImporter textureImporter;
 		unsigned int primitiveShader;
 		unsigned int textureShader;
@@ -54,12 +53,15 @@ namespace renderer
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
 
-		DirectionalLight directionaLight;
-		SpotLight* spotLight;
+		DirectionalLight directionalLight[4];
+		SpotLight* spotLight[4];
+		PointLight pointLight[4];
+
+		int currentsLights = 0;
 
 		public:
 
-		Renderer(Window* window, Camera* camera, PointLight* light);
+		Renderer(Window* window, Camera* camera);
 		~Renderer();
 		/// <summary>
 		/// Clear screen
@@ -93,11 +95,14 @@ namespace renderer
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO, int aColorSize, int aUVSize);
 
-
-
 		void BindTexture(const char* textureName, unsigned& textureID);
 		void deleteVertexAndBuffer(unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);
 		void deleteVertexAndBuffer(unsigned int& lightCubeVAO);
 
+		DirectionalLight GetDirectionalLight(int lightID);
+
+		SpotLight GetSpotLight(int lightID);
+
+		PointLight GetPointLight(int lightID);
 	};
 }

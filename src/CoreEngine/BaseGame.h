@@ -37,15 +37,16 @@ namespace baseEngine
 	{
 	private:
 
-		Renderer* renderer;
 		Window* window;
 		ErrorLog errorLog;
-
+		Renderer* renderer;
 	public:
-
 		Camera* camera;
-		PointLight* light;
 		Material* material;
+
+		DirectionalLight directionalLight[4];
+		SpotLight* spotLight[4];
+		PointLight pointLight[4];
 		
 		InputSystem* inputSystem;
 		BaseGame(int width, int height, const char* windowName);
@@ -55,6 +56,18 @@ namespace baseEngine
 		virtual void update() = 0;
 		virtual void exit() = 0;
 		Renderer* GetRenderer();
+
+		void SetDirectionaLight(int lightID, vec3 direction, vec3 ambient, vec3 diffuse, vec3 specular);
+
+		void SetSpotLight(int lightID, vec3 lightPos, vec3 ambient, vec3 diffuse, vec3 specular, float constant, float linear);
+
+		void SetPointLight(int lightID, vec3 ambient, vec3 diffuse, vec3 specular, float constant, float linear, float quadratic, int cutOff, int outerCutOff);
+
+		void SetPointLightColor(int lightID, vec3 color);
+
+		void SetPointLightConstant(int lightID, float constant);
+
+		void SetPointLightPosition(int lightID, vec3 position);
 	};
 
 	void Mouse_Callback(GLFWwindow* window, double xpos, double ypos);

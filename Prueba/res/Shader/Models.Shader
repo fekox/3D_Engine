@@ -45,8 +45,6 @@ struct DirLight {
     vec3 specular;
 };
 
-uniform DirLight dirLight;
-
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir);
 
 struct PointLight {
@@ -87,24 +85,25 @@ struct Material {
     float shininess;
 };
 
-#define NR_POINT_LIGHTS 4
+#define LIGHTS 4
 uniform Material material;
-uniform PointLight pointLights[NR_POINT_LIGHTS];
-uniform SpotLight spotLight;
+uniform DirLight dirLight[LIGHTS];
+uniform PointLight pointLights[LIGHTS];
+uniform SpotLight spotLight[LIGHTS];
 
 void main()
 {
     vec3 norm = normalize(Normal);
     vec3 viewDir = normalize(viewPos - FragPos);
+    vec3 result[LIGHTS];
 
-    vec3 result = CalcDirLight(dirLight, norm, viewDir);
-
-    for (int i = 0; i < 1; i++)
-        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
-
-    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
-
-    FragColor = vec4(result, 1.0) * texture(material.texture_diffuse1, TexCoords);
+    for (int i = 0; i < 4; i++)
+    {
+        result[i] = CalcDirLight(dirLight[i], norm, viewDir);
+        result[i] += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
+        result[i] += CalcSpotLight(spotLight[i], norm, FragPos, viewDir);
+        FragColor = vec4(result[i], 1.0) * texture(material.texture_diffuse1, TexCoords);
+    }
 };
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
