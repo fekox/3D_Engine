@@ -38,6 +38,7 @@ namespace spotLight
 
 		void SetPosition(glm::vec3 newPosition);
 		void SetDirection(glm::vec3 newDirection);
+		void SetLightColor(glm::vec3 newLightColor);
 		void SetConstant(float newConstant);
 		void SetLinear(float newLinear);
 		void SetQuadratic(float newQuadratic);

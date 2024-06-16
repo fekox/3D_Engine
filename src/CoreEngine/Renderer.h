@@ -54,12 +54,12 @@ namespace renderer
 		glm::mat4x4 view;
 
 		DirectionalLight directionaLight[4];
-		SpotLight* spotLight;
+		SpotLight* spotLight[4];
 		PointLight* pointLight[4];
 
 		public:
 
-		Renderer(Window* window, Camera* camera, PointLight* light[], DirectionalLight directionaLight[]);
+		Renderer(Window* window, Camera* camera, PointLight* light[], DirectionalLight directionaLight[], SpotLight* spotLight[]);
 		~Renderer();
 		/// <summary>
 		/// Clear screen

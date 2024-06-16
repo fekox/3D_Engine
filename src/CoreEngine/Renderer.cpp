@@ -7,7 +7,7 @@
 
 namespace renderer
 {
-	Renderer::Renderer(Window* window, Camera* camera, PointLight* light[], DirectionalLight directionaLight[])
+	Renderer::Renderer(Window* window, Camera* camera, PointLight* light[], DirectionalLight directionaLight[], SpotLight* spotLight[])
 	{
 		this->window = window;
 		this->camera = camera;
@@ -16,12 +16,11 @@ namespace renderer
 		{
 			this->pointLight[i] = light[i];
 			this->directionaLight[i] = directionaLight[i];
+			this->spotLight[i] = spotLight[i];
 		}
 
 		UpdateProjection(camera);
 		UpdateView(camera);
-
-		spotLight = new SpotLight(camera);
 
 		ShaderProgramSource source1 = shader.ParseShader("res/Shader/Primitive.Shader");
 		primitiveShader = shader.createShader(source1.VertexSource, source1.FragmentSource);
@@ -156,16 +155,23 @@ namespace renderer
 		}
 
 		// SpotLight
-		glUniform3f(glGetUniformLocation(multipleLights, "spotLight.position"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
-		glUniform3f(glGetUniformLocation(multipleLights, "spotLight.direction"), camera->cameraFront.x, camera->cameraFront.y, camera->cameraFront.z);
-		glUniform3f(glGetUniformLocation(multipleLights, "spotLight.ambient"), spotLight->ambient.x, spotLight->ambient.y, spotLight->ambient.z);
-		glUniform3f(glGetUniformLocation(multipleLights, "spotLight.diffuse"), spotLight->diffuse.x, spotLight->diffuse.y, spotLight->diffuse.z);
-		glUniform3f(glGetUniformLocation(multipleLights, "spotLight.specular"), spotLight->specular.x, spotLight->specular.y, spotLight->specular.z);
-		glUniform1f(glGetUniformLocation(multipleLights, "spotLight.constant"), spotLight->constant);
-		glUniform1f(glGetUniformLocation(multipleLights, "spotLight.linear"), spotLight->linear);
-		glUniform1f(glGetUniformLocation(multipleLights, "spotLight.quadratic"), spotLight->quadratic);
-		glUniform1f(glGetUniformLocation(multipleLights, "spotLight.cutOff"), spotLight->cutOff);
-		glUniform1f(glGetUniformLocation(multipleLights, "spotLight.outerCutOff"), spotLight->outerCutOff);
+		for (int i = 0; i < 4; i++)
+		{
+			string baseText = "spotLight[";
+			baseText.append(to_string(i));
+			baseText.append("].");
+
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "position").c_str()), spotLight[i]->lightPos.x, spotLight[i]->lightPos.y, spotLight[i]->lightPos.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "direction").c_str()), spotLight[i]->direction.x, spotLight[i]->direction.y, spotLight[i]->direction.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "ambient").c_str()), spotLight[i]->ambient.x, spotLight[i]->ambient.y, spotLight[i]->ambient.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "diffuse").c_str()), spotLight[i]->diffuse.x, spotLight[i]->diffuse.y, spotLight[i]->diffuse.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "specular").c_str()), spotLight[i]->specular.x, spotLight[i]->specular.y, spotLight[i]->specular.z);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "constant").c_str()), spotLight[i]->constant);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "linear").c_str()), spotLight[i]->linear);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "quadratic").c_str()), spotLight[i]->quadratic);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "cutOff").c_str()), spotLight[i]->cutOff);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "outerCutOff").c_str()), spotLight[i]->outerCutOff);
+		}
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, sizeIndex, GL_UNSIGNED_INT, 0);
@@ -242,16 +248,23 @@ namespace renderer
 		}
 
 		// SpotLight
-		glUniform3f(glGetUniformLocation(models, "spotLight.position"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
-		glUniform3f(glGetUniformLocation(models, "spotLight.direction"), camera->cameraFront.x, camera->cameraFront.y, camera->cameraFront.z);
-		glUniform3f(glGetUniformLocation(models, "spotLight.ambient"), spotLight->ambient.x, spotLight->ambient.y, spotLight->ambient.z);
-		glUniform3f(glGetUniformLocation(models, "spotLight.diffuse"), spotLight->diffuse.x, spotLight->diffuse.y, spotLight->diffuse.z);
-		glUniform3f(glGetUniformLocation(models, "spotLight.specular"), spotLight->specular.x, spotLight->specular.y, spotLight->specular.z);
-		glUniform1f(glGetUniformLocation(models, "spotLight.constant"), spotLight->constant);
-		glUniform1f(glGetUniformLocation(models, "spotLight.linear"), spotLight->linear);
-		glUniform1f(glGetUniformLocation(models, "spotLight.quadratic"), spotLight->quadratic);
-		glUniform1f(glGetUniformLocation(models, "spotLight.cutOff"), spotLight->cutOff);
-		glUniform1f(glGetUniformLocation(models, "spotLight.outerCutOff"), spotLight->outerCutOff);
+		for (int i = 0; i < 4; i++)
+		{
+			string baseText = "spotLight[";
+			baseText.append(to_string(i));
+			baseText.append("].");
+
+			glUniform3f(glGetUniformLocation(models, (baseText + "position").c_str()), spotLight[i]->lightPos.x, spotLight[i]->lightPos.y, spotLight[i]->lightPos.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "direction").c_str()), spotLight[i]->direction.x, spotLight[i]->direction.y, spotLight[i]->direction.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "ambient").c_str()), spotLight[i]->ambient.x, spotLight[i]->ambient.y, spotLight[i]->ambient.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "diffuse").c_str()), spotLight[i]->diffuse.x, spotLight[i]->diffuse.y, spotLight[i]->diffuse.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "specular").c_str()), spotLight[i]->specular.x, spotLight[i]->specular.y, spotLight[i]->specular.z);
+			glUniform1f(glGetUniformLocation(models, (baseText + "constant").c_str()), spotLight[i]->constant);
+			glUniform1f(glGetUniformLocation(models, (baseText + "linear").c_str()), spotLight[i]->linear);
+			glUniform1f(glGetUniformLocation(models, (baseText + "quadratic").c_str()), spotLight[i]->quadratic);
+			glUniform1f(glGetUniformLocation(models, (baseText + "cutOff").c_str()), spotLight[i]->cutOff);
+			glUniform1f(glGetUniformLocation(models, (baseText + "outerCutOff").c_str()), spotLight[i]->outerCutOff);
+		}
 
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, index.size(), GL_UNSIGNED_INT, 0);

@@ -55,16 +55,13 @@ private:
 	Vector3 cubeScale3;
 	Vector3 cubeRotation3;
 
-	//Shape2D
-	Shape* rectangle;
+	//Shape3D - 4
+	Shape3D* background;
+	Material* material4;
 
-	Vector4 colorRectangle;
-	Vector4 colorRectangleeBack;
-
-	Vector3 rectanglePosition;
-
-	Vector3 rectangleScale;
-	Vector3 rectangleRotation;
+	Vector3 backgroundPosition;
+	Vector3 backgroundScale;
+	Vector3 backgroundRotation;
 
 	//Sprite
 	Sprite* Sonic;

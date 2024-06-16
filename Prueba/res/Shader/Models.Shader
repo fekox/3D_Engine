@@ -90,7 +90,7 @@ struct Material {
 uniform Material material;
 uniform DirLight dirLight[NR_POINT_LIGHTS];
 uniform PointLight pointLights[NR_POINT_LIGHTS];
-uniform SpotLight spotLight;
+uniform SpotLight spotLight[NR_POINT_LIGHTS];
 
 void main()
 {
@@ -102,9 +102,8 @@ void main()
     {
         result += CalcDirLight(dirLight[i], norm, viewDir);
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
+        result += CalcSpotLight(spotLight[i], norm, FragPos, viewDir);
     }
-
-    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);
 
     FragColor = vec4(result, 1.0) * texture(material.texture_diffuse1, TexCoords);
 };

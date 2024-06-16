@@ -114,6 +114,13 @@ namespace spotLight
 		this->direction = newDirection;
 	}
 
+	void SpotLight::SetLightColor(glm::vec3 newLightColor)
+	{
+		this->ambient = newLightColor * 0.1f;
+		this->diffuse = newLightColor;
+		this->specular = newLightColor;
+	}
+
 	void SpotLight::SetConstant(float newConstant)
 	{
 		this->constant = newConstant;

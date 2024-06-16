@@ -15,13 +15,6 @@ Game::~Game()
 
 void Game::init()
 {
-	//Rectangle
-	rectanglePosition = Vector3{ 0.0f, 0.0f, -100.0f};
-	colorRectangle = Vector4{ 0.5f, 0.5f, 0.5f, 1 };
-	rectangleScale = Vector3{ 800.0f, 800.0f, 800.0f };
-	rectangleRotation = Vector3{ 0,0,0 };
-	rectangle = new Shape(Shape::Shapes2D::Square, colorRectangle, GetRenderer(), rectanglePosition, rectangleScale, rectangleRotation);
-
 	//Cube - 1
 	//*********************************************************************************
 	cubePosition = Vector3{ -300, 0 , 0 };
@@ -34,11 +27,11 @@ void Game::init()
 
 	//Cube - 2
 	//*********************************************************************************
-	cubePosition2 = Vector3{ 150, 150 , 0 };
+	cubePosition2 = Vector3{ 150, 150 , 0};
 	cubeScale2 = Vector3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation2 = Vector3{ 0,0,0 };
 	material2 = new Material();
-	material2->SetMaterial(Material::MaterialType::SILVER);
+	material2->SetMaterial(Material::MaterialType::BRONZE);
 
 	cube2 = new Shape3D(Shape3D::Shapes3D::Cube, material2, GetRenderer(), cubePosition2, cubeScale2, cubeRotation2);
 
@@ -51,6 +44,17 @@ void Game::init()
 	material3->SetMaterial(Material::MaterialType::CYAN_PLASTIC);
 
 	cube3 = new Shape3D(Shape3D::Shapes3D::Cube, material3, GetRenderer(), cubePosition3, cubeScale3, cubeRotation3);
+
+	//Background
+	//*********************************************************************************
+	backgroundPosition = Vector3{ 0, 0 , -100.0f };
+	backgroundScale = Vector3{ 1000.0f, 1000.0f, 40.0f };
+	backgroundRotation = Vector3{ 0,0,0 };
+
+	material4 = new Material();
+	material4->SetMaterial(Material::MaterialType::SILVER);
+
+	background = new Shape3D(Shape3D::Shapes3D::Cube, material4, GetRenderer(), backgroundPosition, backgroundScale, backgroundRotation);
 
 	//Model1
 	//*********************************************************************************
@@ -99,20 +103,29 @@ void Game::init()
 
 	pointLight[1]->SetLightColor(glm::vec3(50.0f, 100.0f, 50.0f));
 	pointLight[1]->SetConstant(1.0f);
-	pointLight[1]->SetPosition(vec3(-300, 0, 0));
+	pointLight[1]->SetPosition(vec3(100, -200, -50));
 
 	pointLight[2]->SetLightColor(glm::vec3(100.0f, 50.0f, 50.0f));
 	pointLight[2]->SetConstant(1.0f);
-	pointLight[2]->SetPosition(vec3(150, 150, 0));
+	pointLight[2]->SetPosition(vec3(250, -200, -50));
 
 	pointLight[3]->SetLightColor(glm::vec3(50.0f, 50.0f, 50.0f));
 	pointLight[3]->SetConstant(1.0f);
-	pointLight[3]->SetPosition(vec3(-150, -150, 0));
+	pointLight[3]->SetPosition(vec3(400, -200, -50));
 
-	//Point Light
+	//Spot Light
 	//*********************************************************************************
+	spotLight[1]->SetPosition(vec3(-300, 0, 0));
+	spotLight[1]->SetDirection(vec3(0,0, -1.0f));
+	spotLight[1]->SetLightColor(vec3(100.0f, 100.0f, 0.0f));
 
+	spotLight[2]->SetPosition(vec3(150, 150, 0));
+	spotLight[2]->SetDirection(vec3(0, 0, -1.0f));
+	spotLight[2]->SetLightColor(vec3(100.0f, 0.0f, 50.0f));
 
+	spotLight[3]->SetPosition(vec3(-150, -150, 0));
+	spotLight[3]->SetDirection(vec3(0, 0, -1.0f));
+	spotLight[3]->SetLightColor(vec3(0.0f, 100.0f, 50.0f));
 
 	//Idle Animation
 	//*********************************************************************************
@@ -170,9 +183,13 @@ void Game::update()
 		Sonic->SetAnimation(walkAnimation);
 		Sonic->setPosition(Vector3{ Sonic->getPosition().x + 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
 	}
-	//*********************************************************************************
 
+	//Lights
+	//*********************************************************************************
 	pointLight[0]->SetPosition(newPos);
+
+	spotLight[0]->SetPosition(camera->cameraPos);
+	spotLight[0]->SetDirection(camera->cameraFront);
 
 	Sonic->Update();
 
@@ -182,7 +199,7 @@ void Game::update()
 
 	//Sonic->Draw();
 
-	rectangle->Draw();
+	background->Draw();
 
 	cube->Draw();
 	cube2->Draw();
@@ -192,7 +209,7 @@ void Game::update()
 void Game::exit()
 {
 	delete Sonic;
-	delete rectangle;
+	delete background;
 	delete cube;
 	delete cube2;
 	delete cube3;
