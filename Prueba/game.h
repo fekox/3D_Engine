@@ -43,6 +43,7 @@ private:
 	Shape3D* cube2;
 	Material* material2;
 
+
 	Vector3 cubePosition2;
 	Vector3 cubeScale2;
 	Vector3 cubeRotation2;
@@ -78,8 +79,6 @@ private:
 
 	Animation* idleAnimation;
 	Animation* walkAnimation;
-
-	//Light
 
 public:
 	float width;
