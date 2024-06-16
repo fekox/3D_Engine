@@ -18,9 +18,12 @@ namespace baseEngine
 		camera = new Camera();
 		newCamera = camera;
 
-		light = new PointLight();
+		for (int i = 0; i < 4; i++)
+		{
+			pointLight[i] = new PointLight();
+		}
 
-		renderer = new Renderer(window, camera, light);
+		renderer = new Renderer(window, camera, pointLight);
 
 		inputSystem = new InputSystem(window->getWindow());
 
@@ -35,7 +38,7 @@ namespace baseEngine
 		delete window;
 		delete renderer;
 		delete camera;
-		delete light;
+		delete pointLight;
 	}
 
 	void BaseGame::gameLoop()

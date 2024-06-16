@@ -90,8 +90,20 @@ void Game::init()
 
 	//Light
 	//*********************************************************************************
-	light->SetLightColor(glm::vec3(100.0f, 100.0f, 50.0f));
-	light->SetConstant(1.0f);
+	pointLight[0]->SetLightColor(glm::vec3(100.0f, 100.0f, 50.0f));
+	pointLight[0]->SetConstant(1.0f);
+
+	pointLight[1]->SetLightColor(glm::vec3(50.0f, 100.0f, 50.0f));
+	pointLight[1]->SetConstant(1.0f);
+	pointLight[1]->SetPosition(vec3(-300, 0, 0));
+
+	pointLight[2]->SetLightColor(glm::vec3(100.0f, 50.0f, 50.0f));
+	pointLight[2]->SetConstant(1.0f);
+	pointLight[2]->SetPosition(vec3(150, 150, 0));
+
+	pointLight[3]->SetLightColor(glm::vec3(50.0f, 50.0f, 50.0f));
+	pointLight[3]->SetConstant(1.0f);
+	pointLight[3]->SetPosition(vec3(-150, -150, 0));
 
 	//Idle Animation
 	//*********************************************************************************
@@ -151,7 +163,7 @@ void Game::update()
 	}
 	//*********************************************************************************
 
-	light->SetPosition(newPos);
+	pointLight[0]->SetPosition(newPos);
 
 	Sonic->Update();
 

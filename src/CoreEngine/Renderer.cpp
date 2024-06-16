@@ -7,11 +7,15 @@
 
 namespace renderer
 {
-	Renderer::Renderer(Window* window, Camera* camera, PointLight* light)
+	Renderer::Renderer(Window* window, Camera* camera, PointLight* light[])
 	{
 		this->window = window;
 		this->camera = camera;
-		this->pointLight = light;
+
+		for (int i = 0; i < 4; i++)
+		{
+			this->pointLight[i] = light[i];
+		}
 
 		UpdateProjection(camera);
 		UpdateView(camera);
@@ -126,15 +130,20 @@ namespace renderer
 		glUniform3f(glGetUniformLocation(multipleLights, "dirLight.diffuse"), 0.7f, 0.42f, 0.26f);
 		glUniform3f(glGetUniformLocation(multipleLights, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
 
+		for (int i = 0; i < 4; i++)
+		{
+			string baseText = "pointLights[";
+			baseText.append(to_string(i));
+			baseText.append("].");
 
-		// Point light 1
-		glUniform3f(glGetUniformLocation(multipleLights, "pointLights[0].position"), pointLight->lightPos.x, pointLight->lightPos.y, pointLight->lightPos.z);
-		glUniform3f(glGetUniformLocation(multipleLights, "pointLights[0].ambient"), pointLight->ambient.x * 0.1, pointLight->ambient.y * 0.1, pointLight->ambient.z * 0.1);
-		glUniform3f(glGetUniformLocation(multipleLights, "pointLights[0].diffuse"), pointLight->diffuse.x, pointLight->diffuse.y, pointLight->diffuse.z);
-		glUniform3f(glGetUniformLocation(multipleLights, "pointLights[0].specular"), pointLight->specular.x, pointLight->specular.y, pointLight->specular.z);
-		glUniform1f(glGetUniformLocation(multipleLights, "pointLights[0].constant"), pointLight->constant);
-		glUniform1f(glGetUniformLocation(multipleLights, "pointLights[0].linear"), pointLight->linear);
-		glUniform1f(glGetUniformLocation(multipleLights, "pointLights[0].quadratic"), 0.032);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "position").c_str()), pointLight[i]->lightPos.x, pointLight[i]->lightPos.y, pointLight[i]->lightPos.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "ambient").c_str()), pointLight[i]->ambient.x * 0.1, pointLight[i]->ambient.y * 0.1, pointLight[i]->ambient.z * 0.1);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "diffuse").c_str()), pointLight[i]->diffuse.x, pointLight[i]->diffuse.y, pointLight[i]->diffuse.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "specular").c_str()), pointLight[i]->specular.x, pointLight[i]->specular.y, pointLight[i]->specular.z);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "constant").c_str()), pointLight[i]->constant);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "linear").c_str()), pointLight[i]->linear);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "quadratic").c_str()), 0.032);
+		}
 
 		// SpotLight
 		glUniform3f(glGetUniformLocation(multipleLights, "spotLight.position"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);
@@ -199,14 +208,21 @@ namespace renderer
 		glUniform3f(glGetUniformLocation(models, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
 		glUniform1f(glGetUniformLocation(models, "ambientLightStrength"), 1.0f);
 
-		// Point light 1
-		glUniform3f(glGetUniformLocation(models, "pointLights[0].position"), pointLight->lightPos.x, pointLight->lightPos.y, pointLight->lightPos.z);
-		glUniform3f(glGetUniformLocation(models, "pointLights[0].ambient"), pointLight->ambient.x * 0.1, pointLight->ambient.y * 0.1, pointLight->ambient.z * 0.1);
-		glUniform3f(glGetUniformLocation(models, "pointLights[0].diffuse"), pointLight->diffuse.x, pointLight->diffuse.y, pointLight->diffuse.z);
-		glUniform3f(glGetUniformLocation(models, "pointLights[0].specular"), pointLight->specular.x, pointLight->specular.y, pointLight->specular.z);
-		glUniform1f(glGetUniformLocation(models, "pointLights[0].constant"), pointLight->constant);
-		glUniform1f(glGetUniformLocation(models, "pointLights[0].linear"), pointLight->linear);
-		glUniform1f(glGetUniformLocation(models, "pointLights[0].quadratic"), 0.032);
+		// Point lights
+		for (int i = 0; i < 4; i++)
+		{
+			string baseText = "pointLights[";
+			baseText.append(to_string(i));
+			baseText.append("].");
+
+			glUniform3f(glGetUniformLocation(models, (baseText + "position").c_str()), pointLight[i]->lightPos.x, pointLight[i]->lightPos.y, pointLight[i]->lightPos.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "ambient").c_str()), pointLight[i]->ambient.x * 0.1, pointLight[i]->ambient.y * 0.1, pointLight[i]->ambient.z * 0.1);
+			glUniform3f(glGetUniformLocation(models, (baseText + "diffuse").c_str()), pointLight[i]->diffuse.x, pointLight[i]->diffuse.y, pointLight[i]->diffuse.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "specular").c_str()), pointLight[i]->specular.x, pointLight[i]->specular.y, pointLight[i]->specular.z);
+			glUniform1f(glGetUniformLocation(models, (baseText + "constant").c_str()), pointLight[i]->constant);
+			glUniform1f(glGetUniformLocation(models, (baseText + "linear").c_str()), pointLight[i]->linear);
+			glUniform1f(glGetUniformLocation(models, (baseText + "quadratic").c_str()), 0.032);
+		}
 
 		// SpotLight
 		glUniform3f(glGetUniformLocation(models, "spotLight.position"), camera->cameraPos.x, camera->cameraPos.y, camera->cameraPos.z);

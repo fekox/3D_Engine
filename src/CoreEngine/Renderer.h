@@ -43,7 +43,6 @@ namespace renderer
 		Window* window;
 		Shader shader;
 		Camera* camera;
-		PointLight* pointLight;
 		TextureImporter textureImporter;
 		unsigned int primitiveShader;
 		unsigned int textureShader;
@@ -56,10 +55,11 @@ namespace renderer
 
 		DirectionalLight directionaLight;
 		SpotLight* spotLight;
+		PointLight* pointLight[4];
 
 		public:
 
-		Renderer(Window* window, Camera* camera, PointLight* light);
+		Renderer(Window* window, Camera* camera, PointLight* light[]);
 		~Renderer();
 		/// <summary>
 		/// Clear screen
