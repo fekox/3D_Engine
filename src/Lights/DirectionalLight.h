@@ -22,10 +22,13 @@ namespace directionalLight
 		glm::vec3 diffuse;
 		glm::vec3 specular;
 
+		float ambientStrength;
+
 		DirectionalLight();
 		DirectionalLight(glm::vec3 direction, glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular);
 		DirectionalLight(DirectionalLightType directionalLightType);
 		
+		void SetLightColor(glm::vec3 newLightColor);
 		void SetDirection(glm::vec3 newDirection);
 		void SetAmbient(glm::vec3 newAmbient);
 		void SetDiffuse(glm::vec3 newDiffuse);

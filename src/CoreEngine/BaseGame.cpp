@@ -21,9 +21,10 @@ namespace baseEngine
 		for (int i = 0; i < 4; i++)
 		{
 			pointLight[i] = new PointLight();
+			directionaLight[i] = DirectionalLight(); 
 		}
 
-		renderer = new Renderer(window, camera, pointLight);
+		renderer = new Renderer(window, camera, pointLight, directionaLight);
 
 		inputSystem = new InputSystem(window->getWindow());
 

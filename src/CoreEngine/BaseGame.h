@@ -44,7 +44,9 @@ namespace baseEngine
 	public:
 
 		Camera* camera;
+
 		PointLight* pointLight[4];
+		DirectionalLight directionaLight[4];
 		Material* material;
 		
 		InputSystem* inputSystem;

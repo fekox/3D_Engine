@@ -88,7 +88,11 @@ void Game::init()
 	const char* path = "res/Sonic_Mania_Sprite_Sheet.png";
 	Sonic = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
 
-	//Light
+	//Directional Light
+	//*********************************************************************************
+	directionaLight[0].SetLightColor(glm::vec3(100.0f, 100.0f, 50.0f));
+
+	//Point Light
 	//*********************************************************************************
 	pointLight[0]->SetLightColor(glm::vec3(100.0f, 100.0f, 50.0f));
 	pointLight[0]->SetConstant(1.0f);
@@ -104,6 +108,11 @@ void Game::init()
 	pointLight[3]->SetLightColor(glm::vec3(50.0f, 50.0f, 50.0f));
 	pointLight[3]->SetConstant(1.0f);
 	pointLight[3]->SetPosition(vec3(-150, -150, 0));
+
+	//Point Light
+	//*********************************************************************************
+
+
 
 	//Idle Animation
 	//*********************************************************************************

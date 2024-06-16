@@ -7,7 +7,7 @@
 
 namespace renderer
 {
-	Renderer::Renderer(Window* window, Camera* camera, PointLight* light[])
+	Renderer::Renderer(Window* window, Camera* camera, PointLight* light[], DirectionalLight directionaLight[])
 	{
 		this->window = window;
 		this->camera = camera;
@@ -15,6 +15,7 @@ namespace renderer
 		for (int i = 0; i < 4; i++)
 		{
 			this->pointLight[i] = light[i];
+			this->directionaLight[i] = directionaLight[i];
 		}
 
 		UpdateProjection(camera);
@@ -125,11 +126,20 @@ namespace renderer
 		glUniform1f(glGetUniformLocation(multipleLights, "material.shininess"), material->shininess);
 
 		// Directional light
-		glUniform3f(glGetUniformLocation(multipleLights, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
-		glUniform3f(glGetUniformLocation(multipleLights, "dirLight.ambient"), 0.3f, 0.24f, 0.14f);
-		glUniform3f(glGetUniformLocation(multipleLights, "dirLight.diffuse"), 0.7f, 0.42f, 0.26f);
-		glUniform3f(glGetUniformLocation(multipleLights, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
+		for (int i = 0; i < 1; i++)
+		{
+			string baseText = "dirLight[";
+			baseText.append(to_string(i));
+			baseText.append("].");
 
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "direction").c_str()), directionaLight[i].direction.x, directionaLight[i].direction.y, directionaLight[i].direction.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "ambient").c_str()), directionaLight[i].ambient.x, directionaLight[i].ambient.y, directionaLight[i].ambient.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "diffuse").c_str()), directionaLight[i].diffuse.x, directionaLight[i].diffuse.y, directionaLight[i].diffuse.z);
+			glUniform3f(glGetUniformLocation(multipleLights, (baseText + "specular").c_str()), directionaLight[i].specular.x, directionaLight[i].specular.y, directionaLight[i].specular.z);
+			glUniform1f(glGetUniformLocation(multipleLights, (baseText + "ambientLightStrength").c_str()), directionaLight[i].ambientStrength);
+		}
+
+		//Point light
 		for (int i = 0; i < 4; i++)
 		{
 			string baseText = "pointLights[";
@@ -202,11 +212,18 @@ namespace renderer
 		glUniform1f(glGetUniformLocation(models, "material.shininess"), 1.0f);
 
 		// Directional light
-		glUniform3f(glGetUniformLocation(models, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
-		glUniform3f(glGetUniformLocation(models, "dirLight.ambient"), 0.4f, 0.4f, 0.4f);
-		glUniform3f(glGetUniformLocation(models, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
-		glUniform3f(glGetUniformLocation(models, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
-		glUniform1f(glGetUniformLocation(models, "ambientLightStrength"), 1.0f);
+		for (int i = 0; i < 1; i++)
+		{
+			string baseText = "dirLight[";
+			baseText.append(to_string(i));
+			baseText.append("].");
+
+			glUniform3f(glGetUniformLocation(models, (baseText + "direction").c_str()), directionaLight[i].direction.x, directionaLight[i].direction.y, directionaLight[i].direction.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "ambient").c_str()), directionaLight[i].ambient.x, directionaLight[i].ambient.y, directionaLight[i].ambient.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "diffuse").c_str()), directionaLight[i].diffuse.x, directionaLight[i].diffuse.y, directionaLight[i].diffuse.z);
+			glUniform3f(glGetUniformLocation(models, (baseText + "specular").c_str()), directionaLight[i].specular.x, directionaLight[i].specular.y, directionaLight[i].specular.z);
+			glUniform1f(glGetUniformLocation(models, (baseText + "ambientLightStrength").c_str()), directionaLight[i].ambientStrength);
+		}
 
 		// Point lights
 		for (int i = 0; i < 4; i++)

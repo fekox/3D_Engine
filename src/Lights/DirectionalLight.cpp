@@ -5,9 +5,10 @@ namespace directionalLight
 	DirectionalLight::DirectionalLight()
 	{
 		direction = glm::vec3(-0.2f, -1.0f, -0.3f);
-		ambient = glm::vec3(0.05f, 0.05f, 0.05f);
-		diffuse = glm::vec3(0.4f, 0.4f, 0.4f);
+		ambient = glm::vec3(0.3f, 0.24f, 0.14f);
+		diffuse = glm::vec3(0.7f, 0.42f, 0.26f);
 		specular = glm::vec3(0.5f, 0.5f, 0.5f);
+		ambientStrength = 1.0f;
 	}
 
 	DirectionalLight::DirectionalLight(glm::vec3 direction, glm::vec3 ambient, glm::vec3 diffuse, glm::vec3 specular)
@@ -58,6 +59,13 @@ namespace directionalLight
 
 			break;
 		}
+	}
+
+	void DirectionalLight::SetLightColor(glm::vec3 newLightColor)
+	{
+		this->ambient = newLightColor * 0.1f;
+		this->diffuse = newLightColor;
+		this->specular = newLightColor;
 	}
 
 	void DirectionalLight::SetDirection(glm::vec3 newDirection)
