@@ -150,6 +150,9 @@
     <ClCompile Include="src\3DImporter\ModelImporter.cpp">
       <Filter>Src\3DImporter</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entity\Transform.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="src\3DImporter\ModelImporter.h">
       <Filter>Src\3DImporter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Transform.h">
+      <Filter>Src\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

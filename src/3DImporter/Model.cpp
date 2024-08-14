@@ -10,6 +10,11 @@ Model::~Model()
 
 }
 
+vector<Mesh> Model::GetMeshes()
+{
+	return meshes;
+}
+
 void Model::Draw()
 {
 	for (int i = 0; i < meshes.size(); i++)

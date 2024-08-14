@@ -30,6 +30,7 @@
     <ClCompile Include="src\Entity\Entity.cpp" />
     <ClCompile Include="src\Entity\Entity2D.cpp" />
     <ClCompile Include="src\Entity\Entity3D.cpp" />
+    <ClCompile Include="src\Entity\Transform.cpp" />
     <ClCompile Include="src\InputSystem.cpp" />
     <ClCompile Include="src\Lights\DirectionalLight.cpp" />
     <ClCompile Include="src\Lights\Light.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\Entity\Entity2D.h" />
     <ClInclude Include="src\Entity\Entity3D.h" />
+    <ClInclude Include="src\Entity\Transform.h" />
     <ClInclude Include="src\InputSystem.h" />
     <ClInclude Include="src\Lights\DirectionalLight.h" />
     <ClInclude Include="src\Lights\Light.h" />
