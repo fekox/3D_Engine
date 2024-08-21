@@ -67,9 +67,6 @@
     <Filter Include="Src\3DImporter">
       <UniqueIdentifier>{2f84a1c4-70e5-4825-baf7-8d864cbc2d22}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Volume">
-      <UniqueIdentifier>{a993d6a0-ea0d-4f1a-a6ea-68cb0038694e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Plane">
       <UniqueIdentifier>{643a384a-33da-481d-b157-0b16006c0741}</UniqueIdentifier>
     </Filter>
@@ -155,9 +152,6 @@
     </ClCompile>
     <ClCompile Include="src\3DImporter\ModelImporter.cpp">
       <Filter>Src\3DImporter</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Volume\Volume.cpp">
-      <Filter>Src\Volume</Filter>
     </ClCompile>
     <ClCompile Include="src\Plane\Plane.cpp">
       <Filter>Src\Plane</Filter>
@@ -256,9 +250,6 @@
     </ClInclude>
     <ClInclude Include="src\Entity\Transform.h">
       <Filter>Src\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Volume\Volume.h">
-      <Filter>Src\Volume</Filter>
     </ClInclude>
     <ClInclude Include="src\Plane\Plane.h">
       <Filter>Src\Plane</Filter>
