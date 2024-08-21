@@ -159,6 +159,9 @@
     <ClCompile Include="src\Volume\Volume.cpp">
       <Filter>Src\Volume</Filter>
     </ClCompile>
+    <ClCompile Include="src\Plane\Plane.cpp">
+      <Filter>Src\Plane</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -256,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="src\Volume\Volume.h">
       <Filter>Src\Volume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Plane\Plane.h">
+      <Filter>Src\Plane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
