@@ -2,7 +2,7 @@
 
 namespace camera
 {
-	Camera::Camera()
+	Camera::Camera(float newFov, float width, float height)
 	{
 		cameraPos = glm::vec3(0.0f, 0.0f, 300.0f);
 		cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -13,6 +13,8 @@ namespace camera
 		yaw = -90.0f;
 		pitch = 0.0f;
 
+		fov = newFov;
+		aspect = width / height;
 		nearPlane = 0.1f;
 		farPlane = 2000.0f;
 

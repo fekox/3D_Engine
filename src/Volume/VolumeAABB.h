@@ -8,6 +8,7 @@
 #include "..\libs\glm\include\gtc\type_ptr.hpp"
 
 #include "Plane/Plane.h"
+#include "OcclusionCulling/OcclusionCulling.h"
 
 using namespace renderer;
 

@@ -73,6 +73,9 @@
     <Filter Include="Src\Volume">
       <UniqueIdentifier>{bf92ae2b-b6b7-49df-b4e4-f211de94cc9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\OcclusionCulling">
+      <UniqueIdentifier>{dd9a8247-f8b2-492f-84d2-aeb831456925}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Shader.cpp">
@@ -161,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="src\Volume\VolumeAABB.cpp">
       <Filter>Src\Volume</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OcclusionCulling\OcclusionCulling.cpp">
+      <Filter>Src\OcclusionCulling</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="src\Volume\VolumeAABB.h">
       <Filter>Src\Volume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OcclusionCulling\OcclusionCulling.h">
+      <Filter>Src\OcclusionCulling</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

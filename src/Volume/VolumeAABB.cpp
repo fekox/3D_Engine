@@ -26,9 +26,9 @@ VolumeAABB::~VolumeAABB()
 
 bool VolumeAABB::IsOnFrustum()
 {
-	//return (IsOnPlane(OcclusionCulling::left) && IsOnPlane(OcclusionCulling::right) &&
-	//	IsOnPlane(OcclusionCulling::up) && IsOnPlane(OcclusionCulling::down) &&
-	//	IsOnPlane(OcclusionCulling::back) && IsOnPlane(OcclusionCulling::front));
+	return (IsOnPlane(OcclusionCulling::left) && IsOnPlane(OcclusionCulling::right) &&
+		    IsOnPlane(OcclusionCulling::up)   && IsOnPlane(OcclusionCulling::down) &&
+		    IsOnPlane(OcclusionCulling::back) && IsOnPlane(OcclusionCulling::front));
 
 	return 0;
 }

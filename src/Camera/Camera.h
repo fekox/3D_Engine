@@ -36,6 +36,8 @@ namespace camera
 			float yaw;
 			float pitch;
 
+			float fov;
+			float aspect;
 			float nearPlane;
 			float farPlane; 
 
@@ -50,7 +52,7 @@ namespace camera
 			bool firstMouse = true;
 			bool thirdPerson = false;
 
-			Camera();
+			Camera(float newFov, float width, float height);
 			void CameraMovement(GLFWwindow* window);
 			void UpdateCameraVectors();
 			glm::mat4 UpdateCameraViewMode();

@@ -15,7 +15,7 @@ namespace baseEngine
 
 		errorLog.CheckGlewInit();
 
-		camera = new Camera();
+		camera = new Camera(45.f, width, height);
 		newCamera = camera;
 
 		for (int i = 0; i < 4; i++)
