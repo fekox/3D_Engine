@@ -76,6 +76,9 @@
     <Filter Include="Src\Transform">
       <UniqueIdentifier>{3ab39909-83fa-4bde-950c-e45d2d129dac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Frustum">
+      <UniqueIdentifier>{695cf47e-3815-4ffd-93fe-157522df5fd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Shader.cpp">
@@ -167,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="src\Transform\Transform.cpp">
       <Filter>Src\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Frustum\Frustum.cpp">
+      <Filter>Src\Frustum</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="src\Transform\Transform.h">
       <Filter>Src\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Frustum\Frustum.h">
+      <Filter>Src\Frustum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
