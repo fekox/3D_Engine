@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreEngine/Renderer.h"
+#include "Plane/Plane.h"
 
 #include <GLFW/glfw3.h>
 #include "..\libs\glm\include\glm.hpp"
@@ -20,7 +21,7 @@ class Volume
 	void DeInit();
 
 	virtual bool IsOnFrustum() = 0;
-	//virtual bool IsOnPlane(Plane plane) = 0;
+	virtual bool IsOnPlane(Plane plane) = 0;
 	virtual vector<Vertex> GetVertexs() = 0;
 	virtual void SetGlobalVolume(Volume* volume, glm::mat4 model) = 0;
 	//Line* lines;
