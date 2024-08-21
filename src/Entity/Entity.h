@@ -4,7 +4,6 @@
 #include "CoreEngine/Renderer.h"
 
 #include "Entity/Transform.h"
-#include "Volume/Volume.h"
 
 #include <list> 
 #include <array> 
@@ -64,9 +63,7 @@ namespace Entity
 		glm::vec3 GetUp();
 		glm::vec3 GetRight();
 
-		Volume* GetGlobalVolume();
-		void ToggleDrawVolume();
-		void DrawVolume();
+		//Volume* GetGlobalVolume();
 
 		Vector3 getRotation();
 
