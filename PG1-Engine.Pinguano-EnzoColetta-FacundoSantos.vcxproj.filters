@@ -70,6 +70,9 @@
     <Filter Include="Src\Volume">
       <UniqueIdentifier>{a993d6a0-ea0d-4f1a-a6ea-68cb0038694e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Plane">
+      <UniqueIdentifier>{643a384a-33da-481d-b157-0b16006c0741}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Shader.cpp">
