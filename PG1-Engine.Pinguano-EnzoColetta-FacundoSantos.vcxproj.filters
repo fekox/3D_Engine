@@ -76,6 +76,9 @@
     <Filter Include="Src\OcclusionCulling">
       <UniqueIdentifier>{dd9a8247-f8b2-492f-84d2-aeb831456925}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Transform">
+      <UniqueIdentifier>{3ab39909-83fa-4bde-950c-e45d2d129dac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Shader.cpp">
@@ -167,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="src\OcclusionCulling\OcclusionCulling.cpp">
       <Filter>Src\OcclusionCulling</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Transform\Transform.cpp">
+      <Filter>Src\Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,9 +266,6 @@
     <ClInclude Include="src\3DImporter\ModelImporter.h">
       <Filter>Src\3DImporter</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entity\Transform.h">
-      <Filter>Src\Entity</Filter>
-    </ClInclude>
     <ClInclude Include="src\Plane\Plane.h">
       <Filter>Src\Plane</Filter>
     </ClInclude>
@@ -271,6 +274,9 @@
     </ClInclude>
     <ClInclude Include="src\OcclusionCulling\OcclusionCulling.h">
       <Filter>Src\OcclusionCulling</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transform\Transform.h">
+      <Filter>Src\Transform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

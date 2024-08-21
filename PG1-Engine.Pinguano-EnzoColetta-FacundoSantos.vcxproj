@@ -48,6 +48,7 @@
     <ClCompile Include="src\Tools\STB-Image\stb_image.cpp" />
     <ClCompile Include="src\Tools\Texture Importer\TextureImporter.cpp" />
     <ClCompile Include="src\Tools\Time\Time.cpp" />
+    <ClCompile Include="src\Transform\Transform.cpp" />
     <ClCompile Include="src\Volume\VolumeAABB.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -62,7 +63,6 @@
     <ClInclude Include="src\Entity\Entity.h" />
     <ClInclude Include="src\Entity\Entity2D.h" />
     <ClInclude Include="src\Entity\Entity3D.h" />
-    <ClInclude Include="src\Entity\Transform.h" />
     <ClInclude Include="src\InputSystem.h" />
     <ClInclude Include="src\Lights\DirectionalLight.h" />
     <ClInclude Include="src\Lights\Light.h" />
@@ -84,6 +84,7 @@
     <ClInclude Include="src\Tools\Texture Importer\TextureImporter.h" />
     <ClInclude Include="src\Tools\Time\Time.h" />
     <ClInclude Include="src\Tools\Vectors\Vectors.h" />
+    <ClInclude Include="src\Transform\Transform.h" />
     <ClInclude Include="src\Volume\VolumeAABB.h" />
   </ItemGroup>
   <ItemGroup>

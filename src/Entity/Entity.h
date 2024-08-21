@@ -3,7 +3,7 @@
 #include "Tools/Vectors/Vectors.h"
 #include "CoreEngine/Renderer.h"
 
-#include "Entity/Transform.h"
+#include "Transform/Transform.h"
 
 #include "Volume/VolumeAABB.h"
 
@@ -37,7 +37,6 @@ namespace Entity
 		bool volumeDirty;
 		bool drawVolume;
 
-		bool IsCanDraw();
 		void UpdateGlobalVolume();
 
 	public:
@@ -57,8 +56,8 @@ namespace Entity
 
 		void SetParent(Entity* parent);
 		void AddChild(Entity* child);
-		void RemoveChild(Entity* node);
-		void RemoveChild(int nodeIndex);
+		void RemoveChild(Entity* child);
+		void RemoveChild(int childIndex);
 
 		Entity* GetParent();
 		list<Entity*> GetChildren();

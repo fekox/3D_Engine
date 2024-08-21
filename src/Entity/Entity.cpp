@@ -2,6 +2,14 @@
 
 namespace Entity
 {
+	void Entity::UpdateGlobalVolume()
+	{
+		//if (globalVolume != nullptr)
+		//{
+		//	globalVolume->SetGlobalVolume();
+		//}
+	}
+
 	Entity::Entity(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation)
 	{
 		this->render = render;
@@ -74,6 +82,57 @@ namespace Entity
 		UpdateTMatrix();
 	}
 
+	void Entity::SetParent(Entity* parent)
+	{
+	}
+
+	void Entity::AddChild(Entity* child)
+	{
+	}
+
+	void Entity::RemoveChild(Entity* child)
+	{
+	}
+
+	void Entity::RemoveChild(int childIndex)
+	{
+	}
+
+	Entity* Entity::GetParent()
+	{
+		return nullptr;
+	}
+
+	list<Entity*> Entity::GetChildren()
+	{
+		return list<Entity*>();
+	}
+
+	Entity* Entity::GetChild(int childIndex)
+	{
+		return nullptr;
+	}
+
+	glm::vec3 Entity::GetForward()
+	{
+		return glm::vec3();
+	}
+
+	glm::vec3 Entity::GetUp()
+	{
+		return glm::vec3();
+	}
+
+	glm::vec3 Entity::GetRight()
+	{
+		return glm::vec3();
+	}
+
+	VolumeAABB* Entity::GetGlobalVolume()
+	{
+		return nullptr;
+	}
+
 	Vector3 Entity::getRotation()
 	{
 		glm::mat3 rotationMatrix3x3 = glm::mat3(rotation);
@@ -107,5 +166,50 @@ namespace Entity
 	void Entity::UpdateTMatrix()
 	{
 		model = position * rotation * scale;
+	}
+	void Entity::UpdateTransform()
+	{
+	}
+	
+	void Entity::UpdateChildrenPos()
+	{
+	}
+	
+	void Entity::UpdateChildrenRot()
+	{
+	}
+	
+	void Entity::UpdateChildrenScale()
+	{
+	}
+	
+	glm::quat Entity::EulerToQuat(glm::vec3 euler)
+	{
+		return glm::quat();
+	}
+	
+	glm::vec3 Entity::QuatToVec(glm::quat quat, glm::vec3 euler)
+	{
+		return glm::vec3();
+	}
+	
+	glm::quat Entity::GetRotationByMatrix(glm::mat4 mat)
+	{
+		return glm::quat();
+	}
+	
+	glm::vec3 Entity::ToEulerRad(glm::quat rot)
+	{
+		return glm::vec3();
+	}
+	
+	glm::vec3 Entity::NormalizeAngles(glm::vec3 angles)
+	{
+		return glm::vec3();
+	}
+	
+	float Entity::NormalizeAngle(float angle)
+	{
+		return 0.0f;
 	}
 }
