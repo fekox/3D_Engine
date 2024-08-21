@@ -26,17 +26,19 @@ VolumeAABB::~VolumeAABB()
 
 bool VolumeAABB::IsOnFrustum()
 {
-	return (IsOnPlane(OcclusionCulling::left) && IsOnPlane(OcclusionCulling::right) &&
-		    IsOnPlane(OcclusionCulling::up)   && IsOnPlane(OcclusionCulling::down) &&
-		    IsOnPlane(OcclusionCulling::back) && IsOnPlane(OcclusionCulling::front));
+	//return (IsOnPlane(OcclusionCulling::left) && IsOnPlane(OcclusionCulling::right) &&
+	//	    IsOnPlane(OcclusionCulling::up)   && IsOnPlane(OcclusionCulling::down) &&
+	//	    IsOnPlane(OcclusionCulling::back) && IsOnPlane(OcclusionCulling::front));
 
 	return 0;
 }
 
 bool VolumeAABB::IsOnPlane(Plane plane)
 {
-	float r = extents.x * abs(plane.GetNormal().x) + extents.y * abs(plane.GetNormal().y) + extents.z * abs(plane.GetNormal().z);
-	return -r <= plane.GetDistanceToPoint(center);
+	//float r = extents.x * abs(plane.GetNormal().x) + extents.y * abs(plane.GetNormal().y) + extents.z * abs(plane.GetNormal().z);
+	//return -r <= plane.GetDistanceToPoint(center);
+
+	return false;
 }
 
 vector<Vertex> VolumeAABB::GetVertexs()
