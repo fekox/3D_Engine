@@ -27,6 +27,9 @@ namespace Entity
 		Vector3 newScale;
 		Vector3 newRotation;
 
+		Entity* parent;
+		list<Entity*> childs;
+
 	public:
 
 		Entity(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
@@ -45,5 +48,7 @@ namespace Entity
 		Vector3 getRotation();
 
 		void UpdateTMatrix();
+
+		Transform transform;
 	};
 }
