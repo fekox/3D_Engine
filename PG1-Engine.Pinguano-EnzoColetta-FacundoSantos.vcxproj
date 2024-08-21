@@ -30,7 +30,6 @@
     <ClCompile Include="src\Entity\Entity.cpp" />
     <ClCompile Include="src\Entity\Entity2D.cpp" />
     <ClCompile Include="src\Entity\Entity3D.cpp" />
-    <ClCompile Include="src\Entity\Transform.cpp" />
     <ClCompile Include="src\InputSystem.cpp" />
     <ClCompile Include="src\Lights\DirectionalLight.cpp" />
     <ClCompile Include="src\Lights\Light.cpp" />
@@ -47,6 +46,7 @@
     <ClCompile Include="src\Tools\STB-Image\stb_image.cpp" />
     <ClCompile Include="src\Tools\Texture Importer\TextureImporter.cpp" />
     <ClCompile Include="src\Tools\Time\Time.cpp" />
+    <ClCompile Include="src\Volume\Volume.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\3DImporter\Mesh.h" />
@@ -80,6 +80,7 @@
     <ClInclude Include="src\Tools\Texture Importer\TextureImporter.h" />
     <ClInclude Include="src\Tools\Time\Time.h" />
     <ClInclude Include="src\Tools\Vectors\Vectors.h" />
+    <ClInclude Include="src\Volume\Volume.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Prueba\res\Shader\Light.Shader" />

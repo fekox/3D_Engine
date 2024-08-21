@@ -29,6 +29,11 @@ namespace Entity
 
 		Entity* parent;
 		list<Entity*> childs;
+		bool volumeDirty;
+		bool drawVolume;
+
+		bool IsCanDraw();
+		void UpdateGlobalVolume();
 
 	public:
 
@@ -45,9 +50,38 @@ namespace Entity
 		void setRotationY(float newRotationY);
 		void setRotationZ(float newRotationZ);
 
+		void SetParent(Entity* parent);
+		void AddChild(Entity* child);
+		void RemoveChild(Entity* node);
+		void RemoveChild(int nodeIndex);
+
+		Entity* GetParent();
+		list<Entity*> GetChildren();
+		Entity* GetChild(int childIndex);
+
+		glm::vec3 GetForward();
+		glm::vec3 GetUp();
+		glm::vec3 GetRight();
+
+		//Volume* GetGlobalVolume();
+		void ToggleDrawVolume();
+		void DrawVolume();
+
 		Vector3 getRotation();
 
 		void UpdateTMatrix();
+		void UpdateTransform();
+
+		void UpdateChildrenPos();
+		void UpdateChildrenRot();
+		void UpdateChildrenScale();
+
+		glm::quat EulerToQuat(glm::vec3 euler);
+		glm::vec3 QuatToVec(glm::quat quat, glm::vec3 euler);
+		glm::quat GetRotationByMatrix(glm::mat4 mat);
+		glm::vec3 ToEulerRad(glm::quat rot);
+		glm::vec3 NormalizeAngles(glm::vec3 angles);
+		float NormalizeAngle(float angle);
 
 		Transform transform;
 	};
