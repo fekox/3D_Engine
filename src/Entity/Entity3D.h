@@ -4,7 +4,7 @@
 #pragma once
 
 using namespace vectors;
-using namespace Entity;
+using namespace entity;
 using namespace material;
 
 namespace entity3D

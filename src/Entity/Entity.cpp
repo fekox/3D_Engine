@@ -1,6 +1,6 @@
 #include "Entity/Entity.h"
 
-namespace Entity
+namespace entity
 {
 	Entity::Entity(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation)
 	{
@@ -74,52 +74,6 @@ namespace Entity
 		UpdateTMatrix();
 	}
 
-	void Entity::SetParent(Entity* parent)
-	{
-	}
-
-	void Entity::AddChild(Entity* child)
-	{
-	}
-
-	void Entity::RemoveChild(Entity* child)
-	{
-	}
-
-	void Entity::RemoveChild(int childIndex)
-	{
-	}
-
-	Entity* Entity::GetParent()
-	{
-		return nullptr;
-	}
-
-	list<Entity*> Entity::GetChildren()
-	{
-		return list<Entity*>();
-	}
-
-	Entity* Entity::GetChild(int childIndex)
-	{
-		return nullptr;
-	}
-
-	glm::vec3 Entity::GetForward()
-	{
-		return glm::vec3();
-	}
-
-	glm::vec3 Entity::GetUp()
-	{
-		return glm::vec3();
-	}
-
-	glm::vec3 Entity::GetRight()
-	{
-		return glm::vec3();
-	}
-
 	Vector3 Entity::getRotation()
 	{
 		glm::mat3 rotationMatrix3x3 = glm::mat3(rotation);
@@ -154,49 +108,62 @@ namespace Entity
 	{
 		model = position * rotation * scale;
 	}
-	void Entity::UpdateTransform()
+
+	AABB Entity::GetGlobalAABB()
 	{
+		//Get global scale thanks to our transform
+		const glm::vec3 globalCenter{ transform.GetModelMatrix() * glm::vec4(boundingVolume.center, 1.f) };
+
+		// Scaled orientation
+		const glm::vec3 right = transform.GetRight() * boundingVolume.extents.x;
+		const glm::vec3 up = transform.GetUp() * boundingVolume.extents.y;
+		const glm::vec3 forward = transform.GetForward() * boundingVolume.extents.z;
+
+		const float newIi = std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, right)) +
+			std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, up)) +
+			std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, forward));
+
+		const float newIj = std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, right)) +
+			std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, up)) +
+			std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, forward));
+
+		const float newIk = std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, right)) +
+			std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, up)) +
+			std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, forward));
+
+		return AABB(globalCenter, newIi, newIj, newIk);
 	}
 	
-	void Entity::UpdateChildrenPos()
+	void Entity::AddChild(Entity newChild)
 	{
+		children.push_back(newChild);
+		children.back().parent = this;
 	}
 	
-	void Entity::UpdateChildrenRot()
+	void Entity::UpdateSelfAndChild()
 	{
+		if (transform.IsDirty()) 
+		{
+			ForceUpdateSelfAndChild();
+			return;
+		}
+
+		for (auto&& child : children)
+		{
+			child.UpdateSelfAndChild();
+		}
 	}
 	
-	void Entity::UpdateChildrenScale()
+	void Entity::ForceUpdateSelfAndChild()
 	{
-	}
-	
-	glm::quat Entity::EulerToQuat(glm::vec3 euler)
-	{
-		return glm::quat();
-	}
-	
-	glm::vec3 Entity::QuatToVec(glm::quat quat, glm::vec3 euler)
-	{
-		return glm::vec3();
-	}
-	
-	glm::quat Entity::GetRotationByMatrix(glm::mat4 mat)
-	{
-		return glm::quat();
-	}
-	
-	glm::vec3 Entity::ToEulerRad(glm::quat rot)
-	{
-		return glm::vec3();
-	}
-	
-	glm::vec3 Entity::NormalizeAngles(glm::vec3 angles)
-	{
-		return glm::vec3();
-	}
-	
-	float Entity::NormalizeAngle(float angle)
-	{
-		return 0.0f;
+		if (parent)
+			transform.ComputeModelMatrix(parent->transform.GetModelMatrix());
+		else
+			transform.ComputeModelMatrix();
+
+		for (auto&& child : children)
+		{
+			child.ForceUpdateSelfAndChild();
+		}
 	}
 }

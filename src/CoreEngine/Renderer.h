@@ -44,12 +44,6 @@ namespace renderer
 		Shader shader;
 		Camera* camera;
 		TextureImporter textureImporter;
-		unsigned int primitiveShader;
-		unsigned int textureShader;
-		unsigned int lightShader;
-		unsigned int lightCubeShader;
-		unsigned int multipleLights;
-		unsigned int models;
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
 
@@ -58,6 +52,13 @@ namespace renderer
 		PointLight* pointLight[4];
 
 		public:
+
+		unsigned int primitiveShader;
+		unsigned int textureShader;
+		unsigned int lightShader;
+		unsigned int lightCubeShader;
+		unsigned int multipleLights;
+		unsigned int models;
 
 		Renderer(Window* window, Camera* camera, PointLight* light[], DirectionalLight directionaLight[], SpotLight* spotLight[]);
 		~Renderer();

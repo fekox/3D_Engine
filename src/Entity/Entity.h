@@ -4,15 +4,15 @@
 #include "CoreEngine/Renderer.h"
 
 #include "Transform/Transform.h"
+#include "BoundingVolume/AABB.h"
 
 #include <list> 
-#include <array> 
 #include <memory>
 
 using namespace vectors;
 using namespace renderer;
 
-namespace Entity
+namespace entity
 {
 	class EXPORT Entity
 	{
@@ -27,15 +27,14 @@ namespace Entity
 		Vector3 newScale;
 		Vector3 newRotation;
 
-		Entity* parent;
-		list<Entity*> childs;
-
-		//VolumeAABB* localVolume;
-		//VolumeAABB* globalVolume;
-		bool volumeDirty;
-		bool drawVolume;
-
 	public:
+
+		Entity* parent;
+		list<Entity> children;
+
+		Transform transform;
+
+		AABB boundingVolume;
 
 		Entity(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
 		~Entity();
@@ -50,35 +49,16 @@ namespace Entity
 		void setRotationY(float newRotationY);
 		void setRotationZ(float newRotationZ);
 
-		void SetParent(Entity* parent);
-		void AddChild(Entity* child);
-		void RemoveChild(Entity* child);
-		void RemoveChild(int childIndex);
-
-		Entity* GetParent();
-		list<Entity*> GetChildren();
-		Entity* GetChild(int childIndex);
-
-		glm::vec3 GetForward();
-		glm::vec3 GetUp();
-		glm::vec3 GetRight();
-
 		Vector3 getRotation();
 
 		void UpdateTMatrix();
-		void UpdateTransform();
 
-		void UpdateChildrenPos();
-		void UpdateChildrenRot();
-		void UpdateChildrenScale();
+		AABB GetGlobalAABB();
 
-		glm::quat EulerToQuat(glm::vec3 euler);
-		glm::vec3 QuatToVec(glm::quat quat, glm::vec3 euler);
-		glm::quat GetRotationByMatrix(glm::mat4 mat);
-		glm::vec3 ToEulerRad(glm::quat rot);
-		glm::vec3 NormalizeAngles(glm::vec3 angles);
-		float NormalizeAngle(float angle);
+		void AddChild(Entity newChild);
 
-		Transform transform;
+		void UpdateSelfAndChild();
+
+		void ForceUpdateSelfAndChild();
 	};
 }

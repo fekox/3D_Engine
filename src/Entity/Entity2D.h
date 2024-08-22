@@ -3,7 +3,7 @@
 #include "Entity/Entity.h"
 
 using namespace vectors;
-using namespace Entity;
+using namespace entity;
 
 namespace Entity2D
 {
