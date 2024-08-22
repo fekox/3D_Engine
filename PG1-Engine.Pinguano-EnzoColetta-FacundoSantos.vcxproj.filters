@@ -70,14 +70,14 @@
     <Filter Include="Src\Plane">
       <UniqueIdentifier>{643a384a-33da-481d-b157-0b16006c0741}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Volume">
-      <UniqueIdentifier>{bf92ae2b-b6b7-49df-b4e4-f211de94cc9f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Transform">
       <UniqueIdentifier>{3ab39909-83fa-4bde-950c-e45d2d129dac}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Frustum">
       <UniqueIdentifier>{695cf47e-3815-4ffd-93fe-157522df5fd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\BoundingVolume">
+      <UniqueIdentifier>{8bf2e60f-1a0c-494c-b8e9-cdb4ad3559a2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,14 +165,17 @@
     <ClCompile Include="src\Plane\Plane.cpp">
       <Filter>Src\Plane</Filter>
     </ClCompile>
-    <ClCompile Include="src\Volume\VolumeAABB.cpp">
-      <Filter>Src\Volume</Filter>
-    </ClCompile>
     <ClCompile Include="src\Transform\Transform.cpp">
       <Filter>Src\Transform</Filter>
     </ClCompile>
     <ClCompile Include="src\Frustum\Frustum.cpp">
       <Filter>Src\Frustum</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoundingVolume\BoundingVolume.cpp">
+      <Filter>Src\BoundingVolume</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BoundingVolume\Sphere.cpp">
+      <Filter>Src\BoundingVolume</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,14 +272,17 @@
     <ClInclude Include="src\Plane\Plane.h">
       <Filter>Src\Plane</Filter>
     </ClInclude>
-    <ClInclude Include="src\Volume\VolumeAABB.h">
-      <Filter>Src\Volume</Filter>
-    </ClInclude>
     <ClInclude Include="src\Transform\Transform.h">
       <Filter>Src\Transform</Filter>
     </ClInclude>
     <ClInclude Include="src\Frustum\Frustum.h">
       <Filter>Src\Frustum</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoundingVolume\BoundingVolume.h">
+      <Filter>Src\BoundingVolume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoundingVolume\Sphere.h">
+      <Filter>Src\BoundingVolume</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

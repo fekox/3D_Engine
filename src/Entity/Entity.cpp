@@ -2,14 +2,6 @@
 
 namespace Entity
 {
-	void Entity::UpdateGlobalVolume()
-	{
-		//if (globalVolume != nullptr)
-		//{
-		//	globalVolume->SetGlobalVolume();
-		//}
-	}
-
 	Entity::Entity(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation)
 	{
 		this->render = render;
@@ -126,11 +118,6 @@ namespace Entity
 	glm::vec3 Entity::GetRight()
 	{
 		return glm::vec3();
-	}
-
-	VolumeAABB* Entity::GetGlobalVolume()
-	{
-		return nullptr;
 	}
 
 	Vector3 Entity::getRotation()

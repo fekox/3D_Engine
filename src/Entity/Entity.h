@@ -5,8 +5,6 @@
 
 #include "Transform/Transform.h"
 
-#include "Volume/VolumeAABB.h"
-
 #include <list> 
 #include <array> 
 #include <memory>
@@ -32,12 +30,10 @@ namespace Entity
 		Entity* parent;
 		list<Entity*> childs;
 
-		VolumeAABB* localVolume;
-		VolumeAABB* globalVolume;
+		//VolumeAABB* localVolume;
+		//VolumeAABB* globalVolume;
 		bool volumeDirty;
 		bool drawVolume;
-
-		void UpdateGlobalVolume();
 
 	public:
 
@@ -66,8 +62,6 @@ namespace Entity
 		glm::vec3 GetForward();
 		glm::vec3 GetUp();
 		glm::vec3 GetRight();
-
-		VolumeAABB* GetGlobalVolume();
 
 		Vector3 getRotation();
 

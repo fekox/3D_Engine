@@ -23,6 +23,8 @@
     <ClCompile Include="src\3DImporter\Model.cpp" />
     <ClCompile Include="src\3DImporter\ModelImporter.cpp" />
     <ClCompile Include="src\Animation\Animation.cpp" />
+    <ClCompile Include="src\BoundingVolume\BoundingVolume.cpp" />
+    <ClCompile Include="src\BoundingVolume\Sphere.cpp" />
     <ClCompile Include="src\Camera\Camera.cpp" />
     <ClCompile Include="src\CoreEngine\BaseGame.cpp" />
     <ClCompile Include="src\CoreEngine\Renderer.cpp" />
@@ -49,13 +51,14 @@
     <ClCompile Include="src\Tools\Texture Importer\TextureImporter.cpp" />
     <ClCompile Include="src\Tools\Time\Time.cpp" />
     <ClCompile Include="src\Transform\Transform.cpp" />
-    <ClCompile Include="src\Volume\VolumeAABB.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\3DImporter\Mesh.h" />
     <ClInclude Include="src\3DImporter\Model.h" />
     <ClInclude Include="src\3DImporter\ModelImporter.h" />
     <ClInclude Include="src\Animation\Animation.h" />
+    <ClInclude Include="src\BoundingVolume\BoundingVolume.h" />
+    <ClInclude Include="src\BoundingVolume\Sphere.h" />
     <ClInclude Include="src\Camera\Camera.h" />
     <ClInclude Include="src\CoreEngine\BaseGame.h" />
     <ClInclude Include="src\CoreEngine\Renderer.h" />
@@ -85,7 +88,6 @@
     <ClInclude Include="src\Tools\Time\Time.h" />
     <ClInclude Include="src\Tools\Vectors\Vectors.h" />
     <ClInclude Include="src\Transform\Transform.h" />
-    <ClInclude Include="src\Volume\VolumeAABB.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Prueba\res\Shader\Light.Shader" />
