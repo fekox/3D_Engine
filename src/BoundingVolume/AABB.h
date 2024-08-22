@@ -1,7 +1,8 @@
 #pragma once
 
+#include "3DImporter/Model.h"
 #include "BoundingVolume/BoundingVolume.h"
-#include <array> //std::array
+#include <array> 
 
 class AABB : public BoundingVolume
 {
@@ -15,6 +16,8 @@ class AABB : public BoundingVolume
 		AABB();
 		AABB(const glm::vec3& min, const glm::vec3& max);
 		AABB(const glm::vec3& inCenter, float iI, float iJ, float iK);
+
+		AABB GenerateAABB(const Model& model);
 
 		std::array<glm::vec3, 8> GetVertice() const;
 

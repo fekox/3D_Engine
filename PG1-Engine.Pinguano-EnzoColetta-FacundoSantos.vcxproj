@@ -23,6 +23,7 @@
     <ClCompile Include="src\3DImporter\Model.cpp" />
     <ClCompile Include="src\3DImporter\ModelImporter.cpp" />
     <ClCompile Include="src\Animation\Animation.cpp" />
+    <ClCompile Include="src\BoundingVolume\AABB.cpp" />
     <ClCompile Include="src\BoundingVolume\BoundingVolume.cpp" />
     <ClCompile Include="src\BoundingVolume\Sphere.cpp" />
     <ClCompile Include="src\BoundingVolume\SquareAABB.cpp" />
@@ -58,6 +59,7 @@
     <ClInclude Include="src\3DImporter\Model.h" />
     <ClInclude Include="src\3DImporter\ModelImporter.h" />
     <ClInclude Include="src\Animation\Animation.h" />
+    <ClInclude Include="src\BoundingVolume\AABB.h" />
     <ClInclude Include="src\BoundingVolume\BoundingVolume.h" />
     <ClInclude Include="src\BoundingVolume\Sphere.h" />
     <ClInclude Include="src\BoundingVolume\SquareAABB.h" />

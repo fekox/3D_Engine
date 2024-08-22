@@ -3,6 +3,8 @@
 #include <GLFW/glfw3.h>
 #include "Tools/DLL-Exp/dll-Exp-Inp.h"
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
+
+#include "Frustum/Frustum.h"
 #pragma once
 
 using namespace window;
@@ -64,5 +66,7 @@ namespace camera
 			glm::mat4 GetViewToSpectateObject();
 			void CheckMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
 			void CheckMouseScroll(float yoffset);
+
+			Frustum CreateFrustumFromCamera(const Camera& cam, float aspect, float fovY, float zNear, float zFar);
 	};
 }

@@ -7,13 +7,11 @@ using namespace entity3D;
 
 class EXPORT Model : public Entity3D
 {
-private:
+public:
 
 	vector<Mesh> meshes;
 
 	string directory;
-
-public:
 
 	Model(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation, const char* path, bool invertTextures);
 	~Model();

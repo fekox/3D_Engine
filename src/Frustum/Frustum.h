@@ -4,7 +4,7 @@
 
 class Frustum
 {
-public:
+	public:
 
 	Plane topFace;
 	Plane bottomFace;
@@ -15,9 +15,6 @@ public:
 	Plane farFace;
 	Plane nearFace;
 
-	private:
-
 		Frustum();
 		~Frustum();
 };
-
