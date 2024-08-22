@@ -2,14 +2,12 @@
 
 Sphere::Sphere()
 {
-	glm::vec3 center = { 0.f, 0.f, 0.f };
-	float radius = { 0.f };
+	center = { 0.f, 0.f, 0.f };
+	radius = { 0.f };
 }
 
-Sphere::Sphere(const glm::vec3& inCenter, float inRadius)
+Sphere::Sphere(const glm::vec3& inCenter, float inRadius) : BoundingVolume{}, center{ inCenter }, radius{ inRadius }
 {
-	this->center = inCenter;
-	this->radius = inRadius;
 }
 
 Sphere::~Sphere()

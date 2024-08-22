@@ -177,6 +177,9 @@
     <ClCompile Include="src\BoundingVolume\Sphere.cpp">
       <Filter>Src\BoundingVolume</Filter>
     </ClCompile>
+    <ClCompile Include="src\BoundingVolume\SquareAABB.cpp">
+      <Filter>Src\BoundingVolume</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -282,6 +285,9 @@
       <Filter>Src\BoundingVolume</Filter>
     </ClInclude>
     <ClInclude Include="src\BoundingVolume\Sphere.h">
+      <Filter>Src\BoundingVolume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BoundingVolume\SquareAABB.h">
       <Filter>Src\BoundingVolume</Filter>
     </ClInclude>
   </ItemGroup>

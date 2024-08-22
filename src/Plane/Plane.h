@@ -7,11 +7,10 @@
 
 class Plane
 {
-private:
+public:
 	glm::vec3 normal;
 	float distance;
 
-public:
 	Plane();
 	Plane(const glm::vec3& p1, const glm::vec3& norm);
 	~Plane();

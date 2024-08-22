@@ -4,19 +4,18 @@
 
 using namespace std;
 
-class Sphere : public BoundingVolume
+class SquareAABB : public BoundingVolume
 {
 	private:
 
-		glm::vec3 center;
-		float radius;
+	glm::vec3 center;
+	float extent;
 
 	public:
 
-		Sphere();
-		Sphere(const glm::vec3& inCenter, float inRadius);
-		~Sphere();
-
+		SquareAABB();
+		SquareAABB(const glm::vec3& inCenter, float inExtent);
+		~SquareAABB();
 		bool IsOnOrForwardPlane(const Plane& plane) const final;
 		bool IsOnFrustum(const Frustum& camFrustum, const Transform& transform) const final;
 };

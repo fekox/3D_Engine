@@ -25,6 +25,7 @@
     <ClCompile Include="src\Animation\Animation.cpp" />
     <ClCompile Include="src\BoundingVolume\BoundingVolume.cpp" />
     <ClCompile Include="src\BoundingVolume\Sphere.cpp" />
+    <ClCompile Include="src\BoundingVolume\SquareAABB.cpp" />
     <ClCompile Include="src\Camera\Camera.cpp" />
     <ClCompile Include="src\CoreEngine\BaseGame.cpp" />
     <ClCompile Include="src\CoreEngine\Renderer.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="src\Animation\Animation.h" />
     <ClInclude Include="src\BoundingVolume\BoundingVolume.h" />
     <ClInclude Include="src\BoundingVolume\Sphere.h" />
+    <ClInclude Include="src\BoundingVolume\SquareAABB.h" />
     <ClInclude Include="src\Camera\Camera.h" />
     <ClInclude Include="src\CoreEngine\BaseGame.h" />
     <ClInclude Include="src\CoreEngine\Renderer.h" />
