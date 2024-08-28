@@ -45,6 +45,8 @@ namespace entity
 		glm::vec3 getScale();
 		void setScale(glm::vec3 newScale);
 
+		void setRotation(glm::vec3 newRotation);
+
 		void setRotationX(float newRotationX);
 		void setRotationY(float newRotationY);
 		void setRotationZ(float newRotationZ);

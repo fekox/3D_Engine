@@ -13,17 +13,11 @@ namespace entity
 
 		setPosition(newPosition);
 
-		setRotationX(0);
-		setRotationY(0);
-		setRotationZ(0);
-		setScale({1,1,1});
+		setRotation(newRotation);
 
-		setRotationX(newRotation.x);
-		setRotationY(newRotation.y);
-		setRotationZ(newRotation.z);
 		setScale(newScale);
 
-		UpdateTMatrix();
+		transform.ComputeModelMatrix();
 	}
 
 	Entity::~Entity()
@@ -33,27 +27,31 @@ namespace entity
 
 	void Entity::setPosition(glm::vec3 newPosition)
 	{
-		position = mat4(1.0);
-		glm::vec3 newPositionSet = { newPosition.x, newPosition.y, newPosition.z };
-		position = translate(position, newPositionSet);
+		transform.SetLocalPosition(newPosition);
 		UpdateTMatrix();
 	}
 
 	glm::vec3 Entity::getPosition()
 	{
-		return { position[3][0], position[3][1], position[3][2] };
+		return transform.GetLocalPosition();
 	}
 
 	void Entity::setScale(glm::vec3 newScale)
 	{
-		scale = mat4(1.0f);
-		scale = glm::scale(scale, glm::vec3(newScale.x, newScale.y, newScale.z));
+		transform.SetLocalScale(newScale);
+		UpdateTMatrix();
+	}
+
+	void Entity::setRotation(glm::vec3 newRotation)
+	{
+		transform.SetLocalRotation(newRotation);
+
 		UpdateTMatrix();
 	}
 
 	glm::vec3 Entity::getScale()
 	{
-		return { scale[0][0], scale[1][1], scale[2][2] };
+		return transform.GetLocalScale();
 	}
 
 	void Entity::setRotationX(float newRotationX)
@@ -76,37 +74,12 @@ namespace entity
 
 	glm::vec3 Entity::getRotation()
 	{
-		glm::mat3 rotationMatrix3x3 = glm::mat3(rotation);
-
-		// Extract Euler angles from the 3x3 rotation matrix
-		float pitch, yaw, roll;
-
-		// Extract pitch (X-axis rotation)
-		pitch = asin(rotationMatrix3x3[1][2]);
-
-		// Check for gimbal lock
-		if (cos(pitch) != 0) 
-		{
-			// Extract yaw (Y-axis rotation)
-			yaw = atan2(-rotationMatrix3x3[0][2], rotationMatrix3x3[2][2]);
-
-			// Extract roll (Z-axis rotation)
-			roll = atan2(-rotationMatrix3x3[1][0], rotationMatrix3x3[1][1]);
-		}
-		
-		else 
-		{
-			// Gimbal lock case
-			yaw = 0; // You can set yaw to any value since roll will be zero
-			roll = atan2(rotationMatrix3x3[0][1], rotationMatrix3x3[0][0]);
-		}
-
-		return { glm::degrees(pitch), glm::degrees(yaw), glm::degrees(roll) };
+		return transform.GetLocalRotation();
 	}
 
 	void Entity::UpdateTMatrix()
 	{
-		model = position * rotation * scale;
+		model = transform.GetModelMatrix();
 	}
 
 	AABB Entity::GetGlobalAABB()
