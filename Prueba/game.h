@@ -13,65 +13,65 @@ private:
 	//Model
 	Model* model;
 
-	Vector3 modelPosition;
-	Vector3 modelScale;
-	Vector3 modelRotation;
+	glm::vec3 modelPosition;
+	glm::vec3 modelScale;
+	glm::vec3 modelRotation;
 
 	//Model2
 	Model* model2;
 
-	Vector3 modelPosition2;
-	Vector3 modelScale2;
-	Vector3 modelRotation2;
+	glm::vec3 modelPosition2;
+	glm::vec3 modelScale2;
+	glm::vec3 modelRotation2;
 
 	//Model3
 	Model* model3;
 
-	Vector3 modelPosition3;
-	Vector3 modelScale3;
-	Vector3 modelRotation3;
+	glm::vec3 modelPosition3;
+	glm::vec3 modelScale3;
+	glm::vec3 modelRotation3;
 
 	//Shape3D - 1
 	Shape3D* cube;
 	Material* material;
 
-	Vector3 cubePosition;
-	Vector3 cubeScale;
-	Vector3 cubeRotation;
+	glm::vec3 cubePosition;
+	glm::vec3 cubeScale;
+	glm::vec3 cubeRotation;
 
 	//Shape3D - 2
 	Shape3D* cube2;
 	Material* material2;
 
-	Vector3 cubePosition2;
-	Vector3 cubeScale2;
-	Vector3 cubeRotation2;
+	glm::vec3 cubePosition2;
+	glm::vec3 cubeScale2;
+	glm::vec3 cubeRotation2;
 
 	//Shape3D - 3
 	Shape3D* cube3;
 	Material* material3;
 
-	Vector3 cubePosition3;
-	Vector3 cubeScale3;
-	Vector3 cubeRotation3;
+	glm::vec3 cubePosition3;
+	glm::vec3 cubeScale3;
+	glm::vec3 cubeRotation3;
 
 	//Shape3D - 4
 	Shape3D* background;
 	Material* material4;
 
-	Vector3 backgroundPosition;
-	Vector3 backgroundScale;
-	Vector3 backgroundRotation;
+	glm::vec3 backgroundPosition;
+	glm::vec3 backgroundScale;
+	glm::vec3 backgroundRotation;
 
 	//Sprite
 	Sprite* Sonic;
 
-	Vector3 lastTexturePos;
+	glm::vec3 lastTexturePos;
 
 	Vector4 TextureColor;
-	Vector3 TexturePosition;
-	Vector3 TextureScale;
-	Vector3 TextureRotation;
+	glm::vec3 TexturePosition;
+	glm::vec3 TextureScale;
+	glm::vec3 TextureRotation;
 
 	Animation* idleAnimation;
 	Animation* walkAnimation;

@@ -2,7 +2,7 @@
 
 namespace entity
 {
-	Entity::Entity(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation)
+	Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation)
 	{
 		this->render = render;
 
@@ -31,27 +31,27 @@ namespace entity
 
 	}
 
-	void Entity::setPosition(Vector3 newPosition)
+	void Entity::setPosition(glm::vec3 newPosition)
 	{
 		position = mat4(1.0);
-		vec3 newPositionSet = { newPosition.x, newPosition.y, newPosition.z };
+		glm::vec3 newPositionSet = { newPosition.x, newPosition.y, newPosition.z };
 		position = translate(position, newPositionSet);
 		UpdateTMatrix();
 	}
 
-	Vector3 Entity::getPosition()
+	glm::vec3 Entity::getPosition()
 	{
 		return { position[3][0], position[3][1], position[3][2] };
 	}
 
-	void Entity::setScale(Vector3 newScale)
+	void Entity::setScale(glm::vec3 newScale)
 	{
 		scale = mat4(1.0f);
 		scale = glm::scale(scale, glm::vec3(newScale.x, newScale.y, newScale.z));
 		UpdateTMatrix();
 	}
 
-	Vector3 Entity::getScale()
+	glm::vec3 Entity::getScale()
 	{
 		return { scale[0][0], scale[1][1], scale[2][2] };
 	}
@@ -74,7 +74,7 @@ namespace entity
 		UpdateTMatrix();
 	}
 
-	Vector3 Entity::getRotation()
+	glm::vec3 Entity::getRotation()
 	{
 		glm::mat3 rotationMatrix3x3 = glm::mat3(rotation);
 
@@ -112,22 +112,22 @@ namespace entity
 	AABB Entity::GetGlobalAABB()
 	{
 		//Get global scale thanks to our transform
-		const glm::vec3 globalCenter{ transform.GetModelMatrix() * glm::vec4(boundingVolume.center, 1.f) };
+		glm::vec3 globalCenter{ transform.GetModelMatrix() * glm::vec4(boundingVolume.center, 1.f) };
 
 		// Scaled orientation
-		const glm::vec3 right = transform.GetRight() * boundingVolume.extents.x;
-		const glm::vec3 up = transform.GetUp() * boundingVolume.extents.y;
-		const glm::vec3 forward = transform.GetForward() * boundingVolume.extents.z;
+		glm::vec3 right = transform.GetRight() * boundingVolume.extents.x;
+		glm::vec3 up = transform.GetUp() * boundingVolume.extents.y;
+		glm::vec3 forward = transform.GetForward() * boundingVolume.extents.z;
 
-		const float newIi = std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, right)) +
+		float newIi = std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, right)) +
 			std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, up)) +
 			std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, forward));
 
-		const float newIj = std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, right)) +
+		float newIj = std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, right)) +
 			std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, up)) +
 			std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, forward));
 
-		const float newIk = std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, right)) +
+		float newIk = std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, right)) +
 			std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, up)) +
 			std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, forward));
 

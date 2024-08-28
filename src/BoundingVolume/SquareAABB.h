@@ -14,9 +14,10 @@ class SquareAABB : public BoundingVolume
 	public:
 
 		SquareAABB();
-		SquareAABB(const glm::vec3& inCenter, float inExtent);
+		SquareAABB(glm::vec3 inCenter, float inExtent);
 		~SquareAABB();
-		bool IsOnOrForwardPlane(const Plane& plane) const final;
-		bool IsOnFrustum(const Frustum& camFrustum, const Transform& transform) const final;
+
+		bool IsOnOrForwardPlane(Plane plane) override;
+		bool IsOnFrustum(Frustum camFrustum, Transform transform) override;
 };
 

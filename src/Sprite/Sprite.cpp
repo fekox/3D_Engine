@@ -2,7 +2,7 @@
 
 namespace sprite
 {
-	Sprite::Sprite(const char* textureName, Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation) : Entity2D(rgba, render, newPosition, newScale, newRotation)
+	Sprite::Sprite(const char* textureName, Vector4 rgba, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation) : Entity2D(rgba, render, newPosition, newScale, newRotation)
 	{
 		CreateSprite();
 

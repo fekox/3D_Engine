@@ -8,7 +8,7 @@ BoundingVolume::~BoundingVolume()
 {
 }
 
-bool BoundingVolume::IsOnFrustum(const Frustum& camFrustum) const
+bool BoundingVolume::IsOnFrustum(Frustum camFrustum)
 {
 	return (IsOnOrForwardPlane(camFrustum.leftFace) &&
 			IsOnOrForwardPlane(camFrustum.rightFace) &&

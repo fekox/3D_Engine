@@ -20,7 +20,7 @@ namespace shape3D
 			Pyramid
 		};
 
-		Shape3D(Shapes3D typeShapes, Material* material, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
+		Shape3D(Shapes3D typeShapes, Material* material, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
 		~Shape3D();
 
 		void CreateCube();

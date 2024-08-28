@@ -6,7 +6,7 @@ Sphere::Sphere()
 	radius = { 0.f };
 }
 
-Sphere::Sphere(const glm::vec3& inCenter, float inRadius) : BoundingVolume{}, center{ inCenter }, radius{ inRadius }
+Sphere::Sphere(glm::vec3 inCenter, float inRadius) : BoundingVolume{}, center{ inCenter }, radius{ inRadius }
 {
 }
 
@@ -14,7 +14,7 @@ Sphere::~Sphere()
 {
 }
 
-Sphere Sphere::GenerateSphereBV(const Model& model)
+Sphere Sphere::GenerateSphereBV(Model model)
 {
 	glm::vec3 minAABB = glm::vec3(std::numeric_limits<float>::max());
 	glm::vec3 maxAABB = glm::vec3(std::numeric_limits<float>::min());
@@ -36,21 +36,21 @@ Sphere Sphere::GenerateSphereBV(const Model& model)
 	return Sphere((maxAABB + minAABB) * 0.5f, glm::length(minAABB - maxAABB));
 }
 
-bool Sphere::IsOnOrForwardPlane(const Plane& plane) const
+bool Sphere::IsOnOrForwardPlane(const Plane plane)
 {
 	return plane.GetSignedDistanceToPlane(center) > -radius;
 }
 
-bool Sphere::IsOnFrustum(const Frustum& camFrustum, const Transform& transform) const
+bool Sphere::IsOnFrustum(Frustum camFrustum,  Transform transform) 
 {
 	//Get global scale thanks to our transform
-	const glm::vec3 globalScale = transform.GetGlobalScale();
+	glm::vec3 globalScale = transform.GetGlobalScale();
 
 	//Get our global center with process it with the global model matrix of our transform
-	const glm::vec3 globalCenter{ transform.GetModelMatrix() * glm::vec4(center, 1.f) };
+	glm::vec3 globalCenter{ transform.GetModelMatrix() * glm::vec4(center, 1.f) };
 
 	//To wrap correctly our shape, we need the maximum scale scalar.
-	const float maxScale = std::max(std::max(globalScale.x, globalScale.y), globalScale.z);
+	float maxScale = std::max(std::max(globalScale.x, globalScale.y), globalScale.z);
 
 	//Max scale is assuming for the diameter. So, we need the half to apply it to our radius
 	Sphere globalSphere(globalCenter, radius * (maxScale * 0.5f));

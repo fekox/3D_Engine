@@ -28,24 +28,24 @@ public:
 	~Transform();
 
 	void ComputeModelMatrix();
-	void ComputeModelMatrix(const glm::mat4& parentGlobalModelMatrix);
+	void ComputeModelMatrix(glm::mat4 parentGlobalModelMatrix);
 
-	void SetLocalPosition(const glm::vec3& newPosition);
-	void SetLocalRotation(const glm::vec3& newRotation);
-	void SetLocalScale(const glm::vec3& newScale);
+	void SetLocalPosition(glm::vec3 newPosition);
+	void SetLocalRotation(glm::vec3 newRotation);
+	void SetLocalScale(glm::vec3 newScale);
 
-	const glm::vec3& GetGlobalPosition() const;
-	const glm::vec3& GetLocalPosition() const;
-	const glm::vec3& GetLocalRotation() const;
-	const glm::vec3& GetLocalScale() const;
-	const glm::mat4& GetModelMatrix() const;
+	glm::vec3 GetGlobalPosition();
+	glm::vec3 GetLocalPosition();
+	glm::vec3 GetLocalRotation();
+	glm::vec3 GetLocalScale();
+	glm::mat4 GetModelMatrix();
 
-	glm::vec3 GetRight() const;
-	glm::vec3 GetUp() const;
-	glm::vec3 GetBackward() const;
-	glm::vec3 GetForward() const;
-	glm::vec3 GetGlobalScale() const;
+	glm::vec3 GetRight();
+	glm::vec3 GetUp();
+	glm::vec3 GetBackward();
+	glm::vec3 GetForward();
+	glm::vec3 GetGlobalScale();
 
-	bool IsDirty() const;
+	bool IsDirty();
 };
 

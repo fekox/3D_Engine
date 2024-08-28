@@ -29,7 +29,7 @@ namespace Entity2D
 		float* uvPos;
 
 	public:
-		Entity2D(Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
+		Entity2D(Vector4 rgba, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
 		~Entity2D();
 		
 		void DrawShape();

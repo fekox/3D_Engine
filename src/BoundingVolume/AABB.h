@@ -11,12 +11,12 @@ class AABB : public BoundingVolume
 		glm::vec3 extents;
 
 		AABB();
-		AABB(const glm::vec3& min, const glm::vec3& max);
-		AABB(const glm::vec3& inCenter, float iI, float iJ, float iK);
+		AABB( glm::vec3& min,  glm::vec3& max);
+		AABB( glm::vec3& inCenter, float iI, float iJ, float iK);
 
-		std::array<glm::vec3, 8> GetVertice() const;
+		std::array<glm::vec3, 8> GetVertice() ;
 
-		bool IsOnOrForwardPlane(const Plane& plane) const final;
-		bool IsOnFrustum(const Frustum& camFrustum, const Transform& transform) const final;
+		bool IsOnOrForwardPlane(Plane plane) override;
+		bool IsOnFrustum(Frustum camFrustum, Transform transform) override;
 };
 

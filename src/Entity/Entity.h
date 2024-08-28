@@ -36,20 +36,20 @@ namespace entity
 
 		AABB boundingVolume;
 
-		Entity(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
+		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
 		~Entity();
 
-		void setPosition(Vector3 newPosition);
-		Vector3 getPosition();
+		void setPosition(glm::vec3 newPosition);
+		glm::vec3 getPosition();
 
-		Vector3 getScale();
-		void setScale(Vector3 newScale);
+		glm::vec3 getScale();
+		void setScale(glm::vec3 newScale);
 
 		void setRotationX(float newRotationX);
 		void setRotationY(float newRotationY);
 		void setRotationZ(float newRotationZ);
 
-		Vector3 getRotation();
+		glm::vec3 getRotation();
 
 		void UpdateTMatrix();
 

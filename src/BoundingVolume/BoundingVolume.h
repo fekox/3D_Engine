@@ -11,10 +11,10 @@ class BoundingVolume
 		BoundingVolume();
 		~BoundingVolume();
 
-		virtual bool IsOnFrustum(const Frustum& camFrustum, const Transform& transform) const = 0;
+		virtual bool IsOnFrustum(Frustum camFrustum, Transform transform) = 0;
 
-		virtual bool IsOnOrForwardPlane(const Plane& plane) const = 0;
+		virtual bool IsOnOrForwardPlane(Plane plane) = 0;
 
-		bool IsOnFrustum(const Frustum& camFrustum) const;
+		bool IsOnFrustum(Frustum camFrustum);
 };
 

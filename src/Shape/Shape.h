@@ -19,7 +19,7 @@ namespace shape
 			Square,
 		};
 
-		Shape(Shapes2D typeShapes, Vector4 rgba, Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation);
+		Shape(Shapes2D typeShapes, Vector4 rgba, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
 		~Shape();
 		void createTriangle();
 		void createRectangle();

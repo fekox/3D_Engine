@@ -34,81 +34,81 @@ void Transform::ComputeModelMatrix()
 	m_isDirty = false;
 }
 
-void Transform::ComputeModelMatrix(const glm::mat4& parentGlobalModelMatrix)
+void Transform::ComputeModelMatrix(glm::mat4 parentGlobalModelMatrix)
 {
 	m_modelMatrix = parentGlobalModelMatrix * GetLocalModelMatrix();
 	m_isDirty = false;
 }
 
-void Transform::SetLocalPosition(const glm::vec3& newPosition)
+void Transform::SetLocalPosition(glm::vec3 newPosition)
 {
 	m_pos = newPosition;
 	m_isDirty = true;
 }
 
-void Transform::SetLocalRotation(const glm::vec3& newRotation)
+void Transform::SetLocalRotation(glm::vec3 newRotation)
 {
 	m_eulerRot = newRotation;
 	m_isDirty = true;
 }
 
-void Transform::SetLocalScale(const glm::vec3& newScale)
+void Transform::SetLocalScale(glm::vec3 newScale)
 {
 	m_scale = newScale;
 	m_isDirty = true;
 }
 
-const glm::vec3& Transform::GetGlobalPosition() const
+glm::vec3 Transform::GetGlobalPosition()
 {
 	return m_modelMatrix[3];
 }
 
-const glm::vec3& Transform::GetLocalPosition() const
+glm::vec3 Transform::GetLocalPosition()
 {
 	return m_pos;
 }
 
-const glm::vec3& Transform::GetLocalRotation() const
+glm::vec3 Transform::GetLocalRotation() 
 {
 	return m_eulerRot;
 }
 
-const glm::vec3& Transform::GetLocalScale() const
+glm::vec3 Transform::GetLocalScale()
 {
 	return m_scale;
 }
 
-const glm::mat4& Transform::GetModelMatrix() const
+glm::mat4 Transform::GetModelMatrix()
 {
 	return m_modelMatrix;
 }
 
-glm::vec3 Transform::GetRight() const
+glm::vec3 Transform::GetRight() 
 {
 	return m_modelMatrix[0];
 }
 
-glm::vec3 Transform::GetUp() const
+glm::vec3 Transform::GetUp()
 {
 	return m_modelMatrix[1];
 }
 
-glm::vec3 Transform::GetBackward() const
+glm::vec3 Transform::GetBackward()
 {
 	return m_modelMatrix[2];
 }
 
-glm::vec3 Transform::GetForward() const
+glm::vec3 Transform::GetForward()
 {
 	return -m_modelMatrix[2];
 }
 
-glm::vec3 Transform::GetGlobalScale() const
+glm::vec3 Transform::GetGlobalScale()
 {
 	return { glm::length(GetRight()), glm::length(GetUp()), glm::length(GetBackward()) };
 }
 
-bool Transform::IsDirty() const
+bool Transform::IsDirty()
 {
 	return m_isDirty;
 }

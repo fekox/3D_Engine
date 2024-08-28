@@ -13,7 +13,7 @@ public:
 
 	string directory;
 
-	Model(Renderer* render, Vector3 newPosition, Vector3 newScale, Vector3 newRotation, const char* path, bool invertTextures);
+	Model(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, const char* path, bool invertTextures);
 	~Model();
 
 	vector<Mesh> GetMeshes();

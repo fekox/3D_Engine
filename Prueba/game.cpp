@@ -17,9 +17,9 @@ void Game::init()
 {
 	//Cube - 1
 	//*********************************************************************************
-	cubePosition = Vector3{ -300, 0 , 0 };
-	cubeScale = Vector3{ 80.0f, 80.0f, 80.0f };
-	cubeRotation = Vector3{ 0,0,0 };
+	cubePosition = glm::vec3{ -300, 0 , 0 };
+	cubeScale = glm::vec3{ 80.0f, 80.0f, 80.0f };
+	cubeRotation = glm::vec3{ 0,0,0 };
 	material = new Material();
 	material->SetMaterial(Material::MaterialType::GOLD);
 
@@ -27,9 +27,9 @@ void Game::init()
 
 	//Cube - 2
 	//*********************************************************************************
-	cubePosition2 = Vector3{ 150, 150 , 0};
-	cubeScale2 = Vector3{ 80.0f, 80.0f, 80.0f };
-	cubeRotation2 = Vector3{ 0,0,0 };
+	cubePosition2 = glm::vec3{ 150, 150 , 0};
+	cubeScale2 = glm::vec3{ 80.0f, 80.0f, 80.0f };
+	cubeRotation2 = glm::vec3{ 0,0,0 };
 	material2 = new Material();
 	material2->SetMaterial(Material::MaterialType::BRONZE);
 
@@ -37,9 +37,9 @@ void Game::init()
 
 	//Cube - 3
 	//*********************************************************************************
-	cubePosition3 = Vector3{ -150, -150 , 0};
-	cubeScale3 = Vector3{ 80.0f, 80.0f, 80.0f };
-	cubeRotation3 = Vector3{ 0,0,0 };
+	cubePosition3 = glm::vec3{ -150, -150 , 0};
+	cubeScale3 = glm::vec3{ 80.0f, 80.0f, 80.0f };
+	cubeRotation3 = glm::vec3{ 0,0,0 };
 	material3 = new Material();
 	material3->SetMaterial(Material::MaterialType::CYAN_PLASTIC);
 
@@ -47,9 +47,9 @@ void Game::init()
 
 	//Background
 	//*********************************************************************************
-	backgroundPosition = Vector3{ 0, 0 , -100.0f };
-	backgroundScale = Vector3{ 1000.0f, 1000.0f, 40.0f };
-	backgroundRotation = Vector3{ 0,0,0 };
+	backgroundPosition = glm::vec3{ 0, 0 , -100.0f };
+	backgroundScale = glm::vec3{ 1000.0f, 1000.0f, 40.0f };
+	backgroundRotation = glm::vec3{ 0,0,0 };
 
 	material4 = new Material();
 	material4->SetMaterial(Material::MaterialType::SILVER);
@@ -58,36 +58,36 @@ void Game::init()
 
 	//Model1
 	//*********************************************************************************
-	modelPosition = Vector3{ -100, 0 , 0 };
-	modelScale = Vector3{ 10, 10 , 10};
-	modelRotation = Vector3{ 0, 0 , 0 };
+	modelPosition = glm::vec3{ -100, 0 , 0 };
+	modelScale = glm::vec3{ 10, 10 , 10};
+	modelRotation = glm::vec3{ 0, 0 , 0 };
 
 	model = new Model(GetRenderer(), modelPosition, modelScale, modelRotation, "res/Models/backpack/backpack.obj", true);
 
 	//Model2
 	//*********************************************************************************
 
-	modelPosition2 = Vector3{ 100, 0 , 0 };
-	modelScale2 = Vector3{ 0.1, 0.1, 0.1};
-	modelRotation2 = Vector3{ 90, 0 , 0 };
+	modelPosition2 = glm::vec3{ 100, 0 , 0 };
+	modelScale2 = glm::vec3{ 0.1, 0.1, 0.1};
+	modelRotation2 = glm::vec3{ 90, 0 , 0 };
 
 	model2 = new Model(GetRenderer(), modelPosition2, modelScale2, modelRotation2, "res/Models/sword/source/Darth Vader's Lightsaber.FBX", false);
 
 	//Model3
 	//*********************************************************************************
 	 
-	modelPosition3 = Vector3{ 0, 0 , 0};
-	modelScale3 = Vector3{ 100, 100, 100 };
-	modelRotation3 = Vector3{ 0, 0, 0};
+	modelPosition3 = glm::vec3{ 0, 0 , 0};
+	modelScale3 = glm::vec3{ 100, 100, 100 };
+	modelRotation3 = glm::vec3{ 0, 0, 0};
 
 	model3 = new Model(GetRenderer(), modelPosition3, modelScale3, modelRotation3, "res/Models/pingu/source/Cinematics_IntroCutscene_IntroCutscenePart1.fbx", false);
 
 	//Init Shape
 	//*********************************************************************************
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-	TexturePosition = Vector3{0,-100, 0 };
-	TextureScale = Vector3{128,128,128};
-	TextureRotation = Vector3{0,0,0};
+	TexturePosition = glm::vec3{0,-100, 0 };
+	TextureScale = glm::vec3{128,128,128};
+	TextureRotation = glm::vec3{0,0,0};
 
 	const char* path = "res/Sonic_Mania_Sprite_Sheet.png";
 	Sonic = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
@@ -163,25 +163,25 @@ void Game::update()
 	if (inputSystem->getKey(inputSystem->downArrow, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y - 2.0f,  Sonic->getPosition().z});
+		Sonic->setPosition(glm::vec3{ Sonic->getPosition().x, Sonic->getPosition().y - 2.0f,  Sonic->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->upArrow, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x, Sonic->getPosition().y + 2.0f, Sonic->getPosition().z});
+		Sonic->setPosition(glm::vec3{ Sonic->getPosition().x, Sonic->getPosition().y + 2.0f, Sonic->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->leftArrow, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x - 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
+		Sonic->setPosition(glm::vec3{ Sonic->getPosition().x - 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->rightArrow, inputSystem->Pressed))
 	{
 		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(Vector3{ Sonic->getPosition().x + 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
+		Sonic->setPosition(glm::vec3{ Sonic->getPosition().x + 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
 	}
 
 	//Lights
