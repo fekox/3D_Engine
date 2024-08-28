@@ -28,7 +28,7 @@ namespace entity
 	void Entity::setPosition(glm::vec3 newPosition)
 	{
 		transform.SetLocalPosition(newPosition);
-		UpdateTMatrix();
+		//UpdateTMatrix();
 	}
 
 	glm::vec3 Entity::getPosition()
@@ -39,14 +39,14 @@ namespace entity
 	void Entity::setScale(glm::vec3 newScale)
 	{
 		transform.SetLocalScale(newScale);
-		UpdateTMatrix();
+		//UpdateTMatrix();
 	}
 
 	void Entity::setRotation(glm::vec3 newRotation)
 	{
 		transform.SetLocalRotation(newRotation);
 
-		UpdateTMatrix();
+		//UpdateTMatrix();
 	}
 
 	glm::vec3 Entity::getScale()
@@ -57,19 +57,19 @@ namespace entity
 	void Entity::setRotationX(float newRotationX)
 	{
 		rotation = glm::rotate(rotation, glm::radians(newRotationX), glm::vec3(1, 0, 0));
-		UpdateTMatrix();
+		//UpdateTMatrix();
 	}
 
 	void Entity::setRotationY(float newRotationY)
 	{
 		rotation = glm::rotate(rotation, glm::radians(newRotationY), glm::vec3(0, 1, 0));
-		UpdateTMatrix();
+		//UpdateTMatrix();
 	}
 
 	void Entity::setRotationZ(float newRotationZ)
 	{
 		rotation = glm::rotate(rotation, glm::radians(newRotationZ), glm::vec3(0, 0, 1));
-		UpdateTMatrix();
+		//UpdateTMatrix();
 	}
 
 	glm::vec3 Entity::getRotation()
@@ -115,6 +115,8 @@ namespace entity
 	
 	void Entity::UpdateSelfAndChild()
 	{
+		model = transform.GetModelMatrix();
+
 		if (transform.IsDirty()) 
 		{
 			ForceUpdateSelfAndChild();

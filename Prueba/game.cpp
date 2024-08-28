@@ -193,17 +193,32 @@ void Game::update()
 
 	Sonic->Update();
 
+	//Drawn and Update
+	//*********************************************************************************
+
 	model->Draw();
+	model->UpdateSelfAndChild();
+
 	model2->Draw();
+	model2->UpdateSelfAndChild();
+
 	model3->Draw();
+	model3->UpdateSelfAndChild();
 
 	//Sonic->Draw();
+	Sonic->UpdateSelfAndChild();
 
 	background->Draw();
+	background->UpdateSelfAndChild();
 
 	cube->Draw();
+	cube->UpdateSelfAndChild();
+
 	cube2->Draw();
+	cube2->UpdateSelfAndChild();
+
 	cube3->Draw();
+	cube3->UpdateSelfAndChild();
 }
 
 void Game::exit()
