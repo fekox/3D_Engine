@@ -30,7 +30,7 @@ namespace entity
 	public:
 
 		Entity* parent;
-		list<Entity> children;
+		list<Entity*> children;
 
 		Transform transform;
 
@@ -57,7 +57,7 @@ namespace entity
 
 		AABB GetGlobalAABB();
 
-		void AddChild(Entity newChild);
+		void AddChild(Entity* newChild);
 
 		void UpdateSelfAndChild();
 

@@ -18,6 +18,7 @@ namespace entity
 		setScale(newScale);
 
 		transform.ComputeModelMatrix();
+		model = transform.GetModelMatrix();
 	}
 
 	Entity::~Entity()
@@ -28,25 +29,25 @@ namespace entity
 	void Entity::setPosition(glm::vec3 newPosition)
 	{
 		transform.SetLocalPosition(newPosition);
-		//UpdateTMatrix();
+		transform.ComputeModelMatrix();
 	}
 
 	glm::vec3 Entity::getPosition()
 	{
 		return transform.GetLocalPosition();
+		transform.ComputeModelMatrix();
 	}
 
 	void Entity::setScale(glm::vec3 newScale)
 	{
 		transform.SetLocalScale(newScale);
-		//UpdateTMatrix();
+		transform.ComputeModelMatrix();
 	}
 
 	void Entity::setRotation(glm::vec3 newRotation)
 	{
 		transform.SetLocalRotation(newRotation);
-
-		//UpdateTMatrix();
+		transform.ComputeModelMatrix();
 	}
 
 	glm::vec3 Entity::getScale()
@@ -57,19 +58,19 @@ namespace entity
 	void Entity::setRotationX(float newRotationX)
 	{
 		rotation = glm::rotate(rotation, glm::radians(newRotationX), glm::vec3(1, 0, 0));
-		//UpdateTMatrix();
+		transform.ComputeModelMatrix();
 	}
 
 	void Entity::setRotationY(float newRotationY)
 	{
 		rotation = glm::rotate(rotation, glm::radians(newRotationY), glm::vec3(0, 1, 0));
-		//UpdateTMatrix();
+		transform.ComputeModelMatrix();
 	}
 
 	void Entity::setRotationZ(float newRotationZ)
 	{
 		rotation = glm::rotate(rotation, glm::radians(newRotationZ), glm::vec3(0, 0, 1));
-		//UpdateTMatrix();
+		transform.ComputeModelMatrix();
 	}
 
 	glm::vec3 Entity::getRotation()
@@ -106,18 +107,18 @@ namespace entity
 
 		return AABB(globalCenter, newIi, newIj, newIk);
 	}
-	
-	void Entity::AddChild(Entity newChild)
+
+	void Entity::AddChild(Entity* newChild)
 	{
 		children.push_back(newChild);
-		children.back().parent = this;
+		children.back()->parent = this;
 	}
-	
+
 	void Entity::UpdateSelfAndChild()
 	{
 		model = transform.GetModelMatrix();
 
-		if (transform.IsDirty()) 
+		if (transform.IsDirty())
 		{
 			ForceUpdateSelfAndChild();
 			return;
@@ -125,10 +126,10 @@ namespace entity
 
 		for (auto&& child : children)
 		{
-			child.UpdateSelfAndChild();
+			child->UpdateSelfAndChild();
 		}
 	}
-	
+
 	void Entity::ForceUpdateSelfAndChild()
 	{
 		if (parent)
@@ -138,7 +139,7 @@ namespace entity
 
 		for (auto&& child : children)
 		{
-			child.ForceUpdateSelfAndChild();
+			child->ForceUpdateSelfAndChild();
 		}
 	}
 }

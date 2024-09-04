@@ -136,6 +136,8 @@ void Game::init()
 	idleAnimation->AddFrame(390, 98, 98 / 3, 43, 830, 465, 2500, 3);
 
 	Sonic->SetAnimation(idleAnimation);
+
+	model->AddChild(model2);
 }
 
 void Game::update()
@@ -186,7 +188,7 @@ void Game::update()
 
 	//Lights
 	//*********************************************************************************
-	pointLight[0]->SetPosition(newPos);
+	//pointLight[0]->SetPosition(newPos);
 
 	spotLight[0]->SetPosition(camera->cameraPos);
 	spotLight[0]->SetDirection(camera->cameraFront);
@@ -196,11 +198,11 @@ void Game::update()
 	//Drawn and Update
 	//*********************************************************************************
 
+	model->setPosition(newPos);
 	model->Draw();
 	model->UpdateSelfAndChild();
 
 	model2->Draw();
-	model2->UpdateSelfAndChild();
 
 	model3->Draw();
 	model3->UpdateSelfAndChild();

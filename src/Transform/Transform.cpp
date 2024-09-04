@@ -44,24 +44,18 @@ void Transform::SetLocalPosition(glm::vec3 newPosition)
 {
 	m_pos = newPosition;
 	m_isDirty = true;
-
-	//ComputeModelMatrix();
 }
 
 void Transform::SetLocalRotation(glm::vec3 newRotation)
 {
 	m_eulerRot = newRotation;
 	m_isDirty = true;
-
-	//ComputeModelMatrix();
 }
 
 void Transform::SetLocalScale(glm::vec3 newScale)
 {
 	m_scale = newScale;
 	m_isDirty = true;
-
-	//ComputeModelMatrix();
 }
 
 glm::vec3 Transform::GetGlobalPosition()
