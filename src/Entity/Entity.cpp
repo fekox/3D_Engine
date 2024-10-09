@@ -19,8 +19,7 @@ namespace entity
 
 		setScale(newScale);
 
-		transform->ComputeModelMatrix();
-		model = transform->GetModelMatrix();
+		transform->ForceUpdateSelfAndChild();
 	}
 
 	Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent)
