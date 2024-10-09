@@ -2,14 +2,14 @@
 
 namespace entity3D
 {
-	Entity3D::Entity3D(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation) : Entity(render, newPosition, newScale, newRotation)
+	Entity3D::Entity3D(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent) : Entity(render, newPosition, newScale, newRotation, parent)
 	{
 
 	}
 
 	void Entity3D::DrawShape3D(Material* material)
 	{
-		render->DrawEntity3D(VAO, lightCubeVAO, indexSize, color, model, material);
+		render->DrawEntity3D(VAO, lightCubeVAO, indexSize, color, transform->m_modelMatrix, material);
 	}
 
 	void Entity3D::SetColor(Vector4 rgba)

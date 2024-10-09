@@ -67,11 +67,11 @@ void Game::init()
 	//Model2
 	//*********************************************************************************
 
-	modelPosition2 = glm::vec3{ 100, 0 , 0 };
+	modelPosition2 = glm::vec3{ 25, 0 , 0 };
 	modelScale2 = glm::vec3{ 0.1, 0.1, 0.1};
 	modelRotation2 = glm::vec3{ 90, 0 , 0 };
 
-	model2 = new Model(GetRenderer(), modelPosition2, modelScale2, modelRotation2, "res/Models/sword/source/Darth Vader's Lightsaber.FBX", false);
+	model2 = new Model(GetRenderer(), modelPosition2, modelScale2, modelRotation2, "res/Models/sword/source/Darth Vader's Lightsaber.FBX", false, model->transform);
 
 	//Model3
 	//*********************************************************************************
@@ -135,9 +135,7 @@ void Game::init()
 	idleAnimation = new Animation();
 	idleAnimation->AddFrame(390, 98, 98 / 3, 43, 830, 465, 2500, 3);
 
-	Sonic->SetAnimation(idleAnimation);
-
-	model->AddChild(model2);
+	Sonic->SetAnimation(idleAnimation);	
 }
 
 void Game::update()
@@ -146,44 +144,44 @@ void Game::update()
 	glm::vec3 newPos = glm::vec3(Sonic->getPosition().x, Sonic->getPosition().y, Sonic->getPosition().z);
 	camera->ChangeCameraTarget(glm::vec3(newPos.x, newPos.y, newPos.z), glm::vec3(Sonic->getRotation().x, Sonic->getRotation().y, Sonic->getRotation().z));
 
-	Sonic->SetAnimation(idleAnimation);
+	//Sonic->SetAnimation(idleAnimation);
 
 	//Player Inputs;
 	//*********************************************************************************
 	if (inputSystem->getKey(inputSystem->N1, inputSystem->Pressed))
 	{
-		Sonic->SetAnimation(walkAnimation);
-		Sonic->setRotationY(-1.0f);
+		//Sonic->SetAnimation(walkAnimation);
+		model->setRotation(glm::vec3(model->getRotation().x -1, 0, 0));
 	}
 
 	if (inputSystem->getKey(inputSystem->N2, inputSystem->Pressed))
 	{
-		Sonic->SetAnimation(walkAnimation);
-		Sonic->setRotationY(1.0f);
+		//Sonic->SetAnimation(walkAnimation);
+		model->setRotation(glm::vec3(model->getRotation().x + 1, 0, 0));
 	}
 
 	if (inputSystem->getKey(inputSystem->downArrow, inputSystem->Pressed))
 	{
-		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(glm::vec3{ Sonic->getPosition().x, Sonic->getPosition().y - 2.0f,  Sonic->getPosition().z});
+		//Sonic->SetAnimation(walkAnimation);
+		model->setPosition(glm::vec3{ model->getPosition().x, model->getPosition().y - 2.0f,  model->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->upArrow, inputSystem->Pressed))
 	{
-		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(glm::vec3{ Sonic->getPosition().x, Sonic->getPosition().y + 2.0f, Sonic->getPosition().z});
+		//Sonic->SetAnimation(walkAnimation);
+		model->setPosition(glm::vec3{ model->getPosition().x, model->getPosition().y + 2.0f, model->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->leftArrow, inputSystem->Pressed))
 	{
-		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(glm::vec3{ Sonic->getPosition().x - 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
+		//Sonic->SetAnimation(walkAnimation);
+		model->setPosition(glm::vec3{ model->getPosition().x - 2.0f, model->getPosition().y, model->getPosition().z});
 	}
 
 	if (inputSystem->getKey(inputSystem->rightArrow, inputSystem->Pressed))
 	{
-		Sonic->SetAnimation(walkAnimation);
-		Sonic->setPosition(glm::vec3{ Sonic->getPosition().x + 2.0f, Sonic->getPosition().y, Sonic->getPosition().z});
+		////Sonic->SetAnimation(walkAnimation);
+		model->setPosition(glm::vec3{ model->getPosition().x + 2.0f, model->getPosition().y, model->getPosition().z});
 	}
 
 	//Lights
@@ -197,30 +195,21 @@ void Game::update()
 
 	//Drawn and Update
 	//*********************************************************************************
-
-	model->setPosition(newPos);
 	model->Draw();
-	model->UpdateSelfAndChild();
 
 	model2->Draw();
 
 	model3->Draw();
-	model3->UpdateSelfAndChild();
 
 	//Sonic->Draw();
-	Sonic->UpdateSelfAndChild();
 
 	background->Draw();
-	background->UpdateSelfAndChild();
 
 	cube->Draw();
-	cube->UpdateSelfAndChild();
 
 	cube2->Draw();
-	cube2->UpdateSelfAndChild();
 
 	cube3->Draw();
-	cube3->UpdateSelfAndChild();
 }
 
 void Game::exit()

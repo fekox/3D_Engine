@@ -35,7 +35,7 @@ namespace entity3D
 
 		public:
 			
-			Entity3D(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
+			Entity3D(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent);
 			void DrawShape3D(Material* material);
 			void SetColor(Vector4 rgba);
 			Vector4 GetColor();

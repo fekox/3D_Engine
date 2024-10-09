@@ -2,7 +2,7 @@
 
 namespace shape3D
 {
-	Shape3D::Shape3D(Shapes3D typeShapes, Material* material, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation) : Entity3D(render, newPosition, newScale, newRotation)
+	Shape3D::Shape3D(Shapes3D typeShapes, Material* material, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation) : Entity3D(render, newPosition, newScale, newRotation, nullptr)
 	{
 		this->material = material;
 

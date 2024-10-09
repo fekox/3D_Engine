@@ -1,14 +1,32 @@
 #include "Transform.h"
 
-Transform::Transform()
+Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
 {
-	glm::vec3 m_pos = { 0.0f, 0.0f, 0.0f };
-	glm::vec3 m_eulerRot = { 0.0f, 0.0f, 0.0f }; 
-	glm::vec3 m_scale = { 1.0f, 1.0f, 1.0f };
+	this->m_pos = position;
+	this->m_eulerRot = rotation;
+	this->m_scale = scale;
 
-	glm::mat4 m_modelMatrix = glm::mat4(1.0f);
+	m_modelMatrix = glm::mat4(1.0f);
 
-	bool m_isDirty = true;
+	m_isDirty = true;
+
+	UpdateSelfAndChild();
+}
+
+Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Transform* parent)
+{
+	this->m_pos = position;
+	this->m_eulerRot = rotation;
+	this->m_scale = scale;
+
+	this->parent = parent;
+	parent->children.push_back(this);
+
+	m_modelMatrix = glm::mat4(1.0f);
+
+	m_isDirty = true;
+
+	UpdateSelfAndChild();
 }
 
 Transform::~Transform()
@@ -111,4 +129,39 @@ glm::vec3 Transform::GetGlobalScale()
 bool Transform::IsDirty()
 {
 	return m_isDirty;
+}
+
+void Transform::AddChild(Transform* newChild)
+{
+	children.push_back(newChild);
+	children.back()->parent = this;
+}
+
+void Transform::UpdateSelfAndChild()
+{
+	m_modelMatrix = GetModelMatrix();
+
+	if (IsDirty())
+	{
+		ForceUpdateSelfAndChild();
+		return;
+	}
+
+	for (auto&& child : children)
+	{
+		child->UpdateSelfAndChild();
+	}
+}
+
+void Transform::ForceUpdateSelfAndChild()
+{
+	if (parent != nullptr)
+		ComputeModelMatrix(parent->GetModelMatrix());
+	else
+		ComputeModelMatrix();
+
+	for (auto&& child : children)
+	{
+		child->ForceUpdateSelfAndChild();
+	}
 }

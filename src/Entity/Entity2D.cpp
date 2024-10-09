@@ -29,6 +29,6 @@ namespace Entity2D
 
 	void Entity2D::DrawTexture(unsigned int& idTexture)
 	{
-		render->DrawTexture(VAO, indexSize, color, model, idTexture);
+		render->DrawTexture(VAO, indexSize, color, transform->m_modelMatrix, idTexture);
 	}
 }

@@ -6,9 +6,6 @@
 #include "Transform/Transform.h"
 #include "BoundingVolume/AABB.h"
 
-#include <list> 
-#include <memory>
-
 using namespace vectors;
 using namespace renderer;
 
@@ -29,14 +26,12 @@ namespace entity
 
 	public:
 
-		Entity* parent;
-		list<Entity*> children;
-
-		Transform transform;
+		Transform* transform;
 
 		AABB boundingVolume;
 
 		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
+		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent);
 		~Entity();
 
 		void setPosition(glm::vec3 newPosition);
@@ -56,11 +51,5 @@ namespace entity
 		void UpdateTMatrix();
 
 		AABB GetGlobalAABB();
-
-		void AddChild(Entity* newChild);
-
-		void UpdateSelfAndChild();
-
-		void ForceUpdateSelfAndChild();
 	};
 }

@@ -1,11 +1,14 @@
 #pragma once
 
+#include <list> 
+#include "Tools/DLL-Exp/dll-Exp-Inp.h"
+
 #include <GLFW/glfw3.h>
 #include "..\libs\glm\include\glm.hpp"
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
 #include "..\libs\glm\include\gtc\type_ptr.hpp"
 
-class Transform
+class EXPORT Transform
 {
 protected:
 	//Local space information
@@ -14,7 +17,6 @@ protected:
 	glm::vec3 m_scale;
 
 	//Global space information concatenate in matrix
-	glm::mat4 m_modelMatrix;
 
 	//Dirty flag
 	bool m_isDirty;
@@ -23,8 +25,13 @@ protected:
 	glm::mat4 GetLocalModelMatrix();
 
 public:
+	glm::mat4 m_modelMatrix;
 
-	Transform();
+	std::list<Transform*> children;
+	Transform* parent;
+
+	Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
+	Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Transform* parent);
 	~Transform();
 
 	void ComputeModelMatrix();
@@ -47,5 +54,11 @@ public:
 	glm::vec3 GetGlobalScale();
 
 	bool IsDirty();
+
+	void AddChild(Transform* newChild);
+
+	void UpdateSelfAndChild();
+
+	void ForceUpdateSelfAndChild();
 };
 
