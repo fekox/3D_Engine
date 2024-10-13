@@ -174,9 +174,6 @@
     <ClCompile Include="src\BoundingVolume\BoundingVolume.cpp">
       <Filter>Src\BoundingVolume</Filter>
     </ClCompile>
-    <ClCompile Include="src\BoundingVolume\Sphere.cpp">
-      <Filter>Src\BoundingVolume</Filter>
-    </ClCompile>
     <ClCompile Include="src\BoundingVolume\SquareAABB.cpp">
       <Filter>Src\BoundingVolume</Filter>
     </ClCompile>
@@ -285,9 +282,6 @@
       <Filter>Src\Frustum</Filter>
     </ClInclude>
     <ClInclude Include="src\BoundingVolume\BoundingVolume.h">
-      <Filter>Src\BoundingVolume</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BoundingVolume\Sphere.h">
       <Filter>Src\BoundingVolume</Filter>
     </ClInclude>
     <ClInclude Include="src\BoundingVolume\SquareAABB.h">
