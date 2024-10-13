@@ -18,7 +18,7 @@ public:
 
 	vector<Mesh> GetMeshes();
 
-	AABB GenerateAABB(const Model& model);
+	static AABB GenerateAABB(const Model& model);
 
 	void Draw();
 };

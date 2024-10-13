@@ -111,28 +111,28 @@ namespace entity
 		model = transform->GetModelMatrix();
 	}
 
-	AABB Entity::GetGlobalAABB()
-	{
-		//Get global scale thanks to our transform
-		glm::vec3 globalCenter{ transform->GetModelMatrix() * glm::vec4(boundingVolume.center, 1.f) };
+	////AABB Entity::GetGlobalAABB()
+	////{
+	////	//Get global scale thanks to our transform
+	////	glm::vec3 globalCenter{ transform->GetModelMatrix() * glm::vec4(boundingVolume.center, 1.f) };
 
-		// Scaled orientation
-		glm::vec3 right = transform->GetRight() * boundingVolume.extents.x;
-		glm::vec3 up = transform->GetUp() * boundingVolume.extents.y;
-		glm::vec3 forward = transform->GetForward() * boundingVolume.extents.z;
+	////	// Scaled orientation
+	////	glm::vec3 right = transform->GetRight() * boundingVolume.extents.x;
+	////	glm::vec3 up = transform->GetUp() * boundingVolume.extents.y;
+	////	glm::vec3 forward = transform->GetForward() * boundingVolume.extents.z;
 
-		float newIi = std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, right)) +
-			std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, up)) +
-			std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, forward));
+	////	float newIi = std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, right)) +
+	////		std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, up)) +
+	////		std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, forward));
 
-		float newIj = std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, right)) +
-			std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, up)) +
-			std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, forward));
+	////	float newIj = std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, right)) +
+	////		std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, up)) +
+	////		std::abs(glm::dot(glm::vec3{ 0.f, 1.f, 0.f }, forward));
 
-		float newIk = std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, right)) +
-			std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, up)) +
-			std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, forward));
+	////	float newIk = std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, right)) +
+	////		std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, up)) +
+	////		std::abs(glm::dot(glm::vec3{ 0.f, 0.f, 1.f }, forward));
 
-		return AABB(globalCenter, newIi, newIj, newIk);
-	}
+	////	return AABB(globalCenter, newIi, newIj, newIk);
+	////}
 }

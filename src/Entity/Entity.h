@@ -28,7 +28,7 @@ namespace entity
 
 		Transform* transform;
 
-		AABB boundingVolume;
+		//AABB boundingVolume;
 
 		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
 		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent);
@@ -50,6 +50,6 @@ namespace entity
 
 		void UpdateTMatrix();
 
-		AABB GetGlobalAABB();
+		//AABB GetGlobalAABB();
 	};
 }

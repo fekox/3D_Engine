@@ -4,17 +4,14 @@
 #include "Transform/Transform.h"
 #include "Plane/Plane.h"
 
-class BoundingVolume
+struct BoundingVolume
 {
-	public:
+		~BoundingVolume() = default;
 
-		BoundingVolume();
-		~BoundingVolume();
+		virtual bool IsOnFrustum(const Frustum camFrustum, const Transform* transform) const = 0;
 
-		virtual bool IsOnFrustum(Frustum camFrustum, Transform transform) = 0;
+		virtual bool IsOnOrForwardPlane(const Plane& plane) const = 0;
 
-		virtual bool IsOnOrForwardPlane(Plane plane) = 0;
-
-		bool IsOnFrustum(Frustum camFrustum);
+		bool IsOnFrustum(const Frustum& camFrustum);
 };
 

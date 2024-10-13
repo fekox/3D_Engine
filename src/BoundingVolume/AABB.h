@@ -3,20 +3,28 @@
 #include "BoundingVolume/BoundingVolume.h"
 #include <array> 
 
-class AABB : public BoundingVolume
+struct AABB : public BoundingVolume
 {
-	public:
+	glm::vec3 center{ 0.f, 0.f, 0.f };
+	glm::vec3 extents{ 0.f, 0.f, 0.f };
 
-		glm::vec3 center;
-		glm::vec3 extents;
+	AABB(const glm::vec3& min, const glm::vec3& max) : BoundingVolume{}, center{ (max + min) * 0.5f },
+		extents{ max.x - center.x, max.y - center.y, max.z - center.z }
+	{
+	}
 
-		AABB();
-		AABB( glm::vec3& min,  glm::vec3& max);
-		AABB( glm::vec3& inCenter, float iI, float iJ, float iK);
+	AABB(const glm::vec3& inCenter, float iI, float iJ, float iK) : BoundingVolume{}, center{ inCenter },
+		extents{ iI, iJ, iK }
+	{
 
-		std::array<glm::vec3, 8> GetVertice() ;
+	}
 
-		bool IsOnOrForwardPlane(Plane plane) override;
-		bool IsOnFrustum(Frustum camFrustum, Transform transform) override;
+	~AABB();
+
+	std::array<glm::vec3, 8> GetVertice();
+
+	bool IsOnOrForwardPlane(const Plane& plane) const final;
+
+	bool IsOnFrustum(const Frustum camFrustum, const Transform* transform) const override;
 };
 

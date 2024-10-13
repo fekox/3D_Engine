@@ -20,9 +20,9 @@ AABB Model::GenerateAABB(const Model& model)
 	glm::vec3 minAABB = glm::vec3(std::numeric_limits<float>::max());
 	glm::vec3 maxAABB = glm::vec3(std::numeric_limits<float>::min());
 
-	for (auto&& mesh : model.meshes)
+	for (const Mesh& mesh : model.meshes)
 	{
-		for (auto&& vertex : mesh.vertices)
+		for (const Vertex& vertex : mesh.vertices)
 		{
 			minAABB.x = std::min(minAABB.x, vertex.Position.x);
 			minAABB.y = std::min(minAABB.y, vertex.Position.y);

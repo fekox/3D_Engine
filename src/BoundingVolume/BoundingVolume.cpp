@@ -1,14 +1,6 @@
 #include "BoundingVolume.h"
 
-BoundingVolume::BoundingVolume()
-{
-}
-
-BoundingVolume::~BoundingVolume()
-{
-}
-
-bool BoundingVolume::IsOnFrustum(Frustum camFrustum)
+bool BoundingVolume::IsOnFrustum(const Frustum& camFrustum)
 {
 	return (IsOnOrForwardPlane(camFrustum.leftFace) &&
 			IsOnOrForwardPlane(camFrustum.rightFace) &&

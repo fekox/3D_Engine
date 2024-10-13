@@ -2,22 +2,16 @@
 #include "BoundingVolume/BoundingVolume.h"
 #include <memory> 
 
-using namespace std;
-
-class SquareAABB : public BoundingVolume
+struct SquareAABB : public BoundingVolume
 {
-	private:
+	glm::vec3 center{ 0.f, 0.f, 0.f };
+	float extent{ 0.f };
 
-	glm::vec3 center;
-	float extent;
+	SquareAABB(const glm::vec3 inCenter, float inExtent);
 
-	public:
+	~SquareAABB();
 
-		SquareAABB();
-		SquareAABB(glm::vec3 inCenter, float inExtent);
-		~SquareAABB();
-
-		bool IsOnOrForwardPlane(Plane plane) override;
-		bool IsOnFrustum(Frustum camFrustum, Transform transform) override;
+	bool IsOnOrForwardPlane(const Plane& plane) const final;
+	bool IsOnFrustum(const Frustum camFrustum, const Transform* transform)const override;
 };
 

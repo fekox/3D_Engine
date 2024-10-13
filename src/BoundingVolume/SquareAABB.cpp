@@ -1,13 +1,8 @@
 #include "SquareAABB.h"
 
-SquareAABB::SquareAABB()
-{
-	center = { 0.f, 0.f, 0.f };
-	extent = { 0.f };
-}
-
 SquareAABB::SquareAABB(glm::vec3 inCenter, float inExtent) : BoundingVolume{}, center{ inCenter }, extent{ inExtent }
 {
+
 }
 
 SquareAABB::~SquareAABB()
@@ -15,22 +10,22 @@ SquareAABB::~SquareAABB()
 
 }
 
-bool SquareAABB::IsOnOrForwardPlane(Plane plane)
+bool SquareAABB::IsOnOrForwardPlane(const Plane& plane) const
 {
 	// Compute the projection interval radius of b onto L(t) = b.c + t * p.n
 	float r = extent * (std::abs(plane.normal.x) + std::abs(plane.normal.y) + std::abs(plane.normal.z));
 	return -r <= plane.GetSignedDistanceToPlane(center);
 }
 
-bool SquareAABB::IsOnFrustum(Frustum camFrustum, Transform transform)
+bool SquareAABB::IsOnFrustum(const Frustum camFrustum, const Transform* transform) const
 {
 	//Get global scale thanks to our transform
-	glm::vec3 globalCenter{ transform.GetModelMatrix() * glm::vec4(center, 1.f) };
+	glm::vec3 globalCenter{ transform->m_modelMatrix * glm::vec4(center, 1.f) };
 
 	// Scaled orientation
-	glm::vec3 right = transform.GetRight() * extent;
-	glm::vec3 up = transform.GetUp() * extent;
-	glm::vec3 forward = transform.GetForward() * extent;
+	glm::vec3 right = transform->GetRightConst() * extent;
+	glm::vec3 up = transform->GetUpConst() * extent;
+	glm::vec3 forward = transform->GetForwardConst() * extent;
 
 	float newIi = std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, right)) +
 		std::abs(glm::dot(glm::vec3{ 1.f, 0.f, 0.f }, up)) +

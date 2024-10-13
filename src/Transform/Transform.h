@@ -23,6 +23,7 @@ protected:
 
 protected:
 	glm::mat4 GetLocalModelMatrix();
+	glm::mat4 GetLocalModelMatrixConst() const;
 
 public:
 	glm::mat4 m_modelMatrix;
@@ -45,12 +46,21 @@ public:
 	glm::vec3 GetLocalPosition();
 	glm::vec3 GetLocalRotation();
 	glm::vec3 GetLocalScale();
+
 	glm::mat4 GetModelMatrix();
 
 	glm::vec3 GetRight();
+	glm::vec3 GetRightConst() const;
+
 	glm::vec3 GetUp();
+	glm::vec3 GetUpConst() const;
+
 	glm::vec3 GetBackward();
+	glm::vec3 GetBackwardConst() const;
+
 	glm::vec3 GetForward();
+	glm::vec3 GetForwardConst() const;
+
 	glm::vec3 GetGlobalScale();
 
 	bool IsDirty();
