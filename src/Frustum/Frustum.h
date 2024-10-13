@@ -2,10 +2,8 @@
 
 #include "Plane/Plane.h"
 
-class Frustum
+struct Frustum
 {
-	public:
-
 	Plane topFace;
 	Plane bottomFace;
 
@@ -14,7 +12,4 @@ class Frustum
 
 	Plane farFace;
 	Plane nearFace;
-
-		Frustum();
-		~Frustum();
 };

@@ -191,20 +191,20 @@ namespace camera
 		}
 	}
 
-	Frustum Camera::CreateFrustumFromCamera(const Camera& cam, float aspect, float fovY, float zNear, float zFar)
+	Frustum Camera::CreateFrustumFromCamera(const Camera* cam, float aspect, float fovY, float zNear, float zFar)
 	{
 		Frustum frustum;
 
 		const float halfVSide = zFar * tanf(fovY * .5f);
 		const float halfHSide = halfVSide * aspect;
-		const glm::vec3 frontMultFar = zFar * cam.cameraFront;
+		const glm::vec3 frontMultFar = zFar * cam->cameraFront;
 
-		frustum.nearFace = { cam.cameraPos + zNear * cam.cameraFront, cam.cameraFront };
-		frustum.farFace = { cam.cameraPos + frontMultFar, -cam.cameraFront };
-		frustum.rightFace = { cam.cameraPos, glm::cross(frontMultFar - cam.cameraRight * halfHSide, cam.cameraUp) };
-		frustum.leftFace = { cam.cameraPos, glm::cross(cam.cameraUp, frontMultFar + cam.cameraRight * halfHSide) };
-		frustum.topFace = { cam.cameraPos, glm::cross(cam.cameraRight, frontMultFar - cam.cameraUp * halfVSide) };
-		frustum.bottomFace = { cam.cameraPos, glm::cross(frontMultFar + cam.cameraUp * halfVSide, cam.cameraRight) };
+		frustum.nearFace = { cam->cameraPos + zNear * cam->cameraFront, cam->cameraFront };
+		frustum.farFace = { cam->cameraPos + frontMultFar, - cam->cameraFront };
+		frustum.rightFace = { cam->cameraPos, glm::cross(frontMultFar - cam->cameraRight * halfHSide, cam->cameraUp) };
+		frustum.leftFace = { cam->cameraPos, glm::cross(cam->cameraUp, frontMultFar + cam->cameraRight * halfHSide) };
+		frustum.topFace = { cam->cameraPos, glm::cross(cam->cameraRight, frontMultFar - cam->cameraUp * halfVSide) };
+		frustum.bottomFace = { cam->cameraPos, glm::cross(frontMultFar + cam->cameraUp * halfVSide, cam->cameraRight) };
 
 		return frustum;
 	}
