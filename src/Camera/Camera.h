@@ -67,6 +67,6 @@ namespace camera
 			void CheckMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
 			void CheckMouseScroll(float yoffset);
 
-			Frustum CreateFrustumFromCamera(const Camera* cam, float aspect, float fovY, float zNear, float zFar);
+			Frustum* CreateFrustumFromCamera(const Camera* cam, float aspect, float fovY, float zNear, float zFar);
 	};
 }
