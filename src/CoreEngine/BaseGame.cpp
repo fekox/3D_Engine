@@ -18,6 +18,12 @@ namespace baseEngine
 		camera = new Camera(45.f, width, height);
 		newCamera = camera;
 
+		screenRatio = window->getWidth() / window->getHeight();
+
+		frustum = new Frustum();
+
+		frustum = camera->CreateFrustumFromCamera(camera, screenRatio, glm::radians(camera->zoom), camera->nearPlane, camera->farPlane);
+
 		for (int i = 0; i < 4; i++)
 		{
 			pointLight[i] = new PointLight();

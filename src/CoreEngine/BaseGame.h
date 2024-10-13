@@ -48,6 +48,9 @@ namespace baseEngine
 		DirectionalLight directionaLight[4];
 		SpotLight* spotLight[4];
 		Material* material;
+
+		Frustum* frustum;
+		float screenRatio;
 		
 		InputSystem* inputSystem;
 		BaseGame(int width, int height, const char* windowName);
