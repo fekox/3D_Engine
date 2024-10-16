@@ -26,8 +26,8 @@ public:
 
 	AABB GetGlobalAABB();
 
-	bool IsOnFrustum(Frustum frustum);
+	bool IsOnFrustum(Frustum* frustum);
 
 	void Draw();
-	bool DrawWithFrustum(Frustum frustum, bool shouldBeDrawn);
+	bool DrawWithFrustum(Frustum* frustum, bool shouldBeDrawn);
 };

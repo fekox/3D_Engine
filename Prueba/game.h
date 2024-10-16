@@ -12,6 +12,10 @@ private:
 	
 	//Model
 	Model* model;
+	Renderer* renderer;
+
+	Camera* newCamera;
+	Window* currentWindow;
 
 	glm::vec3 modelPosition;
 	glm::vec3 modelScale;

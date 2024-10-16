@@ -20,8 +20,6 @@ namespace baseEngine
 
 		screenRatio = window->getWidth() / window->getHeight();
 
-		frustum = new Frustum();
-
 		for (int i = 0; i < 4; i++)
 		{
 			pointLight[i] = new PointLight();
@@ -61,7 +59,6 @@ namespace baseEngine
 			renderer->StartDraw();
 			
 			camera->CameraMovement(window->getWindow());
-			frustum = camera->CreateFrustumFromCamera(camera, screenRatio, glm::radians(camera->zoom), camera->nearPlane, camera->farPlane);
 
 			renderer->UpdateProjection(camera);
 			renderer->UpdateView(camera);

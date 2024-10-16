@@ -35,7 +35,7 @@ namespace renderer
 	/// <summary>
 	/// Class Renderer
 	/// </summary>
-	class Renderer
+	class EXPORT Renderer
 	{
 		private:
 
@@ -44,14 +44,15 @@ namespace renderer
 		Shader shader;
 		Camera* camera;
 		TextureImporter textureImporter;
-		glm::mat4x4 projection;
-		glm::mat4x4 view;
 
 		DirectionalLight directionaLight[4];
 		SpotLight* spotLight[4];
 		PointLight* pointLight[4];
 
 		public:
+
+		glm::mat4x4 projection;
+		glm::mat4x4 view;
 
 		unsigned int primitiveShader;
 		unsigned int textureShader;
@@ -62,6 +63,7 @@ namespace renderer
 		unsigned int line;
 
 		Renderer(Window* window, Camera* camera, PointLight* light[], DirectionalLight directionaLight[], SpotLight* spotLight[]);
+		Renderer(Window* window, Camera* camera);
 		~Renderer();
 		/// <summary>
 		/// Clear screen
@@ -84,8 +86,6 @@ namespace renderer
 		void DrawModel(unsigned int VAO, vector<unsigned int> index, vector<Texture> textures, glm::mat4x4 model);
 
 		void DrawLinesAABB(glm::mat4x4 model, std::vector<glm::vec3> vertices);
-
-		void DrawFrustum(glm::mat4x4 viewProjectionMatrix, Frustum frustum);
 
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,

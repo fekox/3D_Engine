@@ -63,14 +63,14 @@ AABB Model::GetGlobalAABB()
 	return AABB(globalCenter, newIi, newIj, newIk);
 }
 
-bool Model::IsOnFrustum(Frustum frustum)
+bool Model::IsOnFrustum(Frustum* frustum)
 {
-	return boundingVolume->IsOnOrForwardPlane(frustum.leftFace) &&
-		boundingVolume->IsOnOrForwardPlane(frustum.rightFace) &&
-		boundingVolume->IsOnOrForwardPlane(frustum.topFace) &&
-		boundingVolume->IsOnOrForwardPlane(frustum.bottomFace) &&
-		boundingVolume->IsOnOrForwardPlane(frustum.nearFace) &&
-		boundingVolume->IsOnOrForwardPlane(frustum.farFace);
+	return boundingVolume->IsOnOrForwardPlane(frustum->leftFace) &&
+		boundingVolume->IsOnOrForwardPlane(frustum->rightFace) &&
+		boundingVolume->IsOnOrForwardPlane(frustum->topFace) &&
+		boundingVolume->IsOnOrForwardPlane(frustum->bottomFace) &&
+		boundingVolume->IsOnOrForwardPlane(frustum->nearFace) &&
+		boundingVolume->IsOnOrForwardPlane(frustum->farFace);
 }
 
 void Model::Draw()
@@ -81,7 +81,7 @@ void Model::Draw()
 	}
 }
 
-bool Model::DrawWithFrustum(Frustum frustum, bool shouldBeDrawn)
+bool Model::DrawWithFrustum(Frustum* frustum, bool shouldBeDrawn)
 {
 	for (auto child : transform->children)
 	{
@@ -106,6 +106,4 @@ bool Model::DrawWithFrustum(Frustum frustum, bool shouldBeDrawn)
 	}
 
 	return shouldBeDrawn;
-
-
 }

@@ -49,7 +49,6 @@ namespace baseEngine
 		SpotLight* spotLight[4];
 		Material* material;
 
-		Frustum* frustum;
 		float screenRatio;
 		
 		InputSystem* inputSystem;

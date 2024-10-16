@@ -56,6 +56,12 @@ namespace renderer
 		glAlphaFunc(GL_GREATER, 0.1f);
 	}
 
+	Renderer::Renderer(Window* window, Camera* camera)
+	{
+		this->window = window;
+		this->camera = camera;
+	}
+
 	void Renderer::UpdateView(Camera* camera)
 	{
 		view = camera->UpdateCameraViewMode();
@@ -318,60 +324,6 @@ namespace renderer
 		glDeleteBuffers(1, &VBO);
 		glDeleteVertexArrays(1, &VAO);
 		glDeleteVertexArrays(1, &VAO);
-	}
-
-	void Renderer::DrawFrustum(glm::mat4x4 viewProjectionMatrix, Frustum frustum)
-	{
-		std::vector<glm::vec3> vertices = {
-				
-			-frustum.nearFace.normal * frustum.nearFace.distance,  // near bottom left
-			frustum.nearFace.normal * frustum.nearFace.distance,   // near bottom right
-		   frustum.rightFace.normal * frustum.rightFace.distance,  // near top right
-		   -frustum.leftFace.normal * frustum.leftFace.distance,   // near top left
-		   -frustum.farFace.normal * frustum.farFace.distance,     // far bottom left
-	       frustum.farFace.normal * frustum.farFace.distance,      // far bottom right
-	       frustum.rightFace.normal * frustum.rightFace.distance + frustum.farFace.normal * frustum.farFace.distance, // far top right
-	      -frustum.leftFace.normal * frustum.leftFace.distance + frustum.farFace.normal * frustum.farFace.distance  // far top left
-		};
-
-		// Define indices for drawing the frustum as lines
-		const GLuint indices[] = {
-			0, 1, 1, 2, 2, 3, 3, 0,  // near plane
-			4, 5, 5, 6, 6, 7, 7, 4,  // far plane
-			0, 4, 1, 5, 2, 6, 3, 7   // connections between near and far planes
-		};
-
-		GLuint VAO, VBO, EBO;
-
-		glUseProgram(line);
-		glUniformMatrix4fv(glGetUniformLocation(line, "model"), 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
-		glUniformMatrix4fv(glGetUniformLocation(line, "view"), 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
-		glUniformMatrix4fv(glGetUniformLocation(line, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
-
-		glGenVertexArrays(1, &VAO);
-		glGenBuffers(1, &VBO);
-		glGenBuffers(1, &EBO);
-
-		glBindVertexArray(VAO);
-
-		glBindBuffer(GL_ARRAY_BUFFER, VBO);
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(glm::vec3), &vertices[0], GL_STATIC_DRAW);
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-		glEnableVertexAttribArray(0);
-
-		// Draw the frustum as lines
-		glDrawElements(GL_LINES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
-		// Cleanup
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
-		glDeleteBuffers(1, &VBO);
-		glDeleteVertexArrays(1, &VAO);
-		glDeleteBuffers(1, &EBO);
 	}
 
 	void Renderer::CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO)

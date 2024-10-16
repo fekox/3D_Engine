@@ -136,6 +136,8 @@ void Game::init()
 	idleAnimation->AddFrame(390, 98, 98 / 3, 43, 830, 465, 2500, 3);
 
 	Sonic->SetAnimation(idleAnimation);	
+
+	renderer = new Renderer(currentWindow, newCamera);
 }
 
 void Game::update()
@@ -195,7 +197,6 @@ void Game::update()
 
 	//Drawn and Update
 	//*********************************************************************************
-	model->Draw();
 
 	model2->Draw();
 
@@ -210,6 +211,17 @@ void Game::update()
 	cube2->Draw();
 
 	cube3->Draw();
+
+	if (model->IsOnFrustum(camera->CreateFrustumFromCamera(camera, width / height, glm::radians(camera->zoom), camera->nearPlane, camera->farPlane - 500)))
+	{
+		model->Draw();
+		cout << "Se dibuja" << endl;
+	}
+
+	else
+	{
+		cout << "No se dibuja" << endl;
+	}
 }
 
 void Game::exit()

@@ -195,16 +195,21 @@ namespace camera
 	{
 		Frustum* frustum = new Frustum();
 
-		const float halfVSide = zFar * tanf(fovY * .5f);
-		const float halfHSide = halfVSide * aspect;
-		const glm::vec3 frontMultFar = zFar * cam->cameraFront;
+		glm::vec3 camUp = cam->cameraUp;
+		glm::vec3 camRight = cam->cameraRight;
+		glm::vec3 camForward = cam->cameraFront;
+		glm::vec3 camPos = cam->cameraPos;
+		float halfheight = zFar * (glm::tan((fovY * .5f) * glm::pi<float>() / 180.f));
+		float halfWidth = halfheight * aspect;
+		glm::vec3 frontFar = zFar * camForward;
 
-		frustum->nearFace = { cam->cameraPos + zNear * cam->cameraFront, cam->cameraFront };
-		frustum->farFace = { cam->cameraPos + frontMultFar, - cam->cameraFront };
-		frustum->rightFace = { cam->cameraPos, glm::cross(frontMultFar - cam->cameraRight * halfHSide, cam->cameraUp) };
-		frustum->leftFace = { cam->cameraPos, glm::cross(cam->cameraUp, frontMultFar + cam->cameraRight * halfHSide) };
-		frustum->topFace = { cam->cameraPos, glm::cross(cam->cameraRight, frontMultFar - cam->cameraUp * halfVSide) };
-		frustum->bottomFace = { cam->cameraPos, glm::cross(frontMultFar + cam->cameraUp * halfVSide, cam->cameraRight) };
+		frustum->nearFace.SetNormalAndDistance(camPos + zNear * camForward, camForward);
+		frustum->farFace.SetNormalAndDistance(camPos + frontFar, -camForward);
+
+		frustum->rightFace.SetNormalAndDistance(camPos, glm::cross(camUp, frontFar + camRight * halfWidth));
+		frustum->leftFace.SetNormalAndDistance(camPos, glm::cross(frontFar - camRight * halfWidth, camUp));
+		frustum->topFace.SetNormalAndDistance(camPos, glm::cross(camRight, frontFar - camUp * halfheight));
+		frustum->bottomFace.SetNormalAndDistance(camPos, glm::cross(frontFar + camUp * halfheight, camRight));
 
 		return frustum;
 	}

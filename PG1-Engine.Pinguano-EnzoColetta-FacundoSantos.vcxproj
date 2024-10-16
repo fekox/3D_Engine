@@ -96,6 +96,7 @@
   <ItemGroup>
     <None Include="Prueba\res\Shader\Light.Shader" />
     <None Include="Prueba\res\Shader\LightCube.Shader" />
+    <None Include="Prueba\res\Shader\Line.Shader" />
     <None Include="Prueba\res\Shader\Models.Shader" />
     <None Include="Prueba\res\Shader\MultipleLights.Shader" />
     <None Include="Prueba\res\Shader\Primitive.Shader" />
