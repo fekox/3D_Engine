@@ -4,7 +4,6 @@
 #pragma once
 
 using namespace vectors;
-using namespace entity;
 using namespace material;
 
 namespace entity3D
@@ -39,6 +38,6 @@ namespace entity3D
 			void DrawShape3D(Material* material);
 			void SetColor(Vector4 rgba);
 			Vector4 GetColor();
-			~Entity3D();
+			~Entity3D() override;
 	};
 }

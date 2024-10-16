@@ -5,6 +5,8 @@
 
 using namespace entity3D;
 
+struct AABB;
+
 class EXPORT Model : public Entity3D
 {
 public:
@@ -13,12 +15,19 @@ public:
 
 	string directory;
 
+	unique_ptr<AABB> boundingVolume;
+
 	Model(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, const char* path, bool invertTextures, Transform* parent = nullptr);
-	~Model();
+	~Model() override;
 
 	vector<Mesh> GetMeshes();
 
 	static AABB GenerateAABB(const Model& model);
 
+	AABB GetGlobalAABB();
+
+	bool IsOnFrustum(Frustum frustum);
+
 	void Draw();
+	bool DrawWithFrustum(Frustum frustum, bool shouldBeDrawn);
 };

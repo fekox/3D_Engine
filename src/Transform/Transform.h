@@ -1,6 +1,7 @@
 #pragma once
 
 #include <list> 
+#include "Component.h"
 #include "Tools/DLL-Exp/dll-Exp-Inp.h"
 
 #include <GLFW/glfw3.h>
@@ -8,7 +9,7 @@
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
 #include "..\libs\glm\include\gtc\type_ptr.hpp"
 
-class EXPORT Transform
+class EXPORT Transform : public Component
 {
 protected:
 	//Local space information
@@ -31,9 +32,10 @@ public:
 	std::list<Transform*> children;
 	Transform* parent;
 
-	Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
-	Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Transform* parent);
-	~Transform();
+	explicit Transform(Entity* newEntity);
+	Transform(Entity* newEntity, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);
+	Transform(Entity* newEntity, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Transform* parent);
+	~Transform() override;
 
 	void ComputeModelMatrix();
 	void ComputeModelMatrix(glm::mat4 parentGlobalModelMatrix);

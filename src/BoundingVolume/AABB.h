@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BoundingVolume/BoundingVolume.h"
-#include <array> 
+#include <vector>
 
 struct AABB : public BoundingVolume
 {
@@ -19,9 +19,9 @@ struct AABB : public BoundingVolume
 
 	}
 
-	~AABB();
+	~AABB() override;
 
-	std::array<glm::vec3, 8> GetVertice();
+	std::vector<glm::vec3> GetVertice();
 
 	bool IsOnOrForwardPlane(const Plane& plane) const final;
 

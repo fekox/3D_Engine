@@ -59,6 +59,7 @@ namespace renderer
 		unsigned int lightCubeShader;
 		unsigned int multipleLights;
 		unsigned int models;
+		unsigned int line;
 
 		Renderer(Window* window, Camera* camera, PointLight* light[], DirectionalLight directionaLight[], SpotLight* spotLight[]);
 		~Renderer();
@@ -81,6 +82,11 @@ namespace renderer
 		void DrawEntity3D(unsigned int VAO, unsigned int lightCubeVAO, int sizeIndex, Vector4 color, glm::mat4x4 model, Material* material);
 
 		void DrawModel(unsigned int VAO, vector<unsigned int> index, vector<Texture> textures, glm::mat4x4 model);
+
+		void DrawLinesAABB(glm::mat4x4 model, std::vector<glm::vec3> vertices);
+
+		void DrawFrustum(glm::mat4x4 viewProjectionMatrix, Frustum frustum);
+
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);

@@ -9,7 +9,7 @@ struct SquareAABB : public BoundingVolume
 
 	SquareAABB(const glm::vec3 inCenter, float inExtent);
 
-	~SquareAABB();
+	~SquareAABB() override;
 
 	bool IsOnOrForwardPlane(const Plane& plane) const final;
 	bool IsOnFrustum(const Frustum camFrustum, const Transform* transform)const override;

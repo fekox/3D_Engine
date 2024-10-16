@@ -9,8 +9,7 @@
 using namespace vectors;
 using namespace renderer;
 
-namespace entity
-{
+
 	class EXPORT Entity
 	{
 	protected:
@@ -28,11 +27,9 @@ namespace entity
 
 		Transform* transform;
 
-		//AABB boundingVolume;
-
 		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
 		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent);
-		~Entity();
+		virtual ~Entity() = 0;
 
 		void setPosition(glm::vec3 newPosition);
 		glm::vec3 getPosition();
@@ -49,7 +46,4 @@ namespace entity
 		glm::vec3 getRotation();
 
 		void UpdateTMatrix();
-
-		//AABB GetGlobalAABB();
 	};
-}

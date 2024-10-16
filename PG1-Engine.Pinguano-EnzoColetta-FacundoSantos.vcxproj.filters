@@ -180,6 +180,9 @@
     <ClCompile Include="src\BoundingVolume\AABB.cpp">
       <Filter>Src\BoundingVolume</Filter>
     </ClCompile>
+    <ClCompile Include="src\Component.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -289,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="src\BoundingVolume\AABB.h">
       <Filter>Src\BoundingVolume</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component.h">
+      <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

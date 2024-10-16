@@ -5,9 +5,9 @@ AABB::~AABB()
 
 }
 
-std::array<glm::vec3, 8> AABB::GetVertice()
+std::vector<glm::vec3> AABB::GetVertice()
 {
-	std::array<glm::vec3, 8> vertice;
+	std::vector<glm::vec3> vertice(8);
 
 	vertice[0] = center + glm::vec3(-extents.x, -extents.y, -extents.z);
 	vertice[1] = center + glm::vec3(extents.x, -extents.y, -extents.z);

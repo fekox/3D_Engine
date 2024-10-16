@@ -6,7 +6,7 @@
 
 struct BoundingVolume
 {
-		~BoundingVolume() = default;
+		virtual ~BoundingVolume() = default;
 
 		virtual bool IsOnFrustum(const Frustum camFrustum, const Transform* transform) const = 0;
 

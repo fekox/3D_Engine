@@ -1,6 +1,19 @@
 #include "Transform.h"
 
-Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
+Transform::Transform(Entity* newEntity) : Component(newEntity)
+{
+	this->m_pos = glm::vec3(1.0f);
+	this->m_eulerRot = glm::vec3(1.0f);
+	this->m_scale = glm::vec3(1.0f);
+
+	m_modelMatrix = glm::mat4(1.0f);
+
+	m_isDirty = true;
+
+	UpdateSelfAndChild();
+}
+
+Transform::Transform(Entity* newEntity, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale) : Component(newEntity)
 {
 	this->m_pos = position;
 	this->m_eulerRot = rotation;
@@ -13,7 +26,7 @@ Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
 	UpdateSelfAndChild();
 }
 
-Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Transform* parent)
+Transform::Transform(Entity* newEntity, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale, Transform* parent) : Component(newEntity)
 {
 	this->m_pos = position;
 	this->m_eulerRot = rotation;
