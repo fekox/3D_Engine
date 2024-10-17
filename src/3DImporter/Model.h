@@ -17,7 +17,7 @@ public:
 
 	unique_ptr<AABB> boundingVolume;
 
-	Model(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, const char* path, bool invertTextures, Transform* parent = nullptr);
+	Model(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, const char* path, bool invertTextures, Transform* parent = nullptr, bool turnOffByBSP = false);
 	~Model() override;
 
 	vector<Mesh> GetMeshes();
@@ -28,6 +28,6 @@ public:
 
 	bool IsOnFrustum(Frustum* frustum);
 
-	void Draw();
+	void Draw() override;
 	bool DrawWithFrustum(Frustum* frustum, bool shouldBeDrawn);
 };

@@ -25,6 +25,6 @@ namespace shape3D
 
 		void CreateCube();
 		void CreatePyramid();
-		void Draw();
+		void Draw() override;
 	};
 }

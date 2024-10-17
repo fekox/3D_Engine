@@ -28,10 +28,10 @@ namespace Entity2D
 		float* uvPos;
 
 	public:
-		Entity2D(Vector4 rgba, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
+		Entity2D(Vector4 rgba, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, bool turnOffByBSP = false);
 		~Entity2D() override;
 		
-		void DrawShape();
+		void Draw() override;
 		void DrawTexture(unsigned int& idTexture);
 
 		void setColor(Vector4 rgba);

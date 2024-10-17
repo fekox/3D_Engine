@@ -76,7 +76,7 @@ void Game::init()
 	//Model3
 	//*********************************************************************************
 	 
-	modelPosition3 = glm::vec3{ 0, 0 , 0};
+	modelPosition3 = glm::vec3{ -25, 0 , 0};
 	modelScale3 = glm::vec3{ 100, 100, 100 };
 	modelRotation3 = glm::vec3{ 0, 0, 0};
 
@@ -198,7 +198,7 @@ void Game::update()
 	//Drawn and Update
 	//*********************************************************************************
 
-	model2->Draw();
+	//model2->Draw();
 
 	model3->Draw();
 

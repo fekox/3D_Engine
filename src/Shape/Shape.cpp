@@ -64,6 +64,6 @@ namespace shape
 
 	void Shape::Draw()
 	{
-		DrawShape();
+		Entity2D::Draw();
 	}
 }

@@ -1,6 +1,6 @@
 #include "Entity/Entity.h"
 
-Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation)
+Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, bool turnOffByBSP)
 {
 	this->render = render;
 
@@ -11,6 +11,8 @@ Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm:
 
 	transform = new Transform(this, newPosition, newRotation, newScale);
 
+	this->turnOffByBSP = turnOffByBSP;
+
 	setPosition(newPosition);
 
 	setRotation(newRotation);
@@ -20,7 +22,7 @@ Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm:
 	transform->ForceUpdateSelfAndChild();
 }
 
-Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent)
+Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent, bool turnOffByBSP)
 {
 	this->render = render;
 
@@ -38,6 +40,8 @@ Entity::Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm:
 	{
 		transform = new Transform(this, newPosition, newScale, newRotation, parent);
 	}
+
+	this->turnOffByBSP = turnOffByBSP;
 
 	setPosition(newPosition);
 

@@ -7,7 +7,7 @@ vector<Texture> ModelImporter::textures_loaded;
 
 
 //Creo una scena del assimp y le paso el modelo con las flags.
-void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh>& meshes, bool invertTextures)
+void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh>& meshes, bool invertTextures, bool turnOffByBSP)
 {
 	textures_loaded.clear();
 	// read file via ASSIMP
@@ -23,12 +23,12 @@ void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh
 	currentDirectory = path.substr(0, path.find_last_of('/'));
 
 	// process ASSIMP's root node recursively
-	ProcessNode(meshes, scene->mRootNode, scene, invertTextures);
+	ProcessNode(meshes, scene->mRootNode, scene, invertTextures, turnOffByBSP);
 
 }
 
 //Utilizo recursividad para pasar por todas las meshes del modelo.
-void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene, bool invertTextures)
+void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene, bool invertTextures, bool turnOffByBSP)
 {
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
 	{
@@ -41,7 +41,7 @@ void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScen
 	// after we've processed all of the meshes (if any) we then recursively process each of the children nodes
 	for (unsigned int i = 0; i < node->mNumChildren; i++)
 	{
-		ProcessNode(meshes, node->mChildren[i], scene, invertTextures);
+		ProcessNode(meshes, node->mChildren[i], scene, invertTextures, turnOffByBSP);
 	}
 }
 

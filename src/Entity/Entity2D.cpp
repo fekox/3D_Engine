@@ -2,7 +2,7 @@
 
 namespace Entity2D
 {
-	Entity2D::Entity2D(Vector4 rgba, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation) : Entity(render, newPosition, newScale, newRotation)
+	Entity2D::Entity2D(Vector4 rgba, Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, bool turnOffByBSP) : Entity(render, newPosition, newScale, newRotation, turnOffByBSP)
 	{
 		this->color = rgba;
 	}
@@ -22,7 +22,7 @@ namespace Entity2D
 		return color;
 	}
 
-	void Entity2D::DrawShape()
+	void Entity2D::Draw()
 	{
 		render->Draw2DEntity(VAO, indexSize, color, model);
 	}

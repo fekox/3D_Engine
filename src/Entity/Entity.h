@@ -26,10 +26,13 @@ using namespace renderer;
 	public:
 
 		Transform* transform;
+		bool turnOffByBSP = false;
 
-		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation);
-		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent);
+		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, bool turnOffByBSP = false);
+		Entity(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent, bool TurnOffByBSP = false);
 		virtual ~Entity() = 0;
+
+		virtual void Draw() = 0;
 
 		void setPosition(glm::vec3 newPosition);
 		glm::vec3 getPosition();

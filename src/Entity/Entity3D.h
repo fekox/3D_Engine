@@ -34,8 +34,9 @@ namespace entity3D
 
 		public:
 			
-			Entity3D(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent);
+			Entity3D(Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, Transform* parent, bool turnOffByBSP = false);
 			void DrawShape3D(Material* material);
+			void Draw() override;
 			void SetColor(Vector4 rgba);
 			Vector4 GetColor();
 			~Entity3D() override;

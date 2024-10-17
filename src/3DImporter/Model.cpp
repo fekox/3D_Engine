@@ -1,8 +1,8 @@
 #include "Model.h"
 
-Model::Model(renderer::Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, const char* path, bool invertTextures, Transform* parent) : Entity3D(render, newPosition, newScale, newRotation, parent)
+Model::Model(renderer::Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, const char* path, bool invertTextures, Transform* parent, bool turnOffByBSP) : Entity3D(render, newPosition, newScale, newRotation, parent, turnOffByBSP)
 {
-	ModelImporter::LoadModel(path, directory, meshes, invertTextures);
+	ModelImporter::LoadModel(path, directory, meshes, invertTextures, turnOffByBSP);
 	boundingVolume = make_unique<AABB>(GenerateAABB(*this));
 }
 
@@ -78,6 +78,20 @@ void Model::Draw()
 	for (int i = 0; i < meshes.size(); i++)
 	{
 		render->DrawModel(meshes[i].VAO, meshes[i].indices, meshes[i].textures, transform->m_modelMatrix);
+	}
+
+	if (!transform->children.empty())
+	{
+		for (auto child : transform->children)
+		{
+			if (child->entity != nullptr)
+			{
+				if (child->entity)
+				{
+					child->entity->Draw();
+				}
+			}
+		}
 	}
 }
 
