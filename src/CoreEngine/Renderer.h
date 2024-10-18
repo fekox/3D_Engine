@@ -87,6 +87,8 @@ namespace renderer
 
 		void DrawLinesAABB(glm::mat4x4 model, std::vector<glm::vec3> vertices);
 
+		void DrawPlane(Plane* plane);
+
 
 		void CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize,
 			unsigned int& VAO, unsigned int& VBO, unsigned int& EBO);

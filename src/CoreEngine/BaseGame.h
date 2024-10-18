@@ -7,6 +7,8 @@
 
 #include "Sprite/Sprite.h"
 
+#include "3DImporter/Model.h"
+
 #include "Camera/Camera.h"
 
 #include "Lights/Light.h"
@@ -41,6 +43,7 @@ namespace baseEngine
 		Window* window;
 		ErrorLog errorLog;
 
+		bool showDebug = false;
 		void CalculateTargetPlanes();
 
 	public:
@@ -62,10 +65,16 @@ namespace baseEngine
 		virtual void exit() = 0;
 		Renderer* GetRenderer();
 
+		void DrawScene();
+
 		void AddPlaneToBSP(Plane plane);
 		void AddPlaneToBSP(glm::vec3 point, glm::vec3 normal);
 
+		Frustum* frustum;
+
 		Transform* bspTarget;
+		Transform* root;
+
 		vector<Plane> bspPlanes;
 		vector<bool> planesToCheck;
 	};

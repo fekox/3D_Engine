@@ -326,6 +326,84 @@ namespace renderer
 		glDeleteVertexArrays(1, &VAO);
 	}
 
+	void Renderer::DrawPlane(Plane* plane)
+	{
+		glm::vec3 planeCenter = plane->normal * -plane->distance;
+		glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+		// Avoids the case when the plane is parallel to the Y-axis
+		if (plane->normal == up) {
+			up = glm::vec3(1.0f, 0.0f, 0.0f);
+		}
+
+		glm::vec3 right = glm::normalize(glm::cross(plane->normal, up));
+		up = glm::normalize(glm::cross(right, plane->normal));
+
+		float planeSize = 100.0f; // Adjust the size of the plane as needed
+
+		std::vector<glm::vec3> planeVertices = {
+			planeCenter + (right * planeSize) + (up * planeSize),    // top right
+			planeCenter + (right * planeSize) - (up * planeSize),    // bottom right
+			planeCenter - (right * planeSize) - (up * planeSize),    // bottom left
+			planeCenter - (right * planeSize) + (up * planeSize)     // top left
+		};
+
+		const GLuint planeIndices[] = {
+			0, 1, 2, 2, 3, 0   // forming two triangles for a quad
+		};
+
+		GLuint VAO, VBO, EBO;
+		glUseProgram(line);
+		glUniformMatrix4fv(glGetUniformLocation(line, "model"), 1, GL_FALSE, glm::value_ptr(glm::mat4(0.0f)));
+		glUniformMatrix4fv(glGetUniformLocation(line, "view"), 1, GL_FALSE, glm::value_ptr(view));
+		glUniformMatrix4fv(glGetUniformLocation(line, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+
+		glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &VBO);
+		glGenBuffers(1, &EBO);
+
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, planeVertices.size() * sizeof(glm::vec3), &planeVertices[0], GL_STATIC_DRAW);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(planeIndices), planeIndices, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+
+		// Draw the plane as triangles
+		glDrawElements(GL_TRIANGLES, sizeof(planeIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+
+		// Draw the normal
+		glm::vec3 normalStart = planeCenter;
+		glm::vec3 normalEnd = planeCenter + plane->normal * 50.0f; // Lengthen the normal line
+
+		std::vector<glm::vec3> normalLine = { normalStart, normalEnd };
+
+		GLuint normalVBO;
+		glGenBuffers(1, &normalVBO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, normalVBO);
+		glBufferData(GL_ARRAY_BUFFER, normalLine.size() * sizeof(glm::vec3), &normalLine[0], GL_STATIC_DRAW);
+
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+		glEnableVertexAttribArray(0);
+
+		// Draw the normal as a line
+		glDrawArrays(GL_LINES, 0, normalLine.size());
+
+		// Cleanup
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
+		glDeleteBuffers(1, &VBO);
+		glDeleteVertexArrays(1, &VAO);
+		glDeleteBuffers(1, &EBO);
+		glDeleteBuffers(1, &normalVBO);
+
+	}
+
 	void Renderer::CreateVBuffer(float* positions, int* indexs, int positionsSize, int indexSize, int atributeVertexSize, unsigned int& VAO, unsigned int& VBO, unsigned int& EBO)
 	{
 		glGenVertexArrays(1, &VAO);

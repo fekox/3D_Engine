@@ -6,6 +6,7 @@ using namespace std;
 namespace baseEngine
 {
 	Camera* newCamera;
+	AABB testAABB = { {0, 0, 0}, {1.f, 1.f, 1.f} };
 
 	BaseGame::BaseGame(int width, int height, const char* windowName)
 	{
@@ -17,6 +18,8 @@ namespace baseEngine
 
 		camera = new Camera(45.f, width, height);
 		newCamera = camera;
+
+		root = new Transform(nullptr, glm::vec3(0), glm::vec3(0), glm::vec3(1));
 
 		screenRatio = window->getWidth() / window->getHeight();
 
@@ -30,6 +33,8 @@ namespace baseEngine
 		renderer = new Renderer(window, camera, pointLight, directionaLight, spotLight);
 
 		inputSystem = new InputSystem(window->getWindow());
+
+		bspTarget = new Transform(nullptr, camera->cameraPos, glm::vec3(camera->pitch, camera->yaw, 0), glm::vec3(1));
 
 		//Disable the cursor
 		glfwSetInputMode(window->getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -65,6 +70,9 @@ namespace baseEngine
 			
 			update();
 			
+			frustum = camera->CreateFrustumFromCamera(camera, window->getWidth() / window->getHeight(), camera->zoom, camera->nearPlane, camera->farPlane);
+			DrawScene();
+
 			renderer->EndDraw();
 		}
 	}
@@ -74,17 +82,43 @@ namespace baseEngine
 		return renderer;
 	}
 
+	void BaseGame::DrawScene()
+	{
+		for (auto child : root->children)
+		{
+			if (child->entity != nullptr)
+			{
+				Model* entity = dynamic_cast<Model*>(child->entity);
+				if (entity != nullptr)
+				{
+					entity->GenerateAABB();
+					entity->DrawWithBSP(bspPlanes, planesToCheck, frustum, false);
+				}
+			}
+		}
+
+		if (showDebug)
+		{
+			std::vector<glm::vec3> vertices = testAABB.GetVertice();
+			renderer->DrawLinesAABB(root->m_modelMatrix, vertices);
+			if (!bspPlanes.empty())
+			{
+				for (Plane plane : bspPlanes)
+				{
+					renderer->DrawPlane(&plane);
+				}
+			}
+		}
+	}
+
 	void BaseGame::CalculateTargetPlanes()
 	{
 		planesToCheck.clear();
-		//debug = "Camera position";
-		//debug += bspTarget->getGlobalPosition().toString();
+
 		for (int i = 0; i < bspPlanes.size(); ++i)
 		{
 			bool side = bspPlanes[i].GetSide(bspTarget->GetGlobalPosition());
 			planesToCheck.push_back(side);
-			//debug += "\nThe side is ";
-			//debug += (side ? "True" : "false");
 		}
 	}
 

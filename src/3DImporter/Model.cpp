@@ -38,6 +38,16 @@ AABB Model::GenerateAABB(const Model& model)
 	return AABB(minAABB, maxAABB);
 }
 
+void Model::GenerateAABB()
+{
+	glm::vec3 minAABB = glm::vec3(std::numeric_limits<float>::max());
+	glm::vec3 maxAABB = -glm::vec3(std::numeric_limits<float>::max());
+	RecursiveAABB(minAABB, maxAABB, transform->GetModelMatrix());
+	SetMinMaxBoundingVolume(minAABB, maxAABB, transform->GetModelMatrix());
+
+	*boundingVolume = AABB(minAABB, maxAABB);
+}
+
 void Model::SetMinMaxBoundingVolume(glm::vec3& minAABB, glm::vec3& maxAABB, const glm::mat4& transformMatrix)
 {
 	for (const Mesh& mesh : meshes)
@@ -179,13 +189,15 @@ bool Model::DrawWithBSP(std::vector<Plane>& bspPlanes, std::vector<bool>& camera
 			return false;
 		}
 	}
+
 	bool isDrawn = false;
+
 	for (auto child : transform->children)
 	{
 		if (child->entity != nullptr && dynamic_cast<Model*>(child->entity))
 		{
-			bool isChildDrawn = dynamic_cast<Model*>(child->entity)->DrawWithBSP(
-				bspPlanes, cameraPlanes, frustum, shouldBeDrawn);
+			bool isChildDrawn = dynamic_cast<Model*>(child->entity)->DrawWithBSP(bspPlanes, cameraPlanes, frustum, shouldBeDrawn);
+
 			if (isChildDrawn)
 			{
 				isDrawn = true;

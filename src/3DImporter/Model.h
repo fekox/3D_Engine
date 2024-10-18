@@ -23,6 +23,7 @@ public:
 	vector<Mesh> GetMeshes();
 
 	static AABB GenerateAABB(const Model& model);
+	void GenerateAABB();
 
 	void SetMinMaxBoundingVolume(glm::vec3& minAABB, glm::vec3& maxAABB, const glm::mat4& transformMatrix);
 

@@ -60,8 +60,7 @@ namespace camera
 				cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * movementSpeed * deltaTime;
 			}
 
-			UpdateCameraVectors();
-		
+			UpdateCameraVectors();		
 		}
 	}
 

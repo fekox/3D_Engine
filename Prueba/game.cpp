@@ -27,7 +27,7 @@ void Game::init()
 
 	//Cube - 2
 	//*********************************************************************************
-	cubePosition2 = glm::vec3{ 150, 150 , 0};
+	cubePosition2 = glm::vec3{ 150, 150 , 0 };
 	cubeScale2 = glm::vec3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation2 = glm::vec3{ 0,0,0 };
 	material2 = new Material();
@@ -37,7 +37,7 @@ void Game::init()
 
 	//Cube - 3
 	//*********************************************************************************
-	cubePosition3 = glm::vec3{ -150, -150 , 0};
+	cubePosition3 = glm::vec3{ -150, -150 , 0 };
 	cubeScale3 = glm::vec3{ 80.0f, 80.0f, 80.0f };
 	cubeRotation3 = glm::vec3{ 0,0,0 };
 	material3 = new Material();
@@ -59,7 +59,7 @@ void Game::init()
 	//Model1
 	//*********************************************************************************
 	modelPosition = glm::vec3{ -100, 0 , 0 };
-	modelScale = glm::vec3{ 10, 10 , 10};
+	modelScale = glm::vec3{ 10, 10 , 10 };
 	modelRotation = glm::vec3{ 0, 0 , 0 };
 
 	model = new Model(GetRenderer(), modelPosition, modelScale, modelRotation, "res/Models/backpack/backpack.obj", true);
@@ -68,26 +68,26 @@ void Game::init()
 	//*********************************************************************************
 
 	modelPosition2 = glm::vec3{ 25, 0 , 0 };
-	modelScale2 = glm::vec3{ 0.1, 0.1, 0.1};
+	modelScale2 = glm::vec3{ 0.1, 0.1, 0.1 };
 	modelRotation2 = glm::vec3{ 90, 0 , 0 };
 
 	model2 = new Model(GetRenderer(), modelPosition2, modelScale2, modelRotation2, "res/Models/sword/source/Darth Vader's Lightsaber.FBX", false, model->transform);
 
 	//Model3
 	//*********************************************************************************
-	 
-	modelPosition3 = glm::vec3{ -25, 0 , 0};
+
+	modelPosition3 = glm::vec3{ -25, 0 , 0 };
 	modelScale3 = glm::vec3{ 100, 100, 100 };
-	modelRotation3 = glm::vec3{ 0, 0, 0};
+	modelRotation3 = glm::vec3{ 0, 0, 0 };
 
 	model3 = new Model(GetRenderer(), modelPosition3, modelScale3, modelRotation3, "res/Models/pingu/source/Cinematics_IntroCutscene_IntroCutscenePart1.fbx", false);
 
 	//Init Shape
 	//*********************************************************************************
 	TextureColor = Vector4{ 1.0f, 1.0f, 1.0f, 1 };
-	TexturePosition = glm::vec3{0,-100, 0 };
-	TextureScale = glm::vec3{128,128,128};
-	TextureRotation = glm::vec3{0,0,0};
+	TexturePosition = glm::vec3{ 0,-100, 0 };
+	TextureScale = glm::vec3{ 128,128,128 };
+	TextureRotation = glm::vec3{ 0,0,0 };
 
 	const char* path = "res/Sonic_Mania_Sprite_Sheet.png";
 	Sonic = new Sprite(path, TextureColor, GetRenderer(), TexturePosition, TextureScale, TextureRotation);
@@ -116,7 +116,7 @@ void Game::init()
 	//Spot Light
 	//*********************************************************************************
 	spotLight[1]->SetPosition(vec3(-300, 0, 0));
-	spotLight[1]->SetDirection(vec3(0,0, -1.0f));
+	spotLight[1]->SetDirection(vec3(0, 0, -1.0f));
 	spotLight[1]->SetLightColor(vec3(100.0f, 100.0f, 0.0f));
 
 	spotLight[2]->SetPosition(vec3(150, 150, 0));
@@ -130,14 +130,29 @@ void Game::init()
 	//Idle Animation
 	//*********************************************************************************
 	walkAnimation = new Animation();
-	walkAnimation->AddFrame(848, 203, 122/3, 48, 830, 465, 500, 3);
+	walkAnimation->AddFrame(848, 203, 122 / 3, 48, 830, 465, 500, 3);
 
 	idleAnimation = new Animation();
 	idleAnimation->AddFrame(390, 98, 98 / 3, 43, 830, 465, 2500, 3);
 
-	Sonic->SetAnimation(idleAnimation);	
+	Sonic->SetAnimation(idleAnimation);
 
+
+	//Frustum
+	//*********************************************************************************
 	renderer = new Renderer(currentWindow, newCamera);
+
+	//BSP
+	//*********************************************************************************
+	glm::vec3 plane1 = glm::vec3(0);
+	glm::vec3 plane3 = glm::vec3(0);
+	glm::vec3 plane2 = glm::vec3(0);
+	glm::vec3 plane4 = glm::vec3(0);
+
+	AddPlaneToBSP(plane1,glm::vec3(1,0,0));
+	AddPlaneToBSP(plane3,glm::vec3(-1,0,0));
+	AddPlaneToBSP(plane2,glm::vec3(0,0,-1));
+	AddPlaneToBSP(plane4,glm::vec3(0,0,1));
 }
 
 void Game::update()
@@ -153,7 +168,7 @@ void Game::update()
 	if (inputSystem->getKey(inputSystem->N1, inputSystem->Pressed))
 	{
 		//Sonic->SetAnimation(walkAnimation);
-		model->setRotation(glm::vec3(model->getRotation().x -1, 0, 0));
+		model->setRotation(glm::vec3(model->getRotation().x - 1, 0, 0));
 	}
 
 	if (inputSystem->getKey(inputSystem->N2, inputSystem->Pressed))
@@ -165,25 +180,25 @@ void Game::update()
 	if (inputSystem->getKey(inputSystem->downArrow, inputSystem->Pressed))
 	{
 		//Sonic->SetAnimation(walkAnimation);
-		model->setPosition(glm::vec3{ model->getPosition().x, model->getPosition().y - 2.0f,  model->getPosition().z});
+		model->setPosition(glm::vec3{ model->getPosition().x, model->getPosition().y - 2.0f,  model->getPosition().z });
 	}
 
 	if (inputSystem->getKey(inputSystem->upArrow, inputSystem->Pressed))
 	{
 		//Sonic->SetAnimation(walkAnimation);
-		model->setPosition(glm::vec3{ model->getPosition().x, model->getPosition().y + 2.0f, model->getPosition().z});
+		model->setPosition(glm::vec3{ model->getPosition().x, model->getPosition().y + 2.0f, model->getPosition().z });
 	}
 
 	if (inputSystem->getKey(inputSystem->leftArrow, inputSystem->Pressed))
 	{
 		//Sonic->SetAnimation(walkAnimation);
-		model->setPosition(glm::vec3{ model->getPosition().x - 2.0f, model->getPosition().y, model->getPosition().z});
+		model->setPosition(glm::vec3{ model->getPosition().x - 2.0f, model->getPosition().y, model->getPosition().z });
 	}
 
 	if (inputSystem->getKey(inputSystem->rightArrow, inputSystem->Pressed))
 	{
 		////Sonic->SetAnimation(walkAnimation);
-		model->setPosition(glm::vec3{ model->getPosition().x + 2.0f, model->getPosition().y, model->getPosition().z});
+		model->setPosition(glm::vec3{ model->getPosition().x + 2.0f, model->getPosition().y, model->getPosition().z });
 	}
 
 	//Lights
