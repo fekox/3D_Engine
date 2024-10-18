@@ -24,10 +24,16 @@ public:
 
 	static AABB GenerateAABB(const Model& model);
 
+	void SetMinMaxBoundingVolume(glm::vec3& minAABB, glm::vec3& maxAABB, const glm::mat4& transformMatrix);
+
+	void RecursiveAABB(glm::vec3& minAABB, glm::vec3& maxAABB, const glm::mat4& parentTransformMatrix);
+
 	AABB GetGlobalAABB();
 
 	bool IsOnFrustum(Frustum* frustum);
 
 	void Draw() override;
 	bool DrawWithFrustum(Frustum* frustum, bool shouldBeDrawn);
+
+	bool DrawWithBSP(std::vector<Plane>& bspPlanes, std::vector<bool>& cameraPlanes, Frustum* frustum, bool shouldBeDrawn);
 };

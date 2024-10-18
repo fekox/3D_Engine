@@ -18,5 +18,5 @@ struct Plane
 
     void SetNormalAndDistance(glm::vec3 point, glm::vec3 normal);
 
-    bool GetSide(glm::vec3& point);
+    bool GetSide(glm::vec3 point);
 };

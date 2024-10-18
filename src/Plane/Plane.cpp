@@ -18,7 +18,7 @@ void Plane::SetNormalAndDistance(glm::vec3 point, glm::vec3 normal)
     distance = glm::dot(this->normal, point);
 }
 
-bool Plane::GetSide(glm::vec3& point)
+bool Plane::GetSide(glm::vec3 point)
 {
     return glm::dot(normal, point) + distance > 0.0F;
 }

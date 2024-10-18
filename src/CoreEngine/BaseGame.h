@@ -41,6 +41,8 @@ namespace baseEngine
 		Window* window;
 		ErrorLog errorLog;
 
+		void CalculateTargetPlanes();
+
 	public:
 
 		Camera* camera;
@@ -59,6 +61,13 @@ namespace baseEngine
 		virtual void update() = 0;
 		virtual void exit() = 0;
 		Renderer* GetRenderer();
+
+		void AddPlaneToBSP(Plane plane);
+		void AddPlaneToBSP(glm::vec3 point, glm::vec3 normal);
+
+		Transform* bspTarget;
+		vector<Plane> bspPlanes;
+		vector<bool> planesToCheck;
 	};
 
 	void Mouse_Callback(GLFWwindow* window, double xpos, double ypos);

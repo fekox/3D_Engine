@@ -74,6 +74,31 @@ namespace baseEngine
 		return renderer;
 	}
 
+	void BaseGame::CalculateTargetPlanes()
+	{
+		planesToCheck.clear();
+		//debug = "Camera position";
+		//debug += bspTarget->getGlobalPosition().toString();
+		for (int i = 0; i < bspPlanes.size(); ++i)
+		{
+			bool side = bspPlanes[i].GetSide(bspTarget->GetGlobalPosition());
+			planesToCheck.push_back(side);
+			//debug += "\nThe side is ";
+			//debug += (side ? "True" : "false");
+		}
+	}
+
+	void BaseGame::AddPlaneToBSP(Plane plane)
+	{
+		bspPlanes.push_back(plane);
+	}
+
+	void BaseGame::AddPlaneToBSP(glm::vec3 point, glm::vec3 normal)
+	{
+		Plane plane = { point,normal };
+		bspPlanes.push_back(plane);
+	}
+
 	void Mouse_Callback(GLFWwindow* window, double xposIn, double yposIn)
 	{
 		float xPos = static_cast<float>(xposIn);
