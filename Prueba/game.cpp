@@ -167,17 +167,17 @@ void Game::init()
 	plane4Rot = glm::vec3{ 0,0,0 };
 	plane4 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane4Pos, planeScale, plane4Rot);
 
-	glm::vec3 normal1 = glm::vec3(1, 0, 0);
-	glm::vec3 normal2 = glm::vec3(0, 0, -1);
-	glm::vec3 normal3 = glm::vec3(-1, 0, 0);
-	glm::vec3 normal4 = glm::vec3(0, 0, 1);
+	plane1->normal = glm::vec3(0, 0, -1);
+	plane2->normal = glm::vec3(-1, 0, 0);
+	plane3->normal = glm::vec3(1, 0, 0);
+	plane4->normal = glm::vec3(0, 0, 1);
 
 	//Add planes to BSP
 	//*********************************************************************************
-	AddPlaneToBSP(plane1->transform->GetGlobalPosition(), normal2);
-	AddPlaneToBSP(plane3->transform->GetGlobalPosition(), normal1);
-	AddPlaneToBSP(plane2->transform->GetGlobalPosition(), normal3);
-	AddPlaneToBSP(plane4->transform->GetGlobalPosition(), normal4);
+	AddPlaneToBSP(plane1->transform->GetGlobalPosition(), plane1->normal);
+	AddPlaneToBSP(plane2->transform->GetGlobalPosition(), plane2->normal);
+	AddPlaneToBSP(plane3->transform->GetGlobalPosition(), plane3->normal);
+	AddPlaneToBSP(plane4->transform->GetGlobalPosition(), plane4->normal);
 }
 
 void Game::update()

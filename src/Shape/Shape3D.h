@@ -14,6 +14,8 @@ namespace shape3D
 		public:
 		Material* material;
 
+		glm::vec3 normal;
+
 		enum Shapes3D
 		{
 			Cube,
