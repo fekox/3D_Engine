@@ -67,6 +67,26 @@ private:
 	glm::vec3 backgroundScale;
 	glm::vec3 backgroundRotation;
 
+	//Plane - 1
+	glm::vec3 planeScale;
+
+	Shape3D* plane1;
+	glm::vec3 plane1Pos;
+	glm::vec3 plane1Rot;
+
+	Shape3D* plane2;
+	glm::vec3 plane2Pos;
+	glm::vec3 plane2Rot;
+
+	Shape3D* plane3;
+	glm::vec3 plane3Pos;
+	glm::vec3 plane3Rot;
+
+	Shape3D* plane4;
+	glm::vec3 plane4Pos;
+	glm::vec3 plane4Rot;
+
+
 	//Sprite
 	Sprite* Sonic;
 

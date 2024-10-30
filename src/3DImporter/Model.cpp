@@ -4,6 +4,12 @@ Model::Model(renderer::Renderer* render, glm::vec3 newPosition, glm::vec3 newSca
 {
 	ModelImporter::LoadModel(path, directory, meshes, invertTextures, turnOffByBSP);
 	boundingVolume = make_unique<AABB>(GenerateAABB(*this));
+
+	if (parent != nullptr)
+	{
+		transform->parent = parent;
+		parent->children.push_back(this->transform);
+	}
 }
 
 Model::~Model()

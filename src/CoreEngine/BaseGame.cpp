@@ -34,7 +34,7 @@ namespace baseEngine
 
 		inputSystem = new InputSystem(window->getWindow());
 
-		bspTarget = new Transform(nullptr, camera->cameraPos, glm::vec3(camera->pitch, camera->yaw, 0), glm::vec3(1));
+		bspTarget = camera->cameraPos;
 
 		//Disable the cursor
 		glfwSetInputMode(window->getWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
@@ -61,6 +61,7 @@ namespace baseEngine
 		{
 			Time::Update(glfwGetTime());
 			
+			CalculateTargetPlanes();
 			renderer->StartDraw();
 			
 			camera->CameraMovement(window->getWindow());
@@ -113,11 +114,13 @@ namespace baseEngine
 
 	void BaseGame::CalculateTargetPlanes()
 	{
+		bspTarget = camera->cameraPos;
+
 		planesToCheck.clear();
 
 		for (int i = 0; i < bspPlanes.size(); ++i)
 		{
-			bool side = bspPlanes[i].GetSide(bspTarget->GetGlobalPosition());
+			bool side = bspPlanes[i].GetSide(bspTarget);
 			planesToCheck.push_back(side);
 		}
 	}

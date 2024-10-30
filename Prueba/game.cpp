@@ -76,11 +76,11 @@ void Game::init()
 	//Model3
 	//*********************************************************************************
 
-	modelPosition3 = glm::vec3{ -25, 0 , 0 };
+	modelPosition3 = glm::vec3{ 800, 0 , 50 };
 	modelScale3 = glm::vec3{ 100, 100, 100 };
 	modelRotation3 = glm::vec3{ 0, 0, 0 };
 
-	model3 = new Model(GetRenderer(), modelPosition3, modelScale3, modelRotation3, "res/Models/pingu/source/Cinematics_IntroCutscene_IntroCutscenePart1.fbx", false);
+	model3 = new Model(GetRenderer(), modelPosition3, modelScale3, modelRotation3, "res/Models/pingu/source/Cinematics_IntroCutscene_IntroCutscenePart1.fbx", false, root);
 
 	//Init Shape
 	//*********************************************************************************
@@ -144,15 +144,40 @@ void Game::init()
 
 	//BSP
 	//*********************************************************************************
-	glm::vec3 plane1 = glm::vec3(0);
-	glm::vec3 plane3 = glm::vec3(0);
-	glm::vec3 plane2 = glm::vec3(0);
-	glm::vec3 plane4 = glm::vec3(0);
+	
+	planeScale = glm::vec3{ 500.0f, 500.0f, 1.0f };
 
-	AddPlaneToBSP(plane1,glm::vec3(1,0,0));
-	AddPlaneToBSP(plane3,glm::vec3(-1,0,0));
-	AddPlaneToBSP(plane2,glm::vec3(0,0,-1));
-	AddPlaneToBSP(plane4,glm::vec3(0,0,1));
+	//Plane - 1
+	plane1Pos = glm::vec3{ 800, 0 , -200};
+	plane1Rot = glm::vec3{ 0,0,0 };
+	plane1 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane1Pos, planeScale, plane1Rot);
+
+	//Plane - 2
+	plane2Pos = glm::vec3{ 1100, 0 , 50 };
+	plane2Rot = glm::vec3{ 0,90,0 };
+	plane2 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane2Pos, planeScale, plane2Rot);
+
+	//Plane - 3
+	plane3Pos = glm::vec3{ 500, 0 , 50 };
+	plane3Rot = glm::vec3{ 0,90,0 };
+	plane3 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane3Pos, planeScale, plane3Rot);
+
+	//Plane - 4
+	plane4Pos = glm::vec3{ 800, 0 , 280 };
+	plane4Rot = glm::vec3{ 0,0,0 };
+	plane4 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane4Pos, planeScale, plane4Rot);
+
+	glm::vec3 normal1 = glm::vec3(1, 0, 0);
+	glm::vec3 normal2 = glm::vec3(0, 0, -1);
+	glm::vec3 normal3 = glm::vec3(-1, 0, 0);
+	glm::vec3 normal4 = glm::vec3(0, 0, 1);
+
+	//Add planes to BSP
+	//*********************************************************************************
+	AddPlaneToBSP(plane1->transform->GetGlobalPosition(), normal2);
+	AddPlaneToBSP(plane3->transform->GetGlobalPosition(), normal1);
+	AddPlaneToBSP(plane2->transform->GetGlobalPosition(), normal3);
+	AddPlaneToBSP(plane4->transform->GetGlobalPosition(), normal4);
 }
 
 void Game::update()
@@ -201,6 +226,32 @@ void Game::update()
 		model->setPosition(glm::vec3{ model->getPosition().x + 2.0f, model->getPosition().y, model->getPosition().z });
 	}
 
+	//Model 3 Inputs
+	//*********************************************************************************
+	if (inputSystem->getKey(inputSystem->i, inputSystem->Pressed))
+	{
+		//Sonic->SetAnimation(walkAnimation);
+		model3->setPosition(glm::vec3{ model3->getPosition().x, model3->getPosition().y,  model3->getPosition().z - 4.0f});
+	}
+
+	if (inputSystem->getKey(inputSystem->k, inputSystem->Pressed))
+	{
+		//Sonic->SetAnimation(walkAnimation);
+		model3->setPosition(glm::vec3{ model3->getPosition().x, model3->getPosition().y, model3->getPosition().z + 4.0f });
+	}
+
+	if (inputSystem->getKey(inputSystem->j, inputSystem->Pressed))
+	{
+		//Sonic->SetAnimation(walkAnimation);
+		model3->setPosition(glm::vec3{ model3->getPosition().x - 4.0f, model3->getPosition().y, model3->getPosition().z });
+	}
+
+	if (inputSystem->getKey(inputSystem->l, inputSystem->Pressed))
+	{
+		////Sonic->SetAnimation(walkAnimation);
+		model3->setPosition(glm::vec3{ model3->getPosition().x + 4.0f, model3->getPosition().y, model3->getPosition().z });
+	}
+
 	//Lights
 	//*********************************************************************************
 	//pointLight[0]->SetPosition(newPos);
@@ -215,7 +266,7 @@ void Game::update()
 
 	//model2->Draw();
 
-	model3->Draw();
+	//model3->Draw();
 
 	//Sonic->Draw();
 
@@ -227,6 +278,11 @@ void Game::update()
 
 	cube3->Draw();
 
+	plane1->Draw();
+	plane2->Draw();
+	plane3->Draw();
+	plane4->Draw();
+
 	if (model->IsOnFrustum(camera->CreateFrustumFromCamera(camera, width / height, glm::radians(camera->zoom), camera->nearPlane, camera->farPlane - 500)))
 	{
 		model->Draw();
@@ -237,6 +293,8 @@ void Game::update()
 	{
 		cout << "No se dibuja" << endl;
 	}
+
+	//model3->Draw();
 }
 
 void Game::exit()
@@ -252,4 +310,9 @@ void Game::exit()
 	delete model;
 	delete model2;
 	delete model3;
+
+	delete plane1;
+	delete plane2;
+	delete plane3;
+	delete plane4;
 }

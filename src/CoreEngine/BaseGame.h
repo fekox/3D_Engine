@@ -72,7 +72,7 @@ namespace baseEngine
 
 		Frustum* frustum;
 
-		Transform* bspTarget;
+		glm::vec3 bspTarget;
 		Transform* root;
 
 		vector<Plane> bspPlanes;
