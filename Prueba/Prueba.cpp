@@ -1,7 +1,5 @@
 #include "game.h"
 
-using namespace baseEngine;
-
 int main(void)
 {
     int width = 1920;

@@ -70,21 +70,25 @@ private:
 	//Plane - 1
 	glm::vec3 planeScale;
 
-	Shape3D* plane1;
-	glm::vec3 plane1Pos;
-	glm::vec3 plane1Rot;
+	Model* plane1;
+	glm::vec3 Plane1Pos;
+	glm::vec3 Plane1PosEsc;
+	glm::vec3 Plane1Rot;
 
-	Shape3D* plane2;
-	glm::vec3 plane2Pos;
-	glm::vec3 plane2Rot;
+	Model* plane2;
+	glm::vec3 Plane2Pos;
+	glm::vec3 Plane2PosEsc;
+	glm::vec3 Plane2Rot;
 
-	Shape3D* plane3;
-	glm::vec3 plane3Pos;
-	glm::vec3 plane3Rot;
+	Model* plane3;
+	glm::vec3 Plane3Pos;
+	glm::vec3 Plane3PosEsc;
+	glm::vec3 Plane3Rot;
 
-	Shape3D* plane4;
-	glm::vec3 plane4Pos;
-	glm::vec3 plane4Rot;
+	Model* plane4;
+	glm::vec3 Plane4Pos;
+	glm::vec3 Plane4PosEsc;
+	glm::vec3 Plane4Rot;
 
 
 	//Sprite

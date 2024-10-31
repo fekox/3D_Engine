@@ -112,3 +112,8 @@ void Entity::UpdateTMatrix()
 {
 	model = transform->GetModelMatrix();
 }
+
+Renderer* Entity::GetRenderer()
+{
+	return render;
+}

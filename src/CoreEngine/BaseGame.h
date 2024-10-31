@@ -18,6 +18,7 @@
 #include "Tools/Time/Time.h"
 #include "Tools/Collision Manager/CollisionManager.h"
 #include "InputSystem.h"
+#include "BSP.h"
 
 using namespace shape;
 using namespace shape3D;
@@ -67,15 +68,11 @@ namespace baseEngine
 
 		void DrawScene();
 
-		void AddPlaneToBSP(Plane plane);
-		void AddPlaneToBSP(glm::vec3 point, glm::vec3 normal);
-
 		Frustum* frustum;
 
 		glm::vec3 bspTarget;
 		Transform* root;
 
-		vector<Plane> bspPlanes;
 		vector<bool> planesToCheck;
 	};
 

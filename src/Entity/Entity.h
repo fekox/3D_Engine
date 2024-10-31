@@ -49,4 +49,5 @@ using namespace renderer;
 		glm::vec3 getRotation();
 
 		void UpdateTMatrix();
+		Renderer* GetRenderer();
 	};

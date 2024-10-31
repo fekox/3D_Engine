@@ -183,6 +183,9 @@
     <ClCompile Include="src\Component.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="src\BSP.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -294,6 +297,9 @@
       <Filter>Src\BoundingVolume</Filter>
     </ClInclude>
     <ClInclude Include="src\Component.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BSP.h">
       <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>

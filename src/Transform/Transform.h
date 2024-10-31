@@ -8,6 +8,7 @@
 #include "..\libs\glm\include\glm.hpp"
 #include "..\libs\glm\include\gtc\matrix_transform.hpp"
 #include "..\libs\glm\include\gtc\type_ptr.hpp"
+#include <iostream>
 
 class EXPORT Transform : public Component
 {
@@ -31,6 +32,7 @@ public:
 
 	std::list<Transform*> children;
 	Transform* parent;
+	std::string name;
 
 	explicit Transform(Entity* newEntity);
 	Transform(Entity* newEntity, glm::vec3 position, glm::vec3 rotation, glm::vec3 scale);

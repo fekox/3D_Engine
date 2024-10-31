@@ -1,6 +1,7 @@
 #include "ModelImporter.h"
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
+#include "CoreEngine/BaseGame.h"
 
 string ModelImporter::currentDirectory = "";
 vector<Texture> ModelImporter::textures_loaded;
@@ -30,11 +31,37 @@ void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh
 //Utilizo recursividad para pasar por todas las meshes del modelo.
 void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene, bool invertTextures, bool turnOffByBSP)
 {
+	aiMatrix4x4 aiTransform = node->mTransformation;
+	aiVector3f aiPos;
+	aiVector3f aiQua;
+	aiVector3f aiSca;
+	aiTransform.Decompose(aiSca, aiQua, aiPos);
+
+	float RadianToDegree = (180 / Assimp::Math::aiPi<float>());
+	glm::vec3 eulerAng = { aiQua.x * RadianToDegree, aiQua.y * RadianToDegree, aiQua.z * RadianToDegree };
+
+	glm::mat4 nodeTransform = glm::transpose(glm::make_mat4(&aiTransform.a1));
+	glm::vec3 posAux = nodeTransform[3];
+	glm::vec3 pos = { posAux.x, posAux.y, posAux.z };
+	glm::vec3 rot = { aiQua.x * RadianToDegree, aiQua.y * RadianToDegree, aiQua.z * RadianToDegree };
+	glm::vec3 sca = { aiSca.x, aiSca.y, aiSca.z };
+
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
 	{
 		// the node object only contains indices to index the actual objects in the scene. 
 		// the scene contains all the data, node is just to keep stuff organized (like relations between nodes).
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+
+		string name = node->mName.C_Str();
+
+		if(name.find("bspPlane") != string::npos)
+		{
+			glm::vec3 up;
+			up = nodeTransform[1];
+
+			BSP::AddPlaneToBSP(pos, up);
+		}
+
 		meshes.push_back(ProcessMesh(mesh, scene, invertTextures));
 	}
 

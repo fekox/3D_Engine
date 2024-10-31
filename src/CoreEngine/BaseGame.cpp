@@ -93,7 +93,7 @@ namespace baseEngine
 				if (entity != nullptr)
 				{
 					entity->GenerateAABB();
-					entity->DrawWithBSP(bspPlanes, planesToCheck, frustum, false);
+					entity->DrawWithBSP(BSP::bspPlanes, planesToCheck, frustum, false);
 				}
 			}
 		}
@@ -102,9 +102,9 @@ namespace baseEngine
 		{
 			std::vector<glm::vec3> vertices = testAABB.GetVertice();
 			renderer->DrawLinesAABB(root->m_modelMatrix, vertices);
-			if (!bspPlanes.empty())
+			if (!BSP::bspPlanes.empty())
 			{
-				for (Plane plane : bspPlanes)
+				for (Plane plane : BSP::bspPlanes)
 				{
 					renderer->DrawPlane(&plane);
 				}
@@ -118,22 +118,11 @@ namespace baseEngine
 
 		planesToCheck.clear();
 
-		for (int i = 0; i < bspPlanes.size(); ++i)
+		for (int i = 0; i < BSP::bspPlanes.size(); ++i)
 		{
-			bool side = bspPlanes[i].GetSide(bspTarget);
+			bool side = BSP::bspPlanes[i].GetSide(bspTarget);
 			planesToCheck.push_back(side);
 		}
-	}
-
-	void BaseGame::AddPlaneToBSP(Plane plane)
-	{
-		bspPlanes.push_back(plane);
-	}
-
-	void BaseGame::AddPlaneToBSP(glm::vec3 point, glm::vec3 normal)
-	{
-		Plane plane = { point,normal };
-		bspPlanes.push_back(plane);
 	}
 
 	void Mouse_Callback(GLFWwindow* window, double xposIn, double yposIn)

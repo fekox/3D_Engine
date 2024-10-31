@@ -30,6 +30,11 @@ using namespace directionalLight;
 using namespace pointLight;
 using namespace spotLight;
 
+namespace baseEngine
+{
+	class BaseGame;
+}
+
 namespace renderer
 {
 	/// <summary>
@@ -53,6 +58,8 @@ namespace renderer
 
 		glm::mat4x4 projection;
 		glm::mat4x4 view;
+		
+		baseEngine::BaseGame* baseGame;
 
 		unsigned int primitiveShader;
 		unsigned int textureShader;

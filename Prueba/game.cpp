@@ -145,39 +145,11 @@ void Game::init()
 	//BSP
 	//*********************************************************************************
 	
-	planeScale = glm::vec3{ 500.0f, 500.0f, 1.0f };
+	Plane1PosEsc = glm::vec3{ 100.0f, 100.0f, 1.0f };
 
 	//Plane - 1
-	plane1Pos = glm::vec3{ 800, 0 , -200};
-	plane1Rot = glm::vec3{ 0,0,0 };
-	plane1 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane1Pos, planeScale, plane1Rot);
-
-	//Plane - 2
-	plane2Pos = glm::vec3{ 1100, 0 , 50 };
-	plane2Rot = glm::vec3{ 0,90,0 };
-	plane2 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane2Pos, planeScale, plane2Rot);
-
-	//Plane - 3
-	plane3Pos = glm::vec3{ 500, 0 , 50 };
-	plane3Rot = glm::vec3{ 0,90,0 };
-	plane3 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane3Pos, planeScale, plane3Rot);
-
-	//Plane - 4
-	plane4Pos = glm::vec3{ 800, 0 , 280 };
-	plane4Rot = glm::vec3{ 0,0,0 };
-	plane4 = new Shape3D(Shape3D::Shapes3D::Cube, material, GetRenderer(), plane4Pos, planeScale, plane4Rot);
-
-	plane1->normal = glm::vec3(0, 0, -1);
-	plane2->normal = glm::vec3(-1, 0, 0);
-	plane3->normal = glm::vec3(1, 0, 0);
-	plane4->normal = glm::vec3(0, 0, 1);
-
-	//Add planes to BSP
-	//*********************************************************************************
-	AddPlaneToBSP(plane1->transform->GetGlobalPosition(), plane1->normal);
-	AddPlaneToBSP(plane2->transform->GetGlobalPosition(), plane2->normal);
-	AddPlaneToBSP(plane3->transform->GetGlobalPosition(), plane3->normal);
-	AddPlaneToBSP(plane4->transform->GetGlobalPosition(), plane4->normal);
+	Plane1Rot = glm::vec3{ 0,0,0 };
+	plane1 = new Model(GetRenderer(), modelPosition3, Plane1PosEsc, Plane1Rot, "res/Models/bspPlanesNew4.fbx", true);
 }
 
 void Game::update()
@@ -279,9 +251,6 @@ void Game::update()
 	cube3->Draw();
 
 	plane1->Draw();
-	plane2->Draw();
-	plane3->Draw();
-	plane4->Draw();
 
 	if (model->IsOnFrustum(camera->CreateFrustumFromCamera(camera, width / height, glm::radians(camera->zoom), camera->nearPlane, camera->farPlane - 500)))
 	{
