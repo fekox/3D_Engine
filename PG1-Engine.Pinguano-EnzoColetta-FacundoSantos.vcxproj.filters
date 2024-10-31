@@ -186,6 +186,9 @@
     <ClCompile Include="src\BSP.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Sprite\Importer2D.cpp">
+      <Filter>Src\Sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader.h">
@@ -301,6 +304,9 @@
     </ClInclude>
     <ClInclude Include="src\BSP.h">
       <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sprite\Importer2D.h">
+      <Filter>Src\Sprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

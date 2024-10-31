@@ -45,6 +45,8 @@ void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScen
 	glm::vec3 pos = { posAux.x, posAux.y, posAux.z };
 	glm::vec3 rot = { aiQua.x * RadianToDegree, aiQua.y * RadianToDegree, aiQua.z * RadianToDegree };
 	glm::vec3 sca = { aiSca.x, aiSca.y, aiSca.z };
+	glm::vec3 up = glm::vec3(nodeTransform[1]);
+
 
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
 	{
@@ -56,9 +58,6 @@ void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScen
 
 		if(name.find("bspPlane") != string::npos)
 		{
-			glm::vec3 up;
-			up = nodeTransform[1];
-
 			BSP::AddPlaneToBSP(pos, up);
 		}
 

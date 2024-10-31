@@ -37,3 +37,12 @@ void Mesh::SetupMesh()
 
 	glBindVertexArray(0);
 }
+
+void Mesh::SetNewTextures(string currentDirectory, string fileName, bool shouldInvertUVs, string type)
+{
+	Texture texture;
+	texture.id = Importer2D::TextureFromFile(fileName.c_str(), currentDirectory, shouldInvertUVs);
+
+	texture.type = type;
+	textures.push_back(texture);
+}

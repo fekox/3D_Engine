@@ -192,6 +192,25 @@ bool Model::DrawWithFrustum(Frustum* frustum, bool shouldBeDrawn)
 	return shouldBeDrawn;
 }
 
+void Model::SetNewTextures(string currentDirectory, string fileName, bool shouldInvertUVs, string type)
+{
+	for (Mesh& mesh : meshes)
+	{
+		mesh.SetNewTextures(currentDirectory, fileName, shouldInvertUVs, type);
+	}
+	if (!transform->children.empty())
+	{
+		for (auto child : transform->children)
+		{
+			if (child->entity != nullptr && dynamic_cast<Model*>(child->entity))
+			{
+				dynamic_cast<Model*>(child->entity)->SetNewTextures(currentDirectory, fileName, shouldInvertUVs,
+					type);
+			}
+		}
+	}
+}
+
 bool Model::DrawWithBSP(std::vector<Plane>& bspPlanes, std::vector<bool>& cameraPlanes, Frustum* frustum, bool shouldBeDrawn)
 {
 	transform->ForceUpdateSelfAndChild();

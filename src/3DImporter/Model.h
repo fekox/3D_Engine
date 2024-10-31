@@ -39,5 +39,7 @@ public:
 	void Draw() override;
 	bool DrawWithFrustum(Frustum* frustum, bool shouldBeDrawn);
 
+	void SetNewTextures(string currentDirectory, string fileName, bool shouldInvertUVs, string type);
+
 	bool DrawWithBSP(std::vector<Plane>& bspPlanes, std::vector<bool>& cameraPlanes, Frustum* frustum, bool shouldBeDrawn);
 };

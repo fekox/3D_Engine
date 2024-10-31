@@ -3,6 +3,7 @@
 #include "..\libs\glm\include\glm.hpp"
 #include <string>
 #include <vector>
+#include "Sprite/Importer2D.h"
 
 
 using namespace std;
@@ -36,6 +37,8 @@ public:
 
 	Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
 	unsigned int VAO, VBO, EBO;
+
+	void SetNewTextures(string currentDirectory, string fileName, bool shouldInvertUVs, string type);
 
 private:
 

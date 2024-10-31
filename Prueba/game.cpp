@@ -150,6 +150,7 @@ void Game::init()
 	//Plane - 1
 	Plane1Rot = glm::vec3{ 0,0,0 };
 	plane1 = new Model(GetRenderer(), modelPosition3, Plane1PosEsc, Plane1Rot, "res/Models/bspPlanesNew4.fbx", true);
+	plane1->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
 }
 
 void Game::update()
