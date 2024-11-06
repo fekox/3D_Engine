@@ -75,20 +75,25 @@ private:
 	glm::vec3 Plane1PosEsc;
 	glm::vec3 Plane1Rot;
 
-	Model* plane2;
+	Sprite* plane2;
 	glm::vec3 Plane2Pos;
 	glm::vec3 Plane2PosEsc;
 	glm::vec3 Plane2Rot;
 
-	Model* plane3;
+	Sprite* plane3;
 	glm::vec3 Plane3Pos;
 	glm::vec3 Plane3PosEsc;
 	glm::vec3 Plane3Rot;
 
-	Model* plane4;
+	Sprite* plane4;
 	glm::vec3 Plane4Pos;
 	glm::vec3 Plane4PosEsc;
 	glm::vec3 Plane4Rot;
+
+	Sprite* plane5;
+	glm::vec3 Plane5Pos;
+	glm::vec3 Plane5PosEsc;
+	glm::vec3 Plane5Rot;
 
 
 	//Sprite

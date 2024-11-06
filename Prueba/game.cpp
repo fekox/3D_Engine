@@ -148,20 +148,20 @@ void Game::init()
 	Plane1PosEsc = glm::vec3{ 100.0f, 100.0f, 100.0f };
 
 	//Plane - 1
-	Plane1Rot = glm::vec3{ 90,0,0};
-	Plane2Rot = glm::vec3{ 90,0,180};
-	Plane3Rot = glm::vec3{ 90,90,0};
-	Plane4Rot = glm::vec3{ 90,90,0};
+	Plane1Rot = glm::vec3{ 90,0,0 };
 
-	plane1 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z - 60 }, Plane1PosEsc, Plane1Rot, "res/Models/bspPlanesNew4.fbx", true);
-	plane2 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z + 60}, Plane1PosEsc, Plane2Rot, "res/Models/bspPlanesNew4.fbx", true);
-	plane3 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x - 60, modelPosition3.y, modelPosition3.z }, Plane1PosEsc, Plane3Rot, "res/Models/bspPlanesNew4.fbx", true);
-	plane4 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x + 60, modelPosition3.y, modelPosition3.z}, Plane1PosEsc, Plane4Rot, "res/Models/bspPlanesNew4.fbx", true);
+
+	Plane3Rot = glm::vec3{ 0,90,0};
+	Plane4Rot = glm::vec3{ 0,90,0 };
+	Plane5Rot = glm::vec3{ 0,0,0};
+
+	plane1 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z + 60 }, Plane1PosEsc, Plane1Rot, "res/Models/bspPlanesNew4.fbx", false);
+
+	plane3 = new Sprite("res/pingu.png", TextureColor, GetRenderer(), glm::vec3{ modelPosition3.x - 60, modelPosition3.y, modelPosition3.z }, Plane1PosEsc, Plane3Rot);
+	plane4 = new Sprite("res/pingu.png", TextureColor, GetRenderer(), glm::vec3{ modelPosition3.x + 60, modelPosition3.y, modelPosition3.z }, Plane1PosEsc, Plane4Rot);
+	plane5 = new Sprite("res/pingu.png", TextureColor, GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z -60}, Plane1PosEsc, Plane5Rot);
 
 	plane1->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
-	plane2->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
-	plane3->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
-	plane4->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
 }
 
 void Game::update()
@@ -263,9 +263,10 @@ void Game::update()
 	cube3->Draw();
 
 	plane1->Draw();
-	plane2->Draw();
+
 	plane3->Draw();
 	plane4->Draw();
+	plane5->Draw();
 
 	if (model->IsOnFrustum(camera->CreateFrustumFromCamera(camera, width / height, glm::radians(camera->zoom), camera->nearPlane, camera->farPlane - 500)))
 	{
