@@ -3,7 +3,7 @@
 Model::Model(renderer::Renderer* render, glm::vec3 newPosition, glm::vec3 newScale, glm::vec3 newRotation, const char* path, bool invertTextures, Transform* parent, bool turnOffByBSP) : Entity3D(render, newPosition, newScale, newRotation, parent, turnOffByBSP)
 {
 	transform->name = path;
-	ModelImporter::LoadModel(path, directory, meshes, invertTextures, turnOffByBSP);
+	ModelImporter::LoadModel(path, directory, meshes, this, invertTextures, turnOffByBSP);
 	boundingVolume = make_unique<AABB>(GenerateAABB(*this));
 
 	if (parent != nullptr)

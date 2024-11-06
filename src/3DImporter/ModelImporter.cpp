@@ -8,7 +8,7 @@ vector<Texture> ModelImporter::textures_loaded;
 
 
 //Creo una scena del assimp y le paso el modelo con las flags.
-void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh>& meshes, bool invertTextures, bool turnOffByBSP)
+void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh>& meshes, Model* model, bool invertTextures, bool turnOffByBSP)
 {
 	textures_loaded.clear();
 	// read file via ASSIMP
@@ -24,12 +24,12 @@ void ModelImporter::LoadModel(const string& path, string& directory, vector<Mesh
 	currentDirectory = path.substr(0, path.find_last_of('/'));
 
 	// process ASSIMP's root node recursively
-	ProcessNode(meshes, scene->mRootNode, scene, invertTextures, turnOffByBSP);
+	ProcessNode(meshes, scene->mRootNode, scene, model, invertTextures, turnOffByBSP);
 
 }
 
 //Utilizo recursividad para pasar por todas las meshes del modelo.
-void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene, bool invertTextures, bool turnOffByBSP)
+void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScene* scene, Model* model, bool invertTextures, bool turnOffByBSP)
 {
 	aiMatrix4x4 aiTransform = node->mTransformation;
 	aiVector3f aiPos;
@@ -45,8 +45,6 @@ void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScen
 	glm::vec3 pos = { posAux.x, posAux.y, posAux.z };
 	glm::vec3 rot = { aiQua.x * RadianToDegree, aiQua.y * RadianToDegree, aiQua.z * RadianToDegree };
 	glm::vec3 sca = { aiSca.x, aiSca.y, aiSca.z };
-	glm::vec3 up = glm::vec3(nodeTransform[1]);
-
 
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
 	{
@@ -54,11 +52,20 @@ void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScen
 		// the scene contains all the data, node is just to keep stuff organized (like relations between nodes).
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 
-		string name = node->mName.C_Str();
+		model = new Model(model->GetRenderer(), pos, sca, rot, model->transform, turnOffByBSP);
+		model->transform->name = node->mName.C_Str();
 
-		if(name.find("bspPlane") != string::npos)
+		if(model->transform->name.find("bspPlane") != string::npos)
 		{
-			BSP::AddPlaneToBSP(pos, up);
+			glm::vec3 rotation;
+			glm::vec3 point;
+			glm::vec3 normal;
+
+			rotation = model->transform->GetLocalRotation();
+			point = model->transform->GetGlobalPosition();
+			normal = model->transform->GetUp();
+			
+			BSP::AddPlaneToBSP(point, normal);
 		}
 
 		meshes.push_back(ProcessMesh(mesh, scene, invertTextures));
@@ -67,7 +74,7 @@ void ModelImporter::ProcessNode(vector<Mesh>& meshes, aiNode* node, const aiScen
 	// after we've processed all of the meshes (if any) we then recursively process each of the children nodes
 	for (unsigned int i = 0; i < node->mNumChildren; i++)
 	{
-		ProcessNode(meshes, node->mChildren[i], scene, invertTextures, turnOffByBSP);
+		ProcessNode(meshes, node->mChildren[i], scene, model, invertTextures, turnOffByBSP);
 	}
 }
 
@@ -190,7 +197,6 @@ vector<Texture> ModelImporter::LoadMaterialTextures(aiMaterial* mat, aiTextureTy
 		}
 	}
 	return textures;
-
 }
 
 //Cargo la textura pasandole todos los parametros y el path en donde se encuentra.

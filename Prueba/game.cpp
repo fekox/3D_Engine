@@ -145,12 +145,24 @@ void Game::init()
 	//BSP
 	//*********************************************************************************
 	
-	Plane1PosEsc = glm::vec3{ 100.0f, 100.0f, 1.0f };
+	Plane1PosEsc = glm::vec3{ 100.0f, 100.0f, 100.0f };
 
 	//Plane - 1
-	Plane1Rot = glm::vec3{ 0,0,0 };
-	plane1 = new Model(GetRenderer(), modelPosition3, Plane1PosEsc, Plane1Rot, "res/Models/bspPlanesNew4.fbx", true);
+	Plane1Rot = glm::vec3{ 90,0,0};
+	Plane2Rot = glm::vec3{ 90,0,180};
+	Plane3Rot = glm::vec3{ 90,90,0};
+	Plane4Rot = glm::vec3{ 90,90,0};
+
+	plane1 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z - 50 }, Plane1PosEsc, Plane1Rot, "res/Models/bspPlanesNew4.fbx", true);
+	plane2 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z + 50}, Plane1PosEsc, Plane2Rot, "res/Models/bspPlanesNew4.fbx", true);
+	plane3 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x -50, modelPosition3.y, modelPosition3.z }, Plane1PosEsc, Plane3Rot, "res/Models/bspPlanesNew4.fbx", true);
+	plane4 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x + 50, modelPosition3.y, modelPosition3.z}, Plane1PosEsc, Plane4Rot, "res/Models/bspPlanesNew4.fbx", true);
+
+
 	plane1->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
+	plane2->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
+	plane3->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
+	plane4->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
 }
 
 void Game::update()
@@ -252,6 +264,9 @@ void Game::update()
 	cube3->Draw();
 
 	plane1->Draw();
+	plane2->Draw();
+	plane3->Draw();
+	plane4->Draw();
 
 	if (model->IsOnFrustum(camera->CreateFrustumFromCamera(camera, width / height, glm::radians(camera->zoom), camera->nearPlane, camera->farPlane - 500)))
 	{
@@ -263,8 +278,6 @@ void Game::update()
 	{
 		cout << "No se dibuja" << endl;
 	}
-
-	//model3->Draw();
 }
 
 void Game::exit()
