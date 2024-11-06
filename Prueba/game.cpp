@@ -153,11 +153,10 @@ void Game::init()
 	Plane3Rot = glm::vec3{ 90,90,0};
 	Plane4Rot = glm::vec3{ 90,90,0};
 
-	plane1 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z - 50 }, Plane1PosEsc, Plane1Rot, "res/Models/bspPlanesNew4.fbx", true);
-	plane2 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z + 50}, Plane1PosEsc, Plane2Rot, "res/Models/bspPlanesNew4.fbx", true);
-	plane3 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x -50, modelPosition3.y, modelPosition3.z }, Plane1PosEsc, Plane3Rot, "res/Models/bspPlanesNew4.fbx", true);
-	plane4 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x + 50, modelPosition3.y, modelPosition3.z}, Plane1PosEsc, Plane4Rot, "res/Models/bspPlanesNew4.fbx", true);
-
+	plane1 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z - 60 }, Plane1PosEsc, Plane1Rot, "res/Models/bspPlanesNew4.fbx", true);
+	plane2 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x, modelPosition3.y, modelPosition3.z + 60}, Plane1PosEsc, Plane2Rot, "res/Models/bspPlanesNew4.fbx", true);
+	plane3 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x - 60, modelPosition3.y, modelPosition3.z }, Plane1PosEsc, Plane3Rot, "res/Models/bspPlanesNew4.fbx", true);
+	plane4 = new Model(GetRenderer(), glm::vec3{ modelPosition3.x + 60, modelPosition3.y, modelPosition3.z}, Plane1PosEsc, Plane4Rot, "res/Models/bspPlanesNew4.fbx", true);
 
 	plane1->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
 	plane2->SetNewTextures("res/", "pingu.png", false, "texture_baseColor");
